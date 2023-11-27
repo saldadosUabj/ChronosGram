@@ -1,11 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
+import Logo from './scr/components/logo/index'
+import Form from './scr/components/Form/index'
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Commit de Sincronização</Text>
-      <StatusBar style="auto" />
+      <Logo/>
+      <Form/>
     </View>
   );
 }
@@ -13,8 +15,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#16041B',
   },
 });
