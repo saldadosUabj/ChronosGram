@@ -10,7 +10,7 @@ export default function Form(){
     return(
         <View>
            <View style={styles.boxTop}>
-            <Text style={styles.Login}> Login </Text>
+            <Text style={styles.Login}> Registro </Text>
             <TextInput
                 style={styles.inputBox}
                 onChangeText={setEmail}
@@ -28,8 +28,8 @@ export default function Form(){
             </TouchableOpacity>            
             </View>
             <View style={styles.boxBottom}>
-                <Text style={styles.comment}>Ainda não possui uma conta?</Text>
-                <Text style={styles.registrar}> Registrar-se </Text>
+                <Text style={styles.comment}>Já possui uma conta?</Text>
+                <Text style={styles.registrar}> Entrar </Text>
            </View>
         </View>
     )

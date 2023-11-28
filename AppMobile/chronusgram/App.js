@@ -1,8 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import Logo from './scr/components/tela_login/logo/index'
-import Form from './scr/components/tela_login/Form/index'
+import Logo from './scr/pages/tela_login/logo/index'
+import Form from './scr/pages/tela_login/Form/index'
 import { useFonts } from 'expo-font'
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import tela_login from './scr/pages/tela_login/index'
+import tela_registro from './scr/pages/tela_registro/index'
+
+const Stack = createStackNavigator();
 
 
 export default function App() {
@@ -15,6 +22,12 @@ export default function App() {
   })
   
   return (
+    // <NavigationContainer>
+    //   <Stack.Navigator>
+    //     <Stack.Screen name='Tela de Login' component={tela_login}/>
+    //     <Stack.Screen name='Tela de Registro' component={tela_registro}/>
+    //   </Stack.Navigator>      
+    // </NavigationContainer>
     <View style={styles.container}>
       <Logo/>
       <Form/>
