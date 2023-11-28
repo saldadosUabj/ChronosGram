@@ -7,12 +7,12 @@ const styles = StyleSheet.create({
         // backgroundColor:'#fff',
         alignContent: 'center',
         alignItems: 'center',
-        marginTop: 60,
-        marginBottom: 5,
+        marginTop: 120,
+        marginBottom: 40,
     },
     Logo:{
         width: 200,
-        height: 200,
+        height: 100,
     }
   });
 
