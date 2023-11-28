@@ -8,12 +8,16 @@ export default function Form(){
     const navigation = useNavigation();
     
     const [email, setEmail] = useState(null)
-    const [senha, setSenha] = useState(null)    
+    const [senha, setSenha] = useState(null)   
+    const [confirm, setConfirmSenha] = useState(null)
+    const [curso, setCurso] = useState(null)
+    const [turno, setTurno] = useState(null)
+
     
     return(
         <View>
            <View style={styles.boxTop}>
-            <Text style={styles.Login}> Registro </Text>
+            <Text style={styles.Login}> Criar uma conta nova </Text>
             <TextInput
                 style={styles.inputBox}
                 onChangeText={setEmail}
@@ -26,8 +30,26 @@ export default function Form(){
                 value={senha}
                 placeholder='Password'
                 keyboardType='default'/>
+            <TextInput
+                style={styles.inputBox}
+                onChangeText={setConfirmSenha}
+                value={confirm}
+                placeholder='Confirm Password'
+                keyboardType='default'/>
+            <TextInput
+                style={styles.inputBox}
+                onChangeText={setCurso}
+                value={curso}
+                placeholder='Curso'
+                keyboardType='default'/>
+            <TextInput
+                style={styles.inputBox}
+                onChangeText={setTurno}
+                value={turno}
+                placeholder='Turno'
+                keyboardType='default'/>
             <TouchableOpacity style={styles.buttonEntrar}>
-                <Text style={styles.buttonText}> Entrar </Text>
+                <Text style={styles.buttonText}> Continuar </Text>
             </TouchableOpacity>            
             </View>
             <View style={styles.boxBottom}>
