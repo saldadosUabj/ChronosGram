@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import Logo from './scr/components/logo/index'
-import Form from './scr/components/Form/index'
+import Logo from './scr/components/tela_login/logo/index'
+import Form from './scr/components/tela_login/Form/index'
 import { useFonts } from 'expo-font'
 
 
