@@ -22,16 +22,16 @@ export default function App() {
   })
   
   return (
-    // <NavigationContainer>
-    //   <Stack.Navigator>
-    //     <Stack.Screen name='Tela de Login' component={tela_login}/>
-    //     <Stack.Screen name='Tela de Registro' component={tela_registro}/>
-    //   </Stack.Navigator>      
-    // </NavigationContainer>
-    <View style={styles.container}>
-      <Logo/>
-      <Form/>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name='TelaDeLogin' component={tela_login} options={{ headerShown: false }}/>
+        <Stack.Screen name='TelaDeRegistro' component={tela_registro} options={{ headerShown: false }}/>
+      </Stack.Navigator>      
+    </NavigationContainer>
+    // <View style={styles.container}>
+    //   <Logo/>
+    //   <Form/>
+    // </View>
   );
 }
 

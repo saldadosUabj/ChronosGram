@@ -1,12 +1,14 @@
 import React, { useMemo, useState } from 'react';
 import {Text, TextInput, View, Image, TouchableOpacity} from 'react-native';
 import styles from './style';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { NavigationContainer, useNavigation, navigation } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 
-export default function Form( {} ){
-    
+export default function Form(){
+
+    const navigation = useNavigation();
+
     const [email, setEmail] = useState(null)
     const [senha, setSenha] = useState(null)
     
@@ -25,6 +27,7 @@ export default function Form( {} ){
                 onChangeText={setSenha}
                 value={senha}
                 placeholder='Password'
+                secureTextEntry={true}
                 keyboardType='default'/>
             <TouchableOpacity style={styles.buttonEntrar}>
                 <Text style={styles.buttonText}> Entrar </Text>
@@ -32,7 +35,8 @@ export default function Form( {} ){
             </View>
             <View style={styles.boxBottom}>
                 <Text style={styles.comment}>Ainda não possui uma conta?</Text>
-                <Text style={styles.registrar} onPress={() => navigation.navigate('Tela de Registro')}> Registrar-se </Text>
+                <Text style={styles.registrar} 
+                onPress={() => navigation.navigate('TelaDeRegistro')}> Registrar-se </Text>
            </View>
         </View>
     )

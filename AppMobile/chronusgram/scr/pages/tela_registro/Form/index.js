@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {Text, TextInput, View, Image, TouchableOpacity} from 'react-native';
 import styles from './style';
 
 export default function Form(){
+
+    const navigation = useNavigation();
     
     const [email, setEmail] = useState(null)
     const [senha, setSenha] = useState(null)    
@@ -29,7 +32,7 @@ export default function Form(){
             </View>
             <View style={styles.boxBottom}>
                 <Text style={styles.comment}>Já possui uma conta?</Text>
-                <Text style={styles.registrar}> Entrar </Text>
+                <Text style={styles.registrar} onPress={() => navigation.navigate('TelaDeLogin')}> Entrar </Text>
            </View>
         </View>
     )
