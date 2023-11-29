@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import {Text, TextInput, View, Image, TouchableOpacity} from 'react-native';
+import {Text, TextInput, View, TouchableOpacity, ScrollView} from 'react-native';
 import styles from './style';
 
 export default function Form(){
@@ -15,7 +15,7 @@ export default function Form(){
 
     
     return(
-        <View>
+        <ScrollView>
            <View style={styles.boxTop}>
             <Text style={styles.Login}> Criar uma conta nova </Text>
             <TextInput
@@ -28,12 +28,14 @@ export default function Form(){
                 style={styles.inputBox}
                 onChangeText={setSenha}
                 value={senha}
+                secureTextEntry={true}
                 placeholder='Password'
                 keyboardType='default'/>
             <TextInput
                 style={styles.inputBox}
                 onChangeText={setConfirmSenha}
                 value={confirm}
+                secureTextEntry={true}
                 placeholder='Confirm Password'
                 keyboardType='default'/>
             <TextInput
@@ -56,6 +58,6 @@ export default function Form(){
                 <Text style={styles.comment}>Já possui uma conta?</Text>
                 <Text style={styles.registrar} onPress={() => navigation.navigate('TelaDeLogin')}> Entrar </Text>
            </View>
-        </View>
+        </ScrollView>
     )
 }
