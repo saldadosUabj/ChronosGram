@@ -1,7 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, View } from 'react-native';
-import Logo from './scr/pages/tela_login/logo/index'
-import Form from './scr/pages/tela_login/Form/index'
+import { StyleSheet } from 'react-native';
 import { useFonts } from 'expo-font'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
