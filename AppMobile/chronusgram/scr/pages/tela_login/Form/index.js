@@ -37,6 +37,10 @@ export default function Form(){
                 <Text style={styles.comment}>Ainda não possui uma conta?</Text>
                 <Text style={styles.registrar} 
                 onPress={() => navigation.navigate('TelaDeRegistro')}> Registrar-se </Text>
+                <Text style={styles.comment_2}>Esqueceu a senha?</Text>
+                <Text style={styles.registrar} 
+                // onPress={() => navigation.navigate('TelaDeRegistro')}
+                > Clique aqui </Text>
            </View>
         </View>
     )

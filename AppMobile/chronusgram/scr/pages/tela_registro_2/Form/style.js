@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
     },
     Login:{
-        fontSize: 30,
+        fontSize:25,
         fontFamily:'Nunito-Sans',
         fontWeight:'bold',
         color:'#ffff'
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         height: 'auto',
         borderRadius: 15,
         backgroundColor: '#E6E7ED',
-        marginTop: 15,
+        marginTop: 18,
         marginHorizontal: 10,
         padding: 15,
     },
