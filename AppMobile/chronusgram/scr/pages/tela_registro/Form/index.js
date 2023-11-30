@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {Text, TextInput, View, TouchableOpacity, ScrollView} from 'react-native';
+import RNPickerSelect from 'react-native-picker-select';
 import styles from './style';
 
 export default function Form(){
@@ -12,6 +13,7 @@ export default function Form(){
     const [confirm, setConfirmSenha] = useState(null)
     const [curso, setCurso] = useState(null)
     const [turno, setTurno] = useState(null)
+    // const [turno, setTurnoValue] = useState('Matutino')
 
     
     return(
@@ -50,6 +52,13 @@ export default function Form(){
                 value={turno}
                 placeholder='Turno'
                 keyboardType='default'/>
+             {/* <RNPickerSelect
+                style={styles.inputBoxWithvalue}
+                onValueChange={(value) => setTurnoValue(value)}
+                items={[{ label: 'Matutino', value: 'matutino' },
+                        { label: 'Vespetino', value: 'vespetino' },
+                        { label: 'Integral', value: 'integral' },]}
+                value={turno}/> */}
             <TouchableOpacity style={styles.buttonEntrar}>
                 <Text style={styles.buttonText}> Continuar </Text>
             </TouchableOpacity>            

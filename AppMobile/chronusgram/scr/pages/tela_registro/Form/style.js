@@ -55,7 +55,18 @@ const styles = StyleSheet.create({
         marginTop: 15,
         marginHorizontal: 10,
         padding: 15,
-    }        
+    },
+    inputBoxWithvalue: {
+        width: '85%',
+        height: 'auto',
+        borderRadius: 15,
+        backgroundColor: '#E6E7ED',
+        marginTop: 15,
+        marginHorizontal: 10,
+        padding: 15,
+        borderColor: 'black', 
+        borderWidth: 1, 
+      }              
   });
 
 export default styles
