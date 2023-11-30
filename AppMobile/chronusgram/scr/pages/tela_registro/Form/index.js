@@ -59,7 +59,7 @@ export default function Form(){
                         { label: 'Vespetino', value: 'vespetino' },
                         { label: 'Integral', value: 'integral' },]}
                 value={turno}/> */}
-            <TouchableOpacity style={styles.buttonEntrar}>
+            <TouchableOpacity style={styles.buttonEntrar} onPress={() => navigation.navigate('TelaDeRegistro2')}>
                 <Text style={styles.buttonText}> Continuar </Text>
             </TouchableOpacity>            
             </View>
