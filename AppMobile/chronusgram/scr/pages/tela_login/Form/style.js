@@ -35,6 +35,11 @@ const styles = StyleSheet.create({
         color:'#ffff',
         fontFamily:'Nunito-Sans',
     },
+    comment_2:{
+        marginTop: 15,
+        color:'#ffff',
+        fontFamily:'Nunito-Sans',
+    },
     registrar:{
         color:'#73628A',
         fontFamily:'Nunito-Sans',
