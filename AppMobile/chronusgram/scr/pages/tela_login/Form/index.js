@@ -2,20 +2,22 @@ import React, { useState } from 'react';
 import {Text, TextInput, View, Image, TouchableOpacity, Alert, Vibration} from 'react-native';
 import styles from './style';
 import { useNavigation} from '@react-navigation/native';
-import api from '../../../services/api';
+import UserAPI from '../../../services/userAPI';
 
 
 export default function Form(){
 
+    const userApi = new UserAPI()
+
     async function validation(){
         try{
-            const response = await api.get(`/user/${1}`)
+            const user = await userApi.getUserById(1)
             if(email == null || senha == null){
                 Vibration.vibrate()
                 Alert.alert('Preencha todos os campos')
                 return
             }
-            else if(email == response.data.email && senha == response.data.senha){
+            else if(email == user.email && senha == user.senha){
                 navigation.navigate('TelaDeRegistro')
                 setEmail(null)
                 setSenha(null)
