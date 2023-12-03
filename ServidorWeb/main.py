@@ -2,36 +2,46 @@
 
 from fastapi import FastAPI
 from pydantic import BaseModel
-import datetime
 
-class entrada(BaseModel):
-    data:str
-    materia:str
 
-class saida(BaseModel):
-    dia:str
-    horario:str 
-    assunto:str
+class user(BaseModel):
+    id: int
+    nome: str
+    turno_livre: str
+    email: str
+    senha: str
+
 
 app = FastAPI()
-conteudo = [
+alunos = [
     {
-        "dia": "2023-12-2",
-        "horario": "18:00",
-        "assunto": "derivadas"
-
+        "id": 1,
+        "nome": "Vinicius",
+        "email": "vinicius@gmail.com",
+        "senha": "123456",
+        "turno_livre": "manhã"
     },
     {
-        "dia": "2023-12-5",
-        "horario": "20:00",
-        "assunto": "integrais"
+        "id": 2,
+        "nome": "Alessandro",
+        "email": "alessandro@gmail.com",
+        "senha": "789123",
+        "turno_livre": "noite"
     }
 ]
 
 
 @app.get("/user")
 def pesquisa():
-    return conteudo
+    return alunos
+
+
+@app.get("/user/{id}")
+def pesquisa_id(id: int):
+    for aluno in alunos:
+        if aluno['id'] == id:
+            return aluno
+    return "not found"
 
 
 @app.post("/user")
@@ -46,4 +56,18 @@ def inserir(info: user):
     return alunos
 
 
-
+@app.put("/user/id")
+def atualizar(info: user, id: int):
+    contador = 0
+    for aluno in alunos:
+        if aluno["id"] == id:
+            alunos[contador] = {
+                "id": info.id,
+                "nome": info.nome,
+                "email": info.email,
+                "senha": info.senha,
+                "turno_livre": info.turno_livre
+            }
+        return "atualizado"
+        contador += 1
+    return "produto inexistente"
