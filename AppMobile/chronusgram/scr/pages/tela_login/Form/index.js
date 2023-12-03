@@ -1,11 +1,20 @@
-import React, { useMemo, useState } from 'react';
-import {Text, TextInput, View, Image, TouchableOpacity} from 'react-native';
+import React, { useState } from 'react';
+import {Text, TextInput, View, Image, TouchableOpacity, Alert} from 'react-native';
 import styles from './style';
-import { NavigationContainer, useNavigation, navigation } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { useNavigation} from '@react-navigation/native';
+import api from '../../../services/api';
 
 
 export default function Form(){
+
+    async function validation(){
+        try{
+            const response = await api.get(`/user/${1}`)
+            setEmail(response.data.nome)
+        }catch(error){
+            console.log('Error' + error)
+        }
+    }
 
     const navigation = useNavigation();
 
@@ -39,7 +48,7 @@ export default function Form(){
                 onPress={() => navigation.navigate('TelaDeRegistro')}> Registrar-se </Text>
                 <Text style={styles.comment_2}>Esqueceu a senha?</Text>
                 <Text style={styles.registrar} 
-                // onPress={() => navigation.navigate('TelaDeRegistro')}
+                onPress={() => validation()}
                 > Clique aqui </Text>
            </View>
         </View>

@@ -5,3 +5,5 @@ import axios from 'axios';
 const api = axios.create({
     baseURL: 'https://fast-api-x5fr.onrender.com'
 })
+
+export default api
