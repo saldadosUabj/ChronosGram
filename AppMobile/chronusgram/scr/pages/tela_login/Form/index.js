@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Text, TextInput, View, Image, TouchableOpacity, Alert} from 'react-native';
+import {Text, TextInput, View, Image, TouchableOpacity, Alert, Vibration} from 'react-native';
 import styles from './style';
 import { useNavigation} from '@react-navigation/native';
 import api from '../../../services/api';
@@ -10,9 +10,15 @@ export default function Form(){
     async function validation(){
         try{
             const response = await api.get(`/user/${1}`)
-            setEmail(response.data.nome)
+            if(email == response.data.email && senha == response.data.senha){
+                navigation.navigate('TelaDeRegistro')
+                return
+            }
+            Vibration.vibrate()
+            Alert.alert("Usuário Inválido, tente novamente!")            
         }catch(error){
-            console.log('Error' + error)
+            Vibration.vibrate()
+            Alert.alert(error)
         }
     }
 
@@ -38,7 +44,7 @@ export default function Form(){
                 placeholder='Password'
                 secureTextEntry={true}
                 keyboardType='default'/>
-            <TouchableOpacity style={styles.buttonEntrar}>
+            <TouchableOpacity style={styles.buttonEntrar}  onPress={() => validation()} >
                 <Text style={styles.buttonText}> Entrar </Text>
             </TouchableOpacity>            
             </View>
@@ -48,7 +54,7 @@ export default function Form(){
                 onPress={() => navigation.navigate('TelaDeRegistro')}> Registrar-se </Text>
                 <Text style={styles.comment_2}>Esqueceu a senha?</Text>
                 <Text style={styles.registrar} 
-                onPress={() => validation()}
+                // onPress={() => validation()}
                 > Clique aqui </Text>
            </View>
         </View>
