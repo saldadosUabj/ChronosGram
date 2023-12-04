@@ -1,10 +1,33 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import {Text, TextInput, View, TouchableOpacity, ScrollView} from 'react-native';
-import RNPickerSelect from 'react-native-picker-select';
+import {Text, TextInput, View, TouchableOpacity, ScrollView, Alert, Vibration} from 'react-native';
+import api from '../../../services/Api';
 import styles from './style';
 
 export default function Form(){
+
+    async function register(){
+        
+        const userData = {
+        nome: 'Generic',
+        email: email,
+        senha: senha,
+        turno_livre: turno,
+       }
+       
+        try{
+            if(email != null && senha != null && confirm != null &&
+               curso != null && turno != null)
+               {                
+                    const response = api.post('/user', userData)
+                    navigation.navigate('TelaDeLogin')
+               }
+            
+        }catch(error){
+            Vibration.vibrate()
+            Alert.alert('Erro' + error)
+        }
+    }
 
     const navigation = useNavigation();
     

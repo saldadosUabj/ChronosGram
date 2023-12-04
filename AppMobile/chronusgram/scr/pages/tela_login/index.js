@@ -1,7 +1,6 @@
-import { StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import Logo from './logo/index'
 import Form from './Form/index'
-import { useFonts } from 'expo-font'
 
 export default function App() {
 

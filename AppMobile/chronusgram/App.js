@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { useFonts } from 'expo-font'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -18,6 +18,13 @@ export default function App() {
     "Josefins-Sans": require("./assets/fonts/JosefinsSans.ttf"),
     "Josefins-Sans-Italic": require("./assets/fonts/JosefinSans-Italic.ttf"),
   })
+
+  if (!fontsLoaded) {
+    <View style={styles.container}>
+       <Image style={styles.logo} source={require('./assets/logo.png')}/>
+    </View>
+    return;
+  }
   
   return (
     <NavigationContainer>
@@ -39,4 +46,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#16041B',
   },
+  logo:{
+    alignContent: 'center',
+    alignSelf: 'center',
+    marginVertical: 280
+  }
 });

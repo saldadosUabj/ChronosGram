@@ -1,15 +1,40 @@
 import React, { useState } from 'react';
-import {Text, TextInput, View, TouchableOpacity} from 'react-native';
+import {Text, TextInput, View, Image, TouchableOpacity, Alert, Vibration} from 'react-native';
 import styles from './style';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation} from '@react-navigation/native';
+import UserAPI from '../../../services/userAPI';
 
 
 export default function Form(){
 
+    const userApi = new UserAPI()
     const navigation = useNavigation();
-
     const [email, setEmail] = useState(null)
     const [senha, setSenha] = useState(null)
+
+    async function validation(){
+        try{
+            const user = await userApi.getUserById(1)
+            if(email == null || senha == null){
+                Vibration.vibrate()
+                Alert.alert('Preencha todos os campos')
+                return
+            }
+            else if(email == user.email && senha == user.senha){
+                navigation.navigate('TelaDeRegistro')
+                setEmail(null)
+                setSenha(null)
+                return
+            }
+            Vibration.vibrate()
+            setEmail(null)
+            setSenha(null)
+            Alert.alert("Usuário Inválido, tente novamente!")            
+        }catch(error){
+            Vibration.vibrate()
+            Alert.alert(error)
+        }
+    }  
     
     return(
         <View>
@@ -28,7 +53,7 @@ export default function Form(){
                 placeholder='Password'
                 secureTextEntry={true}
                 keyboardType='default'/>
-            <TouchableOpacity style={styles.buttonEntrar}>
+            <TouchableOpacity style={styles.buttonEntrar}  onPress={() => validation()} >
                 <Text style={styles.buttonText}> Entrar </Text>
             </TouchableOpacity>            
             </View>
@@ -38,7 +63,7 @@ export default function Form(){
                 onPress={() => navigation.navigate('TelaDeRegistro')}> Registrar-se </Text>
                 <Text style={styles.comment_2}>Esqueceu a senha?</Text>
                 <Text style={styles.registrar} 
-                // onPress={() => navigation.navigate('TelaDeRegistro')}
+                // onPress={() => validation()}
                 > Clique aqui </Text>
            </View>
         </View>
