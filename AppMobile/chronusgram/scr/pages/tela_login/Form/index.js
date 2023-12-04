@@ -8,6 +8,9 @@ import UserAPI from '../../../services/userAPI';
 export default function Form(){
 
     const userApi = new UserAPI()
+    const navigation = useNavigation();
+    const [email, setEmail] = useState(null)
+    const [senha, setSenha] = useState(null)
 
     async function validation(){
         try{
@@ -31,12 +34,7 @@ export default function Form(){
             Vibration.vibrate()
             Alert.alert(error)
         }
-    }
-
-    const navigation = useNavigation();
-
-    const [email, setEmail] = useState(null)
-    const [senha, setSenha] = useState(null)
+    }  
     
     return(
         <View>
