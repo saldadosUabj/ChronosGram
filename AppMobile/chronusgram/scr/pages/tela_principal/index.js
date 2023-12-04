@@ -1,21 +1,18 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
-import { useNavigation} from '@react-navigation/native';
-
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import Dados from './userDates/index'; // Corrija o caminho do arquivo, se necessário
 
 export default function App() {
-
-  return (
-    <View style={styles.container}>
-        <Text>
-            Olá mundo! 
-        </Text>
-    </View>
-  );
+    return (
+        <View style={styles.container}>
+            <Dados />
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#16041B',
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#16041B',
+    },
 });
