@@ -20,17 +20,17 @@ class DadosRede(BaseModel):
 class Tarefa(BaseModel):
     nome : str
     status : float
-    # assunto : str
-    # material_estudo : str
-    # tipo_material : int
-    # recomendacao : float
-    # qualidade : int
-    # horario : int
-    # prioridade : float
-    # data_inicio : int
-    # data_fim : int
-    # tempo_estimado : float
-    # posicao : int
+    assunto : str
+    material_estudo : str
+    tipo_material : int
+    recomendacao : float
+    qualidade : int
+    horario : int
+    prioridade : float
+    data_inicio : int
+    data_fim : int
+    tempo_estimado : float
+    posicao : int
 
 
 app = FastAPI()

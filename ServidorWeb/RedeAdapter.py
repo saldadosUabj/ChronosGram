@@ -4,7 +4,17 @@ from pydantic import BaseModel
 class Tarefa(BaseModel):
     nome: str
     status: int
-    
+    assunto : str
+    material_estudo : str
+    tipo_material : int
+    recomendacao : float
+    qualidade : int
+    horario : int
+    prioridade : float
+    data_inicio : int
+    data_fim : int
+    tempo_estimado : float
+    posicao : int
     
 class DadosRede(BaseModel):
     
@@ -21,9 +31,20 @@ class RedeAdapter():
     def insert_task(self, tarefa):
         nome = tarefa.nome
         status = tarefa.status
+        assunto = tarefa.assunto
+        material_estudo = tarefa.material_estudo
+        tipo_material = tarefa.tipo_material
+        recomendacao = tarefa.recomendacao
+        qualidade = tarefa.qualidade
+        horario = tarefa.horario
+        prioridade = tarefa.prioridade
+        data_inicio = tarefa.data_inicio
+        data_fim = tarefa.fim
+        tempo_estimado = tarefa.tempo_estimado
+        posicao = tarefa.posicao
         
-        query = f"""INSERT INTO tarefa (nome, status) VALUES
-                    ('{nome}', '{status}')
+        query = f"""INSERT INTO tarefa (nome, status, assunto, material_estudo, tipo_material, recomendacao, qualidade, horario, prioridade, data_inicio, data_fim, tempo_estimado, posicao) VALUES
+                    ('{nome}', '{status}','{assunto}','{material_estudo}','{tipo_material}','{recomendacao}','{qualidade}','{horario}','{prioridade}','{data_inicio}','{data_fim}','{tempo_estimado}','{posicao}')
         """
         self.cursor.execute(query)
         self.con.commit()
