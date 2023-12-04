@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import {Text, TextInput, View, TouchableOpacity, ScrollView, Alert} from 'react-native';
+import {Text, TextInput, View, TouchableOpacity, ScrollView, Alert, Vibration} from 'react-native';
 import api from '../../../services/Api';
 import styles from './style';
 
@@ -24,6 +24,7 @@ export default function Form(){
                }
             
         }catch(error){
+            Vibration.vibrate()
             Alert.alert('Erro' + error)
         }
     }
@@ -81,7 +82,7 @@ export default function Form(){
                         { label: 'Vespetino', value: 'vespetino' },
                         { label: 'Integral', value: 'integral' },]}
                 value={turno}/> */}
-            <TouchableOpacity style={styles.buttonEntrar} onPress={() => register()}>
+            <TouchableOpacity style={styles.buttonEntrar} onPress={() => navigation.navigate('TelaDeRegistro2')}>
                 <Text style={styles.buttonText}> Continuar </Text>
             </TouchableOpacity>            
             </View>
