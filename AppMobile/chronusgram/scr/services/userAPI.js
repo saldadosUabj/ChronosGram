@@ -1,4 +1,4 @@
-import api from './api'; // Supondo que esteja importando sua instância de axios ou fetch configurada
+import api from './Api'; // Supondo que esteja importando sua instância de axios ou fetch configurada
 import { Alert } from 'react-native';
 
 class UserAPI {

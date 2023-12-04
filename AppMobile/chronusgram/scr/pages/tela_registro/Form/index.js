@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {Text, TextInput, View, TouchableOpacity, ScrollView, Alert} from 'react-native';
-import api from '../../../services/api';
+import api from '../../../services/Api';
 import styles from './style';
 
 export default function Form(){
