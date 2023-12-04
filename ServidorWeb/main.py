@@ -2,6 +2,7 @@
 
 from fastapi import FastAPI
 from pydantic import BaseModel
+import sqlite3
 
 
 class user(BaseModel):
@@ -10,6 +11,9 @@ class user(BaseModel):
     turno_livre: str
     email: str
     senha: str
+
+class conteudo(BaseModel):
+    materia : str
 
 
 app = FastAPI()
@@ -29,6 +33,18 @@ alunos = [
         "turno_livre": "noite"
     }
 ]
+
+@app.post("/user/conteudo")
+def estudar(materia:str):
+    cadeira = materia
+    con = sqlite3.connect('conteudo.db')
+    cursor = con.cursor()
+    resultado = cursor.execute("SELECT * FROM conteudo WHERE assunto = ?",(cadeira))
+    dados = resultado.fetchall()
+    cursor.close()
+    con.close()
+    return resultado
+
 
 
 @app.get("/user")
