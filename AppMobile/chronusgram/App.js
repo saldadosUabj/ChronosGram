@@ -7,6 +7,7 @@ import tela_login from './scr/pages/tela_login/index'
 import tela_registro from './scr/pages/tela_registro/index'
 import tela_registro_2 from './scr/pages/tela_registro_2/index'
 import tela_principal from './scr/pages/tela_principal/index'
+import tela_pre_principal from './scr/pages/tela_pre_principal/index'
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,7 @@ export default function App() {
         <Stack.Screen name='TelaDeRegistro' component={tela_registro} options={{ headerShown: false }}/>
         <Stack.Screen name='TelaDeRegistro2' component={tela_registro_2} options={{ headerShown: false }}/>
         <Stack.Screen name='TelaPrincipal' component={tela_principal} options={{ headerShown: false }}/>
+        <Stack.Screen name='TelaPrePrincipal' component={tela_pre_principal} options={{ headerShown: false }}/>
       </Stack.Navigator>      
     </NavigationContainer>
     // <View style={styles.container}>
