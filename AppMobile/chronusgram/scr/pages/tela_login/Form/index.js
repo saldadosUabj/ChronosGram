@@ -54,7 +54,7 @@ export default function Form(){
                 secureTextEntry={true}
                 keyboardType='default'/>
             <TouchableOpacity style={styles.buttonEntrar}  onPress={() => validation()} >
-                <Text style={styles.buttonText}> Entrar </Text>
+                <Text style={styles.buttonText} onPress={() => navigation.navigate('TelaPrincipal')}> Entrar </Text>
             </TouchableOpacity>            
             </View>
             <View style={styles.boxBottom}>
