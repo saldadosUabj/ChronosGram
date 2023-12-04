@@ -21,7 +21,7 @@ export default function Form(){
                 return
             }
             else if(email == user.email && senha == user.senha){
-                navigation.navigate('TelaDeRegistro')
+                navigation.navigate('TelaPrincipal')
                 setEmail(null)
                 setSenha(null)
                 return
