@@ -5,15 +5,16 @@ import { useNavigation} from '@react-navigation/native';
 
 
 
+
 export default function Form() {
 
     const navigation = useNavigation();
 
     return (
-        <View style={styles.container}>
-            <TouchableOpacity onPress={() => navigation.navigate('TelaPrincipal')}>
-                <Text> +  </Text>
-            </TouchableOpacity>
+        <View style={styles.container}> 
+            <TouchableOpacity  style={styles.Button} onPress={() => navigation.navigate('TelaPrincipal')}>
+            <Text> --- </Text>
+            </TouchableOpacity> 
         </View>
     )
 }

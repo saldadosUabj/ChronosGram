@@ -3,6 +3,7 @@ import { useFonts } from 'expo-font'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+
 import tela_login from './scr/pages/tela_login/index'
 import tela_registro from './scr/pages/tela_registro/index'
 import tela_registro_2 from './scr/pages/tela_registro_2/index'
