@@ -47,7 +47,7 @@ queryNeural = ("""CREATE TABLE IF NOT EXISTS tarefas (
 
 cursor.execute(queryTarefa)
 cursor.execute(queryNeural)
-
+#Inserir dados aleatórios na tabela neural 
 # cursor.execute(queryDelete)
 
 conn.commit()
