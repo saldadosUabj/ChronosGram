@@ -2,6 +2,8 @@
 
 from fastapi import FastAPI
 from pydantic import BaseModel
+import sqlite3 as sql
+from RedeAdapter import RedeAdapter
 
 
 class user(BaseModel):
@@ -10,9 +12,30 @@ class user(BaseModel):
     turno_livre: str
     email: str
     senha: str
+    
+class DadosRede(BaseModel):
+    assunto : str
+    data_limite : float
+    
+class Tarefa(BaseModel):
+    nome : str
+    status : float
+    assunto : str
+    material_estudo : str
+    tipo_material : int
+    recomendacao : float
+    qualidade : int
+    horario : int
+    prioridade : float
+    data_inicio : int
+    data_fim : int
+    tempo_estimado : float
+    posicao : int
 
 
 app = FastAPI()
+banco = RedeAdapter("banco.db")
+
 alunos = [
     {
         "id": 1,
@@ -71,3 +94,16 @@ def atualizar(info: user, id: int):
         return "atualizado"
         contador += 1
     return "produto inexistente"
+
+@app.put("/redeNeural")
+def insert_neural_data(dados: DadosRede):
+   banco.insert_dataNerual(dados)
+   banco.finalizar
+
+@app.put("/tarefas")
+def insert_tarefas(tarefa:Tarefa):
+    print(tarefa)
+    banco.insert_task(tarefa)
+    banco.finalizar
+    
+    
