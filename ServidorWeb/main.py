@@ -48,7 +48,7 @@ app = FastAPI()
 banco = RedeAdapter("banco.db")
 rede_neural = RedeNeural("./","banco.db")
 
-dados = [
+alunos = [
     {
         'Nome': 'Introdução ao Capítulo 1',
         'Status': '50%',
@@ -278,7 +278,7 @@ dados = [
 
 @app.get("/tarefas")
 def pesquisa():
-    return dados
+    return alunos
 
 
 @app.get("/user/{id}")
