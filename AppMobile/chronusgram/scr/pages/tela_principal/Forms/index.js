@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity,Image } from 'react-native';
 import styles from './style';
 
 
@@ -32,10 +32,35 @@ export default function Form() {
             <Text style = {styles.Titulo6}>24%</Text>
         </View>
 
+        
+        <View style ={styles.CaixaDeCima}>
+        <Text style={styles.Titulo7}>
+            Cálculo 2
+        </Text>
+        <Text style={styles.Titulo8}>
+        <Image style= {styles.Relojo} source={require('../../../../assets/relojo.png')}/>  20:00
+        </Text>
+        <Text style={styles.Titulo9}>
+            30 coins
+        </Text>
+        </View>
 
+        
+        <View style = {styles.CaixaAbaixoDcima}>
+             <Image style= {styles.Confirma} source={require('../../../../assets/confirm.png')}/>
+             <Image style= {styles.Advert} source={require('../../../../assets/adv.png')}/>
+             <Image style= {styles.X} source={require('../../../../assets/xis.png')}/>
+        </View>
 
+        <View style = {styles.CaixaPrimeiraDcima}>
+        <Image style= {styles.Perfil} source={require('../../../../assets/perfil.png')}/>
+        <Image style= {styles.Casa} source={require('../../../../assets/casa.png')}/>
+        <Image style= {styles.Config} source={require('../../../../assets/confi.png')}/>
+        </View>
 
 
         </View>
+
+        
     )
 }
