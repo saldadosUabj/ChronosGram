@@ -1,6 +1,6 @@
 import sqlite3 as sql
 from pydantic import BaseModel
-
+import pandas as pd
 class Tarefa(BaseModel):
     nome: str
     status: int
@@ -11,15 +11,25 @@ class Tarefa(BaseModel):
     qualidade : int
     horario : int
     prioridade : float
-    data_inicio : int
-    data_fim : int
+    data_inicio : str
+    data_fim : str
     tempo_estimado : float
     posicao : int
     
-class DadosRede(BaseModel):
-    
+class Neural(BaseModel):
+    nome: str
+    status: int
     assunto : str
-    data_limite : float
+    material_estudo : str
+    tipo_material : int
+    recomendacao : float
+    qualidade : int
+    horario : int
+    prioridade : float
+    data_inicio : str
+    data_fim : str
+    tempo_estimado : float
+    posicao : int
     
 
 class RedeAdapter():
@@ -49,16 +59,52 @@ class RedeAdapter():
         self.cursor.execute(query)
         self.con.commit()
         
-    def insert_dataNerual(self, dado):
+    def insert_dataNerual(self, neural):
       
-        assunto = dado.assunto
-        data_limite = dado.data_limite
+        nome = neural.nome
+        status = neural.status
+        assunto = neural.assunto
+        material_estudo = neural.material_estudo
+        tipo_material = neural.tipo_material
+        recomendacao = neural.recomendacao
+        qualidade = neural.qualidade
+        horario = neural.horario
+        prioridade = neural.prioridade
+        data_inicio = neural.data_inicio
+        data_fim = neural.fim
+        tempo_estimado = neural.tempo_estimado
+        posicao = neural.posicao
         
-        query = f"""INSERT INTO neural (assunto, data_limite) VALUES
-                    ('{assunto}', '{data_limite}')
+        query = f"""INSERT INTO tarefa (nome, status, assunto, material_estudo, tipo_material, recomendacao, qualidade, horario, prioridade, data_inicio, data_fim, tempo_estimado, posicao) VALUES
+                    ('{nome}', '{status}','{assunto}','{material_estudo}','{tipo_material}','{recomendacao}','{qualidade}','{horario}','{prioridade}','{data_inicio}','{data_fim}','{tempo_estimado}','{posicao}')
         """
         self.cursor.execute(query)
         self.con.commit()
+    
+
+
+    def get_dataNeural(self):
+        query = "SELECT * FROM neural;"
+        self.cursor.execute(query)
+        result = self.cursor.fetchall()  # Recupera os resultados da consulta
+        self.con.commit()
         
+        # Transforma os resultados em um DataFrame
+        columns = [desc[0] for desc in self.cursor.description]
+        df = pd.DataFrame(result, columns=columns)
+        return df
+    
+    def get_task(self):
+        query = "SELECT * FROM tarefa;"
+        self.cursor.execute(query)
+        result = self.cursor.fetchall()  # Recupera os resultados da consulta
+        self.con.commit()
+        
+        # Transforma os resultados em um DataFrame
+        columns = [desc[0] for desc in self.cursor.description]
+        df = pd.DataFrame(result, columns=columns)
+        return df
+
+
     def finalizar(self):
         self.con.close()
