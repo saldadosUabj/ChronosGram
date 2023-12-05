@@ -21,7 +21,7 @@ queryTarefa = ("""CREATE TABLE IF NOT EXISTS tarefas (
                 posicao INTEGER
 );
 """) 
-queryNeural = ("""CREATE TABLE IF NOT EXISTS tarefas (
+queryNeural = ("""CREATE TABLE IF NOT EXISTS neural (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 nome TEXT,
                 status INTEGER,
@@ -45,7 +45,7 @@ queryNeural = ("""CREATE TABLE IF NOT EXISTS tarefas (
 # cursor.execute(queryTarefa)
 #cursor.execute(queryNeural)
 
-cursor.execute(queryTarefa)
+#cursor.execute(queryTarefa)
 cursor.execute(queryNeural)
 #Inserir dados aleatórios na tabela neural 
 # cursor.execute(queryDelete)

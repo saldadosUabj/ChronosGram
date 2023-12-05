@@ -7,7 +7,7 @@ import numpy as np
 
 class RedeNeural():
 
-    def _init_(self, caminho_do_modelo,banco):
+    def __init__(self, caminho_do_modelo,banco):
         self.model = tf.saved_model.load(caminho_do_modelo)
         self.rede = RedeAdapter.RedeAdapter(banco)
 
