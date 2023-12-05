@@ -8,17 +8,17 @@ export default function UserDate() {
 
     const userApi = new UserApi()
 
-    async function getDados(){
-        let dados = await userApi.getUserData();
-        return dados
-    }
+    // async function getDados(){
+    //     let dados = await userApi.getUserData();
+    //     return dados
+    // }
 
-    const dados = getDados()
+    // const dados = getDados()
 
     return (
         <View style={styles.container}>
             <View>
-                <Text>{dados.nome}</Text>
+                {/* <Text>{dados.nome}</Text> */}
             </View>
         </View>
     )
