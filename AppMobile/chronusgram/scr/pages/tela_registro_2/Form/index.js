@@ -29,7 +29,7 @@ export default function Form(){
                 value={freeTimeStyle}
                 placeholder='Free Time Style'
                 keyboardType='default'/>
-            <TouchableOpacity style={styles.buttonEntrar}>
+            <TouchableOpacity style={styles.buttonEntrar} onPress={() => navigation.navigate('TelaPrePrincipal')}>
                 <Text style={styles.buttonText}> Registrar </Text>
             </TouchableOpacity>            
             </View>

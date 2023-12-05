@@ -21,7 +21,7 @@ export default function Form(){
                 return
             }
             else if(email == user.email && senha == user.senha){
-                navigation.navigate('TelaPrePrincipal')
+                navigation.navigate('TelaPrincipal')
                 setEmail(null)
                 setSenha(null)
                 return
@@ -54,7 +54,7 @@ export default function Form(){
                 secureTextEntry={true}
                 keyboardType='default'/>
             <TouchableOpacity style={styles.buttonEntrar}  onPress={() => validation()} >
-                <Text style={styles.buttonText} onPress={() => navigation.navigate('TelaPrePrincipal')}> Entrar </Text>
+                <Text style={styles.buttonText} onPress={() => navigation.navigate('TelaPrincipal')}> Entrar </Text>
             </TouchableOpacity>            
             </View>
             <View style={styles.boxBottom}>
