@@ -68,7 +68,29 @@ class UserAPI {
       console.error('Erro ao inserir tarefa:', error);
       throw error;
     }
-  }    
+  }  
+  async getTarefas() {
+    try {
+      const response = await api.get('/tarefas');
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao obter dados de tarefas:', error);
+      throw error;
+    }
+  }
+
+  async getInfo(){
+    fetch('https://fast-api-x5fr.onrender.com/tarefas')
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            const Infos = data[0];
+            return Infos
+  })
+    .catch(error => {
+      console.error('Erro ao buscar dados:', error);
+    });
+  }
 }
 
 export default UserAPI;

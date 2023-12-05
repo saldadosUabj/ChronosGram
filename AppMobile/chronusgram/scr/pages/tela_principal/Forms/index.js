@@ -1,9 +1,21 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity,Image } from 'react-native';
 import styles from './style';
+import UserApi from '../../../services/userAPI'
+import { useNavigation} from '@react-navigation/native';
+
 
 
 export default function Form() {
+
+    const navigation = useNavigation();
+    const userApi = new UserApi()
+    const [dados,setDados] = useState(null)
+
+    async function getDados(){
+        let response = await userApi.getInfo();
+        setDados(response)
+    }
 
     return (
         <View style={styles.container}>
@@ -34,8 +46,8 @@ export default function Form() {
 
         
         <View style ={styles.CaixaDeCima}>
-        <Text style={styles.Titulo7}>
-            Cálculo 2
+        <Text style={styles.Titulo7} onPress={() => navigation.navigate('resultados')}>
+            Calculo 2
         </Text>
         <Text style={styles.Titulo8}>
         <Image style= {styles.Relojo} source={require('../../../../assets/relojo.png')}/>  20:00
