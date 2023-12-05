@@ -41,6 +41,34 @@ class UserAPI {
       throw error;
     }
   }
+
+  async getUserData() {
+    try {
+      const response = await api.get('/tarefas');
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao obter dados de tarefas:', error);
+      throw error;
+    }
+  }
+
+  async insertNeuralData(dados) {
+    try {
+      await api.put('/redeNeural', dados);
+    } catch (error) {
+      console.error('Erro ao inserir dados na rede neural:', error);
+      throw error;
+    }
+  }
+
+  async insertTarefas(tarefa) {
+    try {
+      await api.put('/tarefas', tarefa);
+    } catch (error) {
+      console.error('Erro ao inserir tarefa:', error);
+      throw error;
+    }
+  }    
 }
 
 export default UserAPI;

@@ -8,7 +8,7 @@ export default function Form() {
     return (
         <View style={styles.container}>
             <TouchableOpacity>
-                <Text> tela principal é aqui </Text>
+                <Text> tela principal é aqui oxi </Text>
             </TouchableOpacity>
         </View>
     )

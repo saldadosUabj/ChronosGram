@@ -10,13 +10,16 @@ export default function UserDate() {
 
     async function getDados(){
         let dados = await userApi.getUserData();
+        return dados
     }
+
+    const dados = getDados()
 
     return (
         <View style={styles.container}>
-            <Text>
-                teste
-            </Text>
+            <View>
+                <Text>{dados.nome}</Text>
+            </View>
         </View>
     )
 }
