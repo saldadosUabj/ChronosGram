@@ -3,31 +3,32 @@ import { useNavigation } from '@react-navigation/native';
 import {Text, TextInput, View, TouchableOpacity, ScrollView, Alert, Vibration} from 'react-native';
 import api from '../../../services/Api';
 import styles from './style';
+import { SelectList } from 'react-native-dropdown-select-list'
 
 export default function Form(){
 
-    async function register(){
+    // async function register(){
         
-        const userData = {
-        nome: 'Generic',
-        email: email,
-        senha: senha,
-        turno_livre: turno,
-       }
+    //     const userData = {
+    //     nome: 'Generic',
+    //     email: email,
+    //     senha: senha,
+    //     turno_livre: turno,
+    //    }
        
-        try{
-            if(email != null && senha != null && confirm != null &&
-               curso != null && turno != null)
-               {                
-                    const response = api.post('/user', userData)
-                    navigation.navigate('TelaDeLogin')
-               }
+    //     try{
+    //         if(email != null && senha != null && confirm != null &&
+    //            curso != null && turno != null)
+    //            {                
+    //                 const response = api.post('/user', userData)
+    //                 navigation.navigate('TelaDeLogin')
+    //            }
             
-        }catch(error){
-            Vibration.vibrate()
-            Alert.alert('Erro' + error)
-        }
-    }
+    //     }catch(error){
+    //         Vibration.vibrate()
+    //         Alert.alert('Erro' + error)
+    //     }
+    // }
 
     const navigation = useNavigation();
     
@@ -36,8 +37,18 @@ export default function Form(){
     const [confirm, setConfirmSenha] = useState(null)
     const [curso, setCurso] = useState(null)
     const [turno, setTurno] = useState(null)
-    const [horario_livre, setHorarioLivre] = useState(null)
-    const [freeTimeStyle, setFreeTimeStyle] = useState(null)
+
+    const data_turno = [
+        { key: 'matutino', value: 'Matutino' },
+        { key: 'vespetino', value: 'Vespetino' },
+        { key: 'integral', value: 'Integral' },
+    ]
+
+    const data_freeTime = [
+        { key: 'equilibrada', value: 'Equilibrada' },
+        { key: 'variada', value: 'Variada' },
+        { key: 'intensa', value: 'Intensa' },
+    ]
 
     
     return(
@@ -70,31 +81,13 @@ export default function Form(){
                 value={curso}
                 placeholder='Curso'
                 keyboardType='default'/>
-            <TextInput
-                style={styles.inputBox}
-                onChangeText={setTurno}
+            <SelectList 
+                boxStyles={styles.inputSelectdBox}
+                dropdownStyles={styles.inputBox}
+                data={data_turno}
+                setSelected={setTurno}
                 value={turno}
-                placeholder='Turno'
-                keyboardType='default'/>
-            <TextInput
-                style={styles.inputBox}
-                onChangeText={setHorarioLivre}
-                value={horario_livre}
-                placeholder='Horário Livre'
-                keyboardType='default'/>
-            <TextInput
-                style={styles.inputBox}
-                onChangeText={setFreeTimeStyle}
-                value={freeTimeStyle}
-                placeholder='Free Time Style'
-                keyboardType='default'/>
-             {/* <RNPickerSelect
-                style={styles.inputBoxWithvalue}
-                onValueChange={(value) => setTurnoValue(value)}
-                items={[{ label: 'Matutino', value: 'matutino' },
-                        { label: 'Vespetino', value: 'vespetino' },
-                        { label: 'Integral', value: 'integral' },]}
-                value={turno}/> */}
+                placeholder='Turno'/>
             <TouchableOpacity style={styles.buttonEntrar} onPress={() => navigation.navigate('TelaDeRegistro2')}>
                 <Text style={styles.buttonText}> Continuar </Text>
             </TouchableOpacity>            

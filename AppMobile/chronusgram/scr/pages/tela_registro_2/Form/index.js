@@ -1,34 +1,46 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {Text, TextInput, View, TouchableOpacity, ScrollView} from 'react-native';
-import RNPickerSelect from 'react-native-picker-select';
+import { SelectList } from 'react-native-dropdown-select-list'
 import styles from './style';
 
 export default function Form(){
 
     const navigation = useNavigation();
     
-    const [horario, setHorario] = useState(null)
-    const [freeTimeStyle, setFreeTimeStyle] = useState(null)   
-    // const [turno, setTurnoValue] = useState('Matutino')
+    const [horario_livre, setHorarioLivre] = useState(null)
+    const [freeTimeStyle, setFreeTimeStyle] = useState(null)
 
+    const data_horario = [
+        { key: 'manhã', value: 'Manhã' },
+        { key: 'tarde', value: 'Tarde' },
+        { key: 'noite', value: 'Noite' },
+    ]
+
+    const data_freeTime = [
+        { key: 'equilibrada', value: 'Equilibrada' },
+        { key: 'variada', value: 'Variada' },
+        { key: 'intensa', value: 'Intensa' },
+    ]
     
     return(
         <ScrollView>
            <View style={styles.boxTop}>
             <Text style={styles.Login}> Informações Adicionais </Text>
-            <TextInput
-                style={styles.inputBox}
-                onChangeText={setHorario}
-                value={horario}
-                placeholder='Horário Livre'
-                keyboardType='default'/>
-            <TextInput
-                style={styles.inputBox}
-                onChangeText={setFreeTimeStyle}
+            <SelectList 
+                boxStyles={styles.inputSelectdBox}
+                dropdownStyles={styles.inputBox}
+                data={data_horario}
+                setSelected={setHorarioLivre}
+                value={horario_livre}
+                placeholder='Horário Livre'/>
+            <SelectList
+                boxStyles={styles.inputSelectdBox}
+                dropdownStyles={styles.inputBox}
+                data={data_freeTime}
+                setSelected={setFreeTimeStyle}
                 value={freeTimeStyle}
-                placeholder='Free Time Style'
-                keyboardType='default'/>
+                placeholder='Free Time Style'/>
             <TouchableOpacity style={styles.buttonEntrar} onPress={() => navigation.navigate('TelaPrePrincipal')}>
                 <Text style={styles.buttonText}> Registrar </Text>
             </TouchableOpacity>            
