@@ -1,16 +1,40 @@
-import React, { useMemo, useState } from 'react';
-import {Text, TextInput, View, Image, TouchableOpacity} from 'react-native';
+import React, { useState } from 'react';
+import {Text, TextInput, View, Image, TouchableOpacity, Alert, Vibration} from 'react-native';
 import styles from './style';
-import { NavigationContainer, useNavigation, navigation } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { useNavigation} from '@react-navigation/native';
+import UserAPI from '../../../services/userAPI';
 
 
 export default function Form(){
 
+    const userApi = new UserAPI()
     const navigation = useNavigation();
-
     const [email, setEmail] = useState(null)
     const [senha, setSenha] = useState(null)
+
+    async function validation(){
+        try{
+            const user = await userApi.getUserById(1)
+            if(email == null || senha == null){
+                Vibration.vibrate()
+                Alert.alert('Preencha todos os campos')
+                return
+            }
+            else if(email == user.email && senha == user.senha){
+                navigation.navigate('TelaPrincipal')
+                setEmail(null)
+                setSenha(null)
+                return
+            }
+            Vibration.vibrate()
+            setEmail(null)
+            setSenha(null)
+            Alert.alert("Usuário Inválido, tente novamente!")            
+        }catch(error){
+            Vibration.vibrate()
+            Alert.alert(error)
+        }
+    }  
     
     return(
         <View>
@@ -29,8 +53,8 @@ export default function Form(){
                 placeholder='Password'
                 secureTextEntry={true}
                 keyboardType='default'/>
-            <TouchableOpacity style={styles.buttonEntrar}>
-                <Text style={styles.buttonText}> Entrar </Text>
+            <TouchableOpacity style={styles.buttonEntrar}  onPress={() => validation()} >
+                <Text style={styles.buttonText} onPress={() => navigation.navigate('TelaPrincipal')}> Entrar </Text>
             </TouchableOpacity>            
             </View>
             <View style={styles.boxBottom}>
@@ -39,7 +63,7 @@ export default function Form(){
                 onPress={() => navigation.navigate('TelaDeRegistro')}> Registrar-se </Text>
                 <Text style={styles.comment_2}>Esqueceu a senha?</Text>
                 <Text style={styles.registrar} 
-                // onPress={() => navigation.navigate('TelaDeRegistro')}
+                // onPress={() => validation()}
                 > Clique aqui </Text>
            </View>
         </View>
