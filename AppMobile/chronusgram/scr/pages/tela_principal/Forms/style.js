@@ -57,6 +57,18 @@ const styles = StyleSheet.create({
         bottom: 35,
         left:253
     },
+    Fogo: {
+        width: 20,
+        height:20,
+        bottom: 55,
+        left:20
+    },
+    Polygon: {
+        width: 18,
+        height:18,
+        top: 5,
+        left:10
+    },
     Caixabaixo: {
         width: 350,
         height: 220,
@@ -75,6 +87,13 @@ const styles = StyleSheet.create({
         width:200,
         bottom: 35,
         left: 30,
+        fontStyle:'italic',
+        color: '#1F2234'
+    },
+    Titulo10:{
+        width:200,
+        bottom: 35,
+        left:45,
         fontStyle:'italic',
         color: '#1F2234'
     },
@@ -101,8 +120,8 @@ const styles = StyleSheet.create({
     },
     Titulo6: {
         width:200,
-        top: 5,
-        left: 30,
+        left: 38,
+        bottom:14,
         fontStyle:'italic',
         color: '#1F2234'
     },
@@ -130,10 +149,9 @@ const styles = StyleSheet.create({
     CaixaPrimeiraDcima: {
         width: 320,
         height: 45,
-        bottom: 600,
+        bottom: 700,
         borderRadius: 10,
         backgroundColor:'#73628A',
-        zIndex:2,
     },
     CaixaDeCima: {
         width: 259,
@@ -144,15 +162,32 @@ const styles = StyleSheet.create({
         backgroundColor:'#73628A',
         zIndex:2,
     },
+    CaixaDeCima2: {
+        width: 259,
+        height: 117,
+        bottom: 200,
+        right:10,
+        borderRadius: 12,
+        backgroundColor:'#73628A',
+        zIndex:2,
+    },
     CaixaAbaixoDcima: {
         width: 219,
         height: 55,
-        bottom: 355,
+        bottom: 465,
         right:10,
         borderRadius: 20,
         backgroundColor:'#B0A8CB',
-        zIndex: 1,
-        
+        zIndex:1
+    },
+    CaixaAbaixoDcima2: {
+        width: 219,
+        height: 55,
+        top: 90,
+        left:20,
+        borderRadius: 20,
+        backgroundColor:'#B0A8CB',
+        zIndex:1
     },
     CaixaDentroEsquerda: {
         width: 159,
@@ -161,7 +196,6 @@ const styles = StyleSheet.create({
         left: 14,
         borderRadius: 15,
         backgroundColor:'#FFFFFF'
-
     },
     CaixaDentroDireita: {
         width: 159,
@@ -170,6 +204,13 @@ const styles = StyleSheet.create({
         left: 90,
         borderRadius: 15,
         backgroundColor:'#603F74'
+    },
+     Borrado: {
+        position: 'absolute', 
+        top: 0, 
+        left: 0, 
+        right: 0, 
+        bottom: 0
     }
   });
 
