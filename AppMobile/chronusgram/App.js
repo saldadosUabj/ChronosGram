@@ -9,7 +9,7 @@ import tela_registro from './scr/pages/tela_registro/index'
 import tela_registro_2 from './scr/pages/tela_registro_2/index'
 import tela_principal from './scr/pages/tela_principal/index'
 import tela_pre_principal from './scr/pages/tela_pre_principal/index'
-import resultados from './scr/pages/index'
+import resultados from './scr/pages/tela_principal_card/index'
 
 const Stack = createStackNavigator();
 

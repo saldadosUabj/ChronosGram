@@ -1,25 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image } from 'react-native';
 import styles from './style';
+import UserAPI from '../../services/userAPI'
 
 export default function MyComponent() {
   const [infos, setInfos] = useState(null);
-
-  async function getInfo() {
-    try {
-      const response = await fetch('https://fast-api-x5fr.onrender.com/tarefas');
-      const data = await response.json();
-      console.log(data);
-      const Infos = data[0];
-      setInfos(Infos); // Atualiza o estado com os dados obtidos
-    } catch (error) {
-      console.error('Erro ao buscar dados:', error);
-    }
-  }
-
-  useEffect(() => {
-    getInfo(); // Chama a função getInfo() quando o componente for montado
-  }, []);
+  const userApi = new UserAPI()
+    
+  useEffect(() => {setInfos(userApi.getInfo())}, []);
 
   return (
     <View style={styles.container}>

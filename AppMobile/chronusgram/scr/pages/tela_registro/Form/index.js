@@ -36,7 +36,8 @@ export default function Form(){
     const [confirm, setConfirmSenha] = useState(null)
     const [curso, setCurso] = useState(null)
     const [turno, setTurno] = useState(null)
-    // const [turno, setTurnoValue] = useState('Matutino')
+    const [horario_livre, setHorarioLivre] = useState(null)
+    const [freeTimeStyle, setFreeTimeStyle] = useState(null)
 
     
     return(
@@ -74,6 +75,18 @@ export default function Form(){
                 onChangeText={setTurno}
                 value={turno}
                 placeholder='Turno'
+                keyboardType='default'/>
+            <TextInput
+                style={styles.inputBox}
+                onChangeText={setHorarioLivre}
+                value={horario_livre}
+                placeholder='Horário Livre'
+                keyboardType='default'/>
+            <TextInput
+                style={styles.inputBox}
+                onChangeText={setFreeTimeStyle}
+                value={freeTimeStyle}
+                placeholder='Free Time Style'
                 keyboardType='default'/>
              {/* <RNPickerSelect
                 style={styles.inputBoxWithvalue}
