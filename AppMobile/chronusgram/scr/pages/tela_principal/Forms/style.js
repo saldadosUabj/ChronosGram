@@ -211,7 +211,15 @@ const styles = StyleSheet.create({
         left: 0, 
         right: 0, 
         bottom: 0
-    }
+    },
+   BarraLateral: {
+        width: 20,
+        height: 100,
+        left:169,
+        bottom:600,
+        borderRadius: 8,
+        backgroundColor:'#73628A',
+    },
   });
 
 export default styles

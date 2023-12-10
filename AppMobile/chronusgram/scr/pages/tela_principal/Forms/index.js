@@ -61,7 +61,7 @@ export default function Form() {
         </View>
 
         <View style = {styles.CaixaDeCima2}>  
-        <Text>TESTANDO</Text>  
+        <Text style = {styles.Titulo7}>TESTANDO</Text>  
         <View style = {styles.CaixaAbaixoDcima2}>
              <Image style= {styles.Confirma} source={require('../../../../assets/confirm.png')}/>
              <Image style= {styles.Advert} source={require('../../../../assets/adv.png')}/>
@@ -71,14 +71,12 @@ export default function Form() {
         blurType="light"
         blurAmount={10}  
             /> 
-
         </View>
 
         <BlurView intensity={5} style = {styles.Borrado}
         blurType="light"
         blurAmount={10}  
             /> 
-
         </View>
 
         
@@ -94,6 +92,9 @@ export default function Form() {
         <Image style= {styles.Config} source={require('../../../../assets/confi.png')}/>
         </View>
 
+        <View style = {styles.BarraLateral}>
+
+        </View>
 
         </View>
 
