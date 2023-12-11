@@ -7,31 +7,11 @@ import { SelectList } from 'react-native-dropdown-select-list'
 
 export default function Form(){
 
-    // async function register(){
-        
-    //     const userData = {
-    //     nome: 'Generic',
-    //     email: email,
-    //     senha: senha,
-    //     turno_livre: turno,
-    //    }
-       
-    //     try{
-    //         if(email != null && senha != null && confirm != null &&
-    //            curso != null && turno != null)
-    //            {                
-    //                 const response = api.post('/user', userData)
-    //                 navigation.navigate('TelaDeLogin')
-    //            }
-            
-    //     }catch(error){
-    //         Vibration.vibrate()
-    //         Alert.alert('Erro' + error)
-    //     }
-    // }
+    
 
     const navigation = useNavigation();
     
+    const [nome, setNome] = useState(null)
     const [email, setEmail] = useState(null)
     const [senha, setSenha] = useState(null)   
     const [confirm, setConfirmSenha] = useState(null)
@@ -43,11 +23,44 @@ export default function Form(){
         { key: 'vespetino', value: 'Vespetino' },
         { key: 'integral', value: 'Integral' },
     ]
+
+    function validarCampos(){
+        if (!nome || !email || !senha || !confirm || !curso || !turno) {
+            Vibration.vibrate()
+            Alert.alert('Por favor, preencha todos os campos.');
+            return false;
+        }
+        if (senha !== confirm) {
+            Vibration.vibrate()
+            Alert.alert('As senhas não correspondem.');
+            return false;
+        }
+        return true;
+    };
+
+    function continuarRegistro(){
+        const camposValidos = validarCampos();
+        if (camposValidos) {
+            navigation.navigate('TelaDeRegistro2', {
+                nome: nome,
+                email: email,
+                senha: senha,
+                curso: curso,
+                turno: turno,
+            });
+        }
+    };
     
     return(
         <ScrollView>
            <View style={styles.boxTop}>
             <Text style={styles.Login}> Criar uma conta nova </Text>
+            <TextInput
+                style={styles.inputBox}
+                onChangeText={setNome}
+                value={nome}
+                placeholder='Nome'
+                keyboardType='default'/>
             <TextInput
                 style={styles.inputBox}
                 onChangeText={setEmail}
@@ -82,7 +95,7 @@ export default function Form(){
                 value={turno}
                 placeholder='Turno'/>
             <TouchableOpacity style={styles.buttonEntrar}
-             onPress={() => navigation.navigate('TelaDeRegistro2', { email: email, senha: senha, curso: curso, turno: turno })}>
+             onPress={() => continuarRegistro()}>
 
                 <Text style={styles.buttonText}> Continuar </Text>
                 

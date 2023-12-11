@@ -11,6 +11,7 @@ export default function Form(){
     const navigation = useNavigation();
     const route = useRoute();
 
+    const nome = route.params?.nome
     const email = route.params?.email
     const senha = route.params?.senha
     const curso = route.params?.curso
@@ -21,7 +22,7 @@ export default function Form(){
 
     const dataUser = {
         id: 5,
-        nome: 'teste32323 dos santos',
+        nome: nome,
         email: email,
         senha: senha,
         turno_livre: turno,
@@ -29,12 +30,19 @@ export default function Form(){
 
     async function RegisterSend() {
         try {
-            const response = await userApi.addUser(dataUser);
-            console.log(response.status)
-            if(response.status == 200){
-                navigation.navigate('TelaPrePrincipal')
+            if (!horario_livre || !freeTimeStyle) {
+                Vibration.vibrate()
+                Alert.alert('Por favor, preencha todos os campos.')
+                throw new Error('Por favor, preencha todos os campos.');
             }else{
-                throw new Error('Erro ao registrar usuário');
+                const response = await userApi.addUser(dataUser);
+                console.log(response.status)
+                console.log(response.data)
+                if(response.status == 200){
+                    navigation.navigate('TelaPrePrincipal')
+                }else{
+                    throw new Error('Erro ao registrar usuário');
+                }
             }
         } catch (error) {
             console.error(error);
