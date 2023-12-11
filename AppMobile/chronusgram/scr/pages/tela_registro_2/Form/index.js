@@ -1,16 +1,48 @@
 import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import {Text, TextInput, View, TouchableOpacity, ScrollView} from 'react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import {Text, TextInput, View, TouchableOpacity, ScrollView, Alert, Vibration} from 'react-native';
 import { SelectList } from 'react-native-dropdown-select-list'
 import styles from './style';
+import UserAPI from '../../../services/userAPI'
 
 export default function Form(){
 
+    const userApi = new UserAPI();
     const navigation = useNavigation();
+    const route = useRoute();
+
+    const email = route.params?.email
+    const senha = route.params?.senha
+    const curso = route.params?.curso
+    const turno = route.params?.turno
     
     const [horario_livre, setHorarioLivre] = useState(null)
     const [freeTimeStyle, setFreeTimeStyle] = useState(null)
 
+    const dataUser = {
+        id: 5,
+        nome: 'teste32323 dos santos',
+        email: email,
+        senha: senha,
+        turno_livre: turno,
+    }
+
+    async function RegisterSend() {
+        try {
+            const response = await userApi.addUser(dataUser);
+            console.log(response.status)
+            if(response.status == 200){
+                navigation.navigate('TelaPrePrincipal')
+            }else{
+                throw new Error('Erro ao registrar usuário');
+            }
+        } catch (error) {
+            console.error(error);
+            Alert.alert('Erro ao registrar usuário:', error.message);
+            Vibration.vibrate();
+        }
+    }   
+    
     const data_horario = [
         { key: 'manhã', value: 'Manhã' },
         { key: 'tarde', value: 'Tarde' },
@@ -41,7 +73,7 @@ export default function Form(){
                 setSelected={setFreeTimeStyle}
                 value={freeTimeStyle}
                 placeholder='Free Time Style'/>
-            <TouchableOpacity style={styles.buttonEntrar} onPress={() => navigation.navigate('TelaPrePrincipal')}>
+            <TouchableOpacity style={styles.buttonEntrar} onPress={() => RegisterSend()}>
                 <Text style={styles.buttonText}> Registrar </Text>
             </TouchableOpacity>            
             </View>
@@ -52,3 +84,5 @@ export default function Form(){
         </ScrollView>
     )
 }
+
+// navigation.navigate('TelaPrePrincipal')

@@ -43,13 +43,6 @@ export default function Form(){
         { key: 'vespetino', value: 'Vespetino' },
         { key: 'integral', value: 'Integral' },
     ]
-
-    const data_freeTime = [
-        { key: 'equilibrada', value: 'Equilibrada' },
-        { key: 'variada', value: 'Variada' },
-        { key: 'intensa', value: 'Intensa' },
-    ]
-
     
     return(
         <ScrollView>
@@ -88,8 +81,11 @@ export default function Form(){
                 setSelected={setTurno}
                 value={turno}
                 placeholder='Turno'/>
-            <TouchableOpacity style={styles.buttonEntrar} onPress={() => navigation.navigate('TelaDeRegistro2')}>
+            <TouchableOpacity style={styles.buttonEntrar}
+             onPress={() => navigation.navigate('TelaDeRegistro2', { email: email, senha: senha, curso: curso, turno: turno })}>
+
                 <Text style={styles.buttonText}> Continuar </Text>
+                
             </TouchableOpacity>            
             </View>
             <View style={styles.boxBottom}>
