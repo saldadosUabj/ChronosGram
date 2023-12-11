@@ -13,7 +13,13 @@ const styles = StyleSheet.create({
     Logo:{
         width: 200,
         height: 100,
-    }
+    },
+    Login:{
+        fontSize: 30,
+        fontFamily:'Nunito-Sans',
+        fontWeight:'bold',
+        color:'#ffff'
+    },
   });
 
 export default styles

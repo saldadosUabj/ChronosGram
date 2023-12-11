@@ -66,7 +66,20 @@ const styles = StyleSheet.create({
         padding: 15,
         borderColor: 'black', 
         borderWidth: 1, 
-      }              
+      },
+      inputSelectdBox:{
+        width: '85%',
+        height: 'auto',
+        backgroundColor: '#FFF',
+        marginTop: 15,
+        marginHorizontal: 10,
+        padding: 10,
+      },
+      inputSelectdBoxDropdown: {
+        width: '85%',
+        height: 'auto',
+        backgroundColor: '#FFF',
+      },                
   });
 
 export default styles

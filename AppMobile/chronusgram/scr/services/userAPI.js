@@ -25,7 +25,7 @@ class UserAPI {
   async addUser(userData) {
     try {
       const response = await api.post('/user', userData);
-      return response.data;
+      return response;
     } catch (error) {
       console.error('Erro ao adicionar usuário:', error);
       throw error;
