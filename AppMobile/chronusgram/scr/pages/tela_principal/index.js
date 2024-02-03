@@ -1,22 +1,11 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import Form from './Forms/index';
-import UserDate from './userDate/index';
-import Header from './Header';
+import Routes from './Routers/index.js';
 
 export default function App() {
     return (
         <View style={styles.container}>
-            <Header/>
-            <Form />
-            <UserDate/>
+            <Routes/>
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#16041B',
-    },
-});

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity,Image } from 'react-native';
 import styles from './style';
-import UserApi from '../../../services/userAPI'
+import UserApi from '../../../../services/userAPI'
 import { useNavigation} from '@react-navigation/native';
 import { BlurView } from 'expo-blur';
 
