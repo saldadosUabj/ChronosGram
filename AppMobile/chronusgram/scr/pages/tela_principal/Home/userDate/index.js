@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import styles from './style';
-import UserApi from '../../../services/userAPI'
+import UserApi from '../../../../services/userAPI'
 
 
 export default function UserDate() {

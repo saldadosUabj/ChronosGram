@@ -2,12 +2,10 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import Form from './Forms/index';
 import UserDate from './userDate/index';
-import Header from './Header';
 
 export default function App() {
     return (
         <View style={styles.container}>
-            <Header/>
             <Form />
             <UserDate/>
         </View>

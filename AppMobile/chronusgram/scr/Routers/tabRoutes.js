@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import Home from '../Home/index';
+import Home from '../pages/tela_principal/Home/index';
 
 const Tab = createBottomTabNavigator();
 
