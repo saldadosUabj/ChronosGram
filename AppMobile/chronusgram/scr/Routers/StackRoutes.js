@@ -12,13 +12,13 @@ const Stack = createStackNavigator();
 export default function StackRoutes() {  
   
   return (
-      <Stack.Navigator>
-        <Stack.Screen name='TelaDeLogin' component={tela_login} options={{ headerShown: false }}/>
-        <Stack.Screen name='TelaDeRegistro' component={tela_registro} options={{ headerShown: false }}/>
-        <Stack.Screen name='TelaDeRegistro2' component={tela_registro_2} options={{ headerShown: false }}/>
-        <Stack.Screen name='TelaPrincipal' component={TabRoutes} options={{ headerShown: false }}/>
-        <Stack.Screen name='TelaPrePrincipal' component={tela_pre_principal} options={{ headerShown: false }}/>
-        <Stack.Screen name='resultados' component={resultados} options={{ headerShown: false }}/>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name='TelaDeLogin' component={tela_login}/>
+        <Stack.Screen name='TelaDeRegistro' component={tela_registro}/>
+        <Stack.Screen name='TelaDeRegistro2' component={tela_registro_2}/>
+        <Stack.Screen name='TelaPrincipal' component={TabRoutes}/>
+        <Stack.Screen name='TelaPrePrincipal' component={tela_pre_principal}/>
+        <Stack.Screen name='resultados' component={resultados}/>
       </Stack.Navigator>      
 
   );
