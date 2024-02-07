@@ -4,6 +4,8 @@ import Constants from 'expo-constants';
 
 
 import Home from '../pages/tela_principal/Home/index';
+import Configuracao from '../pages/tela_principal/Configuracao';
+import Perfil from '../pages/tela_principal/Perfil';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -18,7 +20,7 @@ export default function TabRoutes(){
         tabBarIcon: ({ focused }) => {
           let iconName;
 
-          if (route.name === 'Ajustes') {
+          if (route.name === 'Perfil') {
             iconName = focused ? require('../../assets/perfil-de-usuario.png') : require('../../assets/perfil-de-usuario.png');
           } else if (route.name === 'Home') {
             iconName = focused ? require('../../assets/botao-home.png') : require('../../assets/botao-home.png');
@@ -30,9 +32,9 @@ export default function TabRoutes(){
         },
       })}
     >
-            <Tab.Screen name="Ajustes" component={Home}/>
+            <Tab.Screen name="Perfil" component={Perfil}/>
             <Tab.Screen name="Home" component={Home} />
-            <Tab.Screen name="Configuração" component={Home}/>
+            <Tab.Screen name="Configuração" component={Configuracao}/>
         </Tab.Navigator>
     )
 }
