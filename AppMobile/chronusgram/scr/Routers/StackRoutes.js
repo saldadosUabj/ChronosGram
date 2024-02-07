@@ -4,7 +4,6 @@ import TabRoutes from './tabRoutes';
 import tela_login from '../pages/tela_login/index'
 import tela_registro from '../pages/tela_registro/index'
 import tela_registro_2 from '../pages/tela_registro_2/index'
-import tela_principal from '../pages/tela_principal/index'
 import tela_pre_principal from '../pages/tela_pre_principal/index'
 import resultados from '../pages/tela_principal_card/index'
 
