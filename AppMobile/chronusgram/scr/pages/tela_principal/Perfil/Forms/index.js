@@ -12,10 +12,34 @@ export default function Form() {
         <View style={styles.container}>
 
             <Image style={styles.perfil} source={require('../../../../../assets/perfil.png')}/>
+            
+            <Text style={styles.text}>
+                Wandson Emanuel dos Santos Silva {/* Aqui deve ir o nome do aluno, puxado do banco de dados atráves da api */}
+            </Text>
 
-            <TouchableOpacity style={styles.buttonEntrar} >
-                <Text style={styles.buttonText} onPress={() => navigation.navigate('TelaPrincipal')}> Entrar </Text>
+            <Text style={styles.text}>
+                Engenharia da Computação {/* Aqui deve ir o curso do aluno, puxado do banco de dados atráves da api */}
+            </Text>
+
+            <Text style={styles.Lasttext}>
+                UFRPE | Integral {/* Aqui deve ir a universidade do aluno, formatado, puxado do banco de dados atráves da api */}
+            </Text>
+
+            <TouchableOpacity style={styles.button} >
+                <Text style={styles.buttonText} onPress={() => navigation.navigate('TelaPrincipal')}> Disciplinas </Text>
             </TouchableOpacity> 
+            
+            <TouchableOpacity style={styles.button} >
+                <Text style={styles.buttonText} onPress={() => navigation.navigate('TelaPrincipal')}> Relatório </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.button} >
+                <Text style={styles.buttonText} onPress={() => navigation.navigate('TelaPrincipal')}> Calendário </Text>
+            </TouchableOpacity>
+
+            <Text onPress={() => navigation.navigate('TelaDeLogin')} style={styles.sair}>
+                Sair
+            </Text>
 
         </View>
                 
