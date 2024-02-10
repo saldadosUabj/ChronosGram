@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity,Image, ScrollView } from 'react-native';
+import { View, StyleSheet, TouchableOpacity,Image, ScrollView } from 'react-native';
 import styles from './style';
 import UserApi from '../../../../services/userAPI'
 import { useNavigation} from '@react-navigation/native';
 import { BlurView } from 'expo-blur';
+import { Avatar, Button, Card, Text } from 'react-native-paper';
 
 export default function Form() {
 
@@ -16,13 +17,67 @@ export default function Form() {
         setDados(response)
     }
 
+    
+    const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
+
     return (
         <ScrollView>
 
             <View style={styles.container}>
 
+            <Card>
+                <Card.Content>
+                <Text variant="titleLarge">Assunto</Text>
+                <Text variant="bodyMedium">Descrição</Text>
+                </Card.Content>
+                
+                <Card.Actions>
+                <Button><Image style= {styles.X} source={require('../../../../../assets/xis.png')}/></Button>
+                <Button><Image style= {styles.Confirma} source={require('../../../../../assets/confirm.png')}/></Button> 
+                </Card.Actions>
+            </Card>
+
+            {/* <Card>
+                <Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} />
+                <Card.Content>
+                <Text variant="titleLarge">Assunto</Text>
+                <Text variant="bodyMedium">Descrição</Text>
+                </Card.Content>
+                <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+                <Card.Actions>
+                <Button>Cancel</Button>
+                <Button>Ok</Button> 
+                </Card.Actions>
+            </Card>
+
+            <Card>
+                <Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} />
+                <Card.Content>
+                <Text variant="titleLarge">Assunto</Text>
+                <Text variant="bodyMedium">Descrição</Text>
+                </Card.Content>
+                <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+                <Card.Actions>
+                <Button>Cancel</Button>
+                <Button>Ok</Button> 
+                </Card.Actions>
+            </Card>
+
+            <Card>
+                <Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} />
+                <Card.Content>
+                <Text variant="titleLarge">Assunto</Text>
+                <Text variant="bodyMedium">Descrição</Text>
+                </Card.Content>
+                <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+                <Card.Actions>
+                <Button>Cancel</Button>
+                <Button>Ok</Button> 
+                </Card.Actions>
+            </Card> */}
+
             </View>
-            
+
         </ScrollView>
                 
     )
