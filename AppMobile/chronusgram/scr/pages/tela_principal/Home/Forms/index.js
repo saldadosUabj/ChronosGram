@@ -17,64 +17,20 @@ export default function Form() {
         setDados(response)
     }
 
-    
-    const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
-
     return (
         <ScrollView>
 
             <View style={styles.container}>
 
-            <Card>
-                <Card.Content>
-                <Text variant="titleLarge">Assunto</Text>
-                <Text variant="bodyMedium">Descrição</Text>
-                </Card.Content>
+                <View style ={styles.Card}>
                 
-                <Card.Actions>
-                <Button><Image style= {styles.X} source={require('../../../../../assets/xis.png')}/></Button>
-                <Button><Image style= {styles.Confirma} source={require('../../../../../assets/confirm.png')}/></Button> 
-                </Card.Actions>
-            </Card>
+                    <Text style={styles.NomeCadeira} onPress={() => navigation.navigate('resultados')}> Calculo 2 </Text>
+                    <Text style={styles.HorarioPNG}>
+                        <Image style= {styles.Relojo} source={require('../../../../../assets/relojo.png')}/>  20:00
+                    </Text>
+                    <Text style={styles.Coins}>30 coins</Text>
 
-            {/* <Card>
-                <Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} />
-                <Card.Content>
-                <Text variant="titleLarge">Assunto</Text>
-                <Text variant="bodyMedium">Descrição</Text>
-                </Card.Content>
-                <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
-                <Card.Actions>
-                <Button>Cancel</Button>
-                <Button>Ok</Button> 
-                </Card.Actions>
-            </Card>
-
-            <Card>
-                <Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} />
-                <Card.Content>
-                <Text variant="titleLarge">Assunto</Text>
-                <Text variant="bodyMedium">Descrição</Text>
-                </Card.Content>
-                <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
-                <Card.Actions>
-                <Button>Cancel</Button>
-                <Button>Ok</Button> 
-                </Card.Actions>
-            </Card>
-
-            <Card>
-                <Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} />
-                <Card.Content>
-                <Text variant="titleLarge">Assunto</Text>
-                <Text variant="bodyMedium">Descrição</Text>
-                </Card.Content>
-                <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
-                <Card.Actions>
-                <Button>Cancel</Button>
-                <Button>Ok</Button> 
-                </Card.Actions>
-            </Card> */}
+                </View>  
 
             </View>
 
@@ -84,6 +40,17 @@ export default function Form() {
 }
 
 
+                // <Card style={styles.Card}>
+                //     <Card.Content>
+                //         <Text variant="titleLarge">Assunto</Text>
+                //         <Text variant="bodyMedium">Descrição</Text>
+                //     </Card.Content>
+                    
+                //     <Card.Actions>
+                //         <Button><Image style= {styles.Confirma} source={require('../../../../../assets/confirm.png')}/></Button> 
+                //         <Button><Image style= {styles.X} source={require('../../../../../assets/xis.png')}/></Button>
+                //     </Card.Actions>
+                // </Card>
         // <View style = {styles.Caixabaixo}>
         //     <Text style = {styles.Titulo}>Perfomance</Text>
         
@@ -108,18 +75,7 @@ export default function Form() {
         // </View>
 
         
-        // <View style ={styles.CaixaDeCima}>
-            
-        // <Text style={styles.Titulo7} onPress={() => navigation.navigate('resultados')}>
-        //     Calculo 2
-        // </Text>
-        // <Text style={styles.Titulo8}>
-        // <Image style= {styles.Relojo} source={require('../../../../assets/relojo.png')}/>  20:00
-        // </Text>
-        // <Text style={styles.Titulo9}>
-        //     30 coins
-        // </Text>
-        // </View>
+        
 
         // <View style = {styles.CaixaDeCima2}>  
         // <Text style = {styles.Titulo7}>TESTANDO</Text>  
