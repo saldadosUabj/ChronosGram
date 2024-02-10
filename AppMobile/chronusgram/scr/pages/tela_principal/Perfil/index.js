@@ -1,12 +1,12 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import Form from './Forms/index';
+// import UserDate from './userDate/index';
 
-export default function Perfil() {
+export default function App() {
     return (
         <View style={styles.container}>
-            <Text>
-                Perfil
-            </Text>
+            <Form />
         </View>
     );
 }

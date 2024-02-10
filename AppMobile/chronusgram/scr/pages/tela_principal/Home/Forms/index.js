@@ -36,7 +36,23 @@ export default function Form() {
                     <Image style= {styles.Confirma} source={require('../../../../../assets/confirm.png')}/>
                     <Image style= {styles.Advert} source={require('../../../../../assets/adv.png')}/>
                     <Image style= {styles.X} source={require('../../../../../assets/xis.png')}/>
-                </View>                
+                </View>
+
+                <View style ={styles.Card}>
+                
+                    <Text style={styles.NomeCadeira} onPress={() => navigation.navigate('resultados')}> Geometria Análitica </Text>
+                    <Text style={styles.HorarioPNG}>
+                        <Image style= {styles.Relojo} source={require('../../../../../assets/relojo.png')}/>  21:00
+                    </Text>
+                    <Text style={styles.Coins}>20 coins</Text>
+
+                </View>
+
+                <View style = {styles.BoxButtons}>
+                    <Image style= {styles.Confirma} source={require('../../../../../assets/confirm.png')}/>
+                    <Image style= {styles.Advert} source={require('../../../../../assets/adv.png')}/>
+                    <Image style= {styles.X} source={require('../../../../../assets/xis.png')}/>
+                </View>                           
 
             </View>            
 
