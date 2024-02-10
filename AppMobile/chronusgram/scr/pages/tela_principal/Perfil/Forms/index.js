@@ -10,6 +10,9 @@ export default function Form() {
 
     return (
         <View style={styles.container}>
+
+            <Image style={styles.perfil} source={require('../../../../../assets/perfil.png')}/>
+
             <TouchableOpacity style={styles.buttonEntrar} >
                 <Text style={styles.buttonText} onPress={() => navigation.navigate('TelaPrincipal')}> Entrar </Text>
             </TouchableOpacity> 
