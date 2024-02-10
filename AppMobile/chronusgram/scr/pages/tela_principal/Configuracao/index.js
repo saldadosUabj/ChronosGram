@@ -1,12 +1,11 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import Form from './Forms';
 
 export default function Configuracao() {
     return (
         <View style={styles.container}>
-            <Text>
-                Configuração
-            </Text>
+            <Form/>
         </View>
     );
 }
