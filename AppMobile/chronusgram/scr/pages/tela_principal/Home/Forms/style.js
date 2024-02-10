@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
         height: 19,
         top: 55,
         left: 100,
-        color: '#E6E7ED'
+        color: '#E6E7ED',
+        fontSize: 15,
     },
     HorarioPNG: {
         width: 94,
@@ -46,6 +47,30 @@ const styles = StyleSheet.create({
         bottom: 30,
         color: '#E6E7ED'
     },
+    BoxButtons: {
+        width: 225,
+        height: 55,
+        bottom: 20,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 20,
+        backgroundColor:'#B0A8CB',
+  },
+    Confirma: {
+        width: 20,
+        height:20,        
+  },
+
+  Advert: {
+        width: 20,
+        height:20,
+        marginHorizontal: 50,
+  },
+  X: {
+        width: 20,
+        height:20,
+  },
   });
 
 export default styles
@@ -55,25 +80,6 @@ export default styles
 //     Logo:{
 //         width: 200,
 //         height: 100,
-//     },
-//     Confirma: {
-//         width: 20,
-//         height:20,
-//         top:20,
-//         left:40
-//     },
-
-//      Advert: {
-//          width: 20,
-//          height:20,
-//          top:1,
-//         left:100
-//      },
-//     X: {
-//         width: 20,
-//         height:20,
-//         bottom:19,
-//         left:170
 //     },
 //     Relojo: {
 //         width: 15,
@@ -213,15 +219,15 @@ export default styles
 //         backgroundColor:'#73628A',
 //         zIndex:2,
 //     },
-//     CaixaAbaixoDcima: {
-//         width: 219,
-//         height: 55,
-//         bottom: 465,
-//         right:10,
-//         borderRadius: 20,
-//         backgroundColor:'#B0A8CB',
-//         zIndex:1
-//     },
+    // CaixaAbaixoDcima: {
+    //     width: 219,
+    //     height: 55,
+    //     bottom: 465,
+    //     right:10,
+    //     borderRadius: 20,
+    //     backgroundColor:'#B0A8CB',
+    //     zIndex:1
+    // },
 //     CaixaAbaixoDcima2: {
 //         width: 219,
 //         height: 55,

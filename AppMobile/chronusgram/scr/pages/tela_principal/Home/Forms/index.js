@@ -30,9 +30,15 @@ export default function Form() {
                     </Text>
                     <Text style={styles.Coins}>30 coins</Text>
 
-                </View>  
+                </View>
 
-            </View>
+                <View style = {styles.BoxButtons}>
+                    <Image style= {styles.Confirma} source={require('../../../../../assets/confirm.png')}/>
+                    <Image style= {styles.Advert} source={require('../../../../../assets/adv.png')}/>
+                    <Image style= {styles.X} source={require('../../../../../assets/xis.png')}/>
+                </View>                
+
+            </View>            
 
         </ScrollView>
                 
@@ -40,17 +46,6 @@ export default function Form() {
 }
 
 
-                // <Card style={styles.Card}>
-                //     <Card.Content>
-                //         <Text variant="titleLarge">Assunto</Text>
-                //         <Text variant="bodyMedium">Descrição</Text>
-                //     </Card.Content>
-                    
-                //     <Card.Actions>
-                //         <Button><Image style= {styles.Confirma} source={require('../../../../../assets/confirm.png')}/></Button> 
-                //         <Button><Image style= {styles.X} source={require('../../../../../assets/xis.png')}/></Button>
-                //     </Card.Actions>
-                // </Card>
         // <View style = {styles.Caixabaixo}>
         //     <Text style = {styles.Titulo}>Perfomance</Text>
         
@@ -97,11 +92,7 @@ export default function Form() {
         // </View>
 
         
-        // <View style = {styles.CaixaAbaixoDcima}>
-        //      <Image style= {styles.Confirma} source={require('../../../../assets/confirm.png')}/>
-        //      <Image style= {styles.Advert} source={require('../../../../assets/adv.png')}/>
-        //      <Image style= {styles.X} source={require('../../../../assets/xis.png')}/>
-        // </View>
+
 
         // <View style = {styles.CaixaPrimeiraDcima}>
         // <Image style= {styles.Perfil} source={require('../../../../assets/perfil.png')}/>
