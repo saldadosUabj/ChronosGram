@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity,Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity,Image, ScrollView } from 'react-native';
 import styles from './style';
 import UserApi from '../../../../services/userAPI'
 import { useNavigation} from '@react-navigation/native';
@@ -17,9 +17,13 @@ export default function Form() {
     }
 
     return (
-        <View style={styles.container}>
+        <ScrollView>
 
-        </View>
+            <View style={styles.container}>
+
+            </View>
+            
+        </ScrollView>
                 
     )
 }
