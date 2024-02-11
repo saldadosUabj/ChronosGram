@@ -11,21 +11,26 @@ export default function Form() {
     const [dados,setDados] = useState(null)
 
     return (
-        <ScrollView>
 
-            <View style={styles.container}>
+        <View style={styles.container}>
 
-                <Text style={styles.text}>
-                    Turno Livre
-                </Text>
+            <Text style={styles.text}>
+                Turno Livre
+            </Text>
 
-                <Text style={styles.text}>
-                    Free Time Style
-                </Text>
+            <View style={styles.retangulo}>
+
+            </View>
+
+            <Text style={styles.text}>
+                Free Time Style
+            </Text>
+
+            <View style={styles.retangulo}>
 
             </View>            
 
-        </ScrollView>
+        </View>
                 
     )
 }
