@@ -3,10 +3,8 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        height: 'auto',
-        // backgroundColor:'#fff',
-        alignContent: 'center',
-        alignItems: 'center',
+        height: '100%',
+        backgroundColor:'#16041B',
         marginTop: 70,
     },
     Logo:{
@@ -17,6 +15,7 @@ const styles = StyleSheet.create({
         width: 270,
         height: 130,
         borderRadius: 10,
+        alignSelf: 'center',
         shadowColor: '#16041B',
         backgroundColor:'#73628A'
     },
@@ -51,6 +50,7 @@ const styles = StyleSheet.create({
         width: 225,
         height: 55,
         bottom: 20,
+        alignSelf: 'center',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
@@ -71,6 +71,10 @@ const styles = StyleSheet.create({
         width: 20,
         height:20,
   },
+  Mobilize: {
+        flex: 1,
+        backgroundColor: '#73628A'
+  }
   });
 
 export default styles

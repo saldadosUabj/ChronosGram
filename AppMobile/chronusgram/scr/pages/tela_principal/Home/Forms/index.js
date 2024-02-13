@@ -1,30 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { View, StyleSheet, TouchableOpacity,Image, ScrollView } from 'react-native';
 import styles from './style';
 import UserApi from '../../../../services/userAPI'
 import { useNavigation} from '@react-navigation/native';
 import { BlurView } from 'expo-blur';
 import { Avatar, Button, Card, Text } from 'react-native-paper';
+import { Modalize } from 'react-native-modalize';
+
 
 export default function Form() {
 
     const navigation = useNavigation();
-    const userApi = new UserApi()
-    const [dados,setDados] = useState(null)
+    const userApi = new UserApi();
+    const [dados,setDados] = useState(null);
+    const modalizeRef = useRef(null);
+    const [infos, setInfos] = useState(null);
+
 
     async function getDados(){
         let response = await userApi.getInfo();
         setDados(response)
     }
 
-    return (
-        <ScrollView>
+    const onOpen = () => {
+        modalizeRef.current?.open();
+      };
 
-            <View style={styles.container}>
+    useEffect(() => {setInfos(userApi.getInfo())}, []);
+        
+
+    return (
+        <ScrollView style={styles.container}>
 
                 <View style ={styles.Card}>
+
+                    <TouchableOpacity onPress={onOpen}>
+                        <Text style={styles.NomeCadeira}> Calculo 2 </Text>
+                    </TouchableOpacity>
                 
-                    <Text style={styles.NomeCadeira} onPress={() => navigation.navigate('resultados')}> Calculo 2 </Text>
                     <Text style={styles.HorarioPNG}>
                         <Image style= {styles.Relojo} source={require('../../../../../assets/relojo.png')}/>  20:00
                     </Text>
@@ -52,9 +65,32 @@ export default function Form() {
                     <Image style= {styles.Confirma} source={require('../../../../../assets/confirm.png')}/>
                     <Image style= {styles.Advert} source={require('../../../../../assets/adv.png')}/>
                     <Image style= {styles.X} source={require('../../../../../assets/xis.png')}/>
-                </View>                           
-
-            </View>            
+                </View>
+                
+                <Modalize ref={modalizeRef}
+                          adjustToContentHeight={true} 
+                          handleStyle={{backgroundColor: '#73628A'}}>
+                    <View style={styles.Mobilize}>
+                    {infos && (
+                        <View>
+                            <Text style={styles.text}>Nome: {infos.Nome}</Text>
+                            <Text style={styles.text}>Status: {infos.Status}</Text>
+                            <Text style={styles.text}>Assunto: {infos.Assunto}</Text>
+                            <Text style={styles.text}>Material de Estudo: {infos['Material de Estudo']}</Text>
+                            <Text style={styles.text}>Tipo: {infos.Tipo}</Text>
+                            <Text style={styles.text}>Recomendações: {infos.Recomendações}</Text>
+                            <Text style={styles.text}>Qualidade: {infos.Qualidade}</Text>
+                            <Text style={styles.text}>Pontuação: {infos.Pontuação}</Text>
+                            <Text style={styles.text}>Horário: {infos['Horário']}</Text>
+                            <Text style={styles.text}>Prioridade: {infos.Prioridade}</Text>
+                            <Text style={styles.text}>Data Início: {infos['Data Início']}</Text>
+                            <Text style={styles.text}>Data Final: {infos['Data Final']}</Text>
+                            <Text style={styles.text}>Tempo Estimado: {infos['Tempo Estimado']}</Text>
+                            <Text style={styles.text}>Posição: {infos.posição}</Text>          
+                        </View>
+                    )}
+                    </View>
+                </Modalize>            
 
         </ScrollView>
                 
