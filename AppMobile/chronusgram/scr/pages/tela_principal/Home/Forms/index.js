@@ -30,49 +30,54 @@ export default function Form() {
         
 
     return (
-        <ScrollView style={styles.container}>
+        <View>
 
-                <View style ={styles.Card}>
+            <ScrollView style={styles.container}>
 
-                    <TouchableOpacity onPress={onOpen}>
-                        <Text style={styles.NomeCadeira}> Calculo 2 </Text>
-                    </TouchableOpacity>
-                
-                    <Text style={styles.HorarioPNG}>
-                        <Image style= {styles.Relojo} source={require('../../../../../assets/relojo.png')}/>  20:00
-                    </Text>
-                    <Text style={styles.Coins}>30 coins</Text>
+                    <View style ={styles.Card}>
 
-                </View>
+                        <TouchableOpacity onPress={onOpen}>
+                            <Text style={styles.NomeCadeira}> Calculo 2 </Text>
+                        </TouchableOpacity>
+                    
+                        <Text style={styles.HorarioPNG}>
+                            <Image style= {styles.Relojo} source={require('../../../../../assets/relojo.png')}/>  20:00
+                        </Text>
+                        <Text style={styles.Coins}>30 coins</Text>
 
-                <View style = {styles.BoxButtons}>
-                    <Image style= {styles.Confirma} source={require('../../../../../assets/confirm.png')}/>
-                    <Image style= {styles.Advert} source={require('../../../../../assets/adv.png')}/>
-                    <Image style= {styles.X} source={require('../../../../../assets/xis.png')}/>
-                </View>
+                    </View>
 
-                <View style ={styles.Card}>
-                
-                    <Text style={styles.NomeCadeira} onPress={() => navigation.navigate('resultados')}> Geometria Análitica </Text>
-                    <Text style={styles.HorarioPNG}>
-                        <Image style= {styles.Relojo} source={require('../../../../../assets/relojo.png')}/>  21:00
-                    </Text>
-                    <Text style={styles.Coins}>20 coins</Text>
+                    <View style = {styles.BoxButtons}>
+                        <Image style= {styles.Confirma} source={require('../../../../../assets/confirm.png')}/>
+                        <Image style= {styles.Advert} source={require('../../../../../assets/adv.png')}/>
+                        <Image style= {styles.X} source={require('../../../../../assets/xis.png')}/>
+                    </View>
 
-                </View>
+                    <View style ={styles.Card}>
+                    
+                        <Text style={styles.NomeCadeira} onPress={() => navigation.navigate('resultados')}> Geometria Análitica </Text>
+                        <Text style={styles.HorarioPNG}>
+                            <Image style= {styles.Relojo} source={require('../../../../../assets/relojo.png')}/>  21:00
+                        </Text>
+                        <Text style={styles.Coins}>20 coins</Text>
 
-                <View style = {styles.BoxButtons}>
-                    <Image style= {styles.Confirma} source={require('../../../../../assets/confirm.png')}/>
-                    <Image style= {styles.Advert} source={require('../../../../../assets/adv.png')}/>
-                    <Image style= {styles.X} source={require('../../../../../assets/xis.png')}/>
-                </View>
-                
-                <Modalize ref={modalizeRef}
-                          adjustToContentHeight={true} 
+                    </View>
+
+                    <View style = {styles.BoxButtons}>
+                        <Image style= {styles.Confirma} source={require('../../../../../assets/confirm.png')}/>
+                        <Image style= {styles.Advert} source={require('../../../../../assets/adv.png')}/>
+                        <Image style= {styles.X} source={require('../../../../../assets/xis.png')}/>
+                    </View>                  
+
+            </ScrollView>
+
+            <Modalize ref={modalizeRef}
+                          adjustToContentHeight={true}
+                          snapPoint={200}
                           handleStyle={{backgroundColor: '#73628A'}}>
-                    <View style={styles.Mobilize}>
+                    <View>
                     {infos && (
-                        <View>
+                        <View style={styles.Mobilize}>
                             <Text style={styles.text}>Nome: {infos.Nome}</Text>
                             <Text style={styles.text}>Status: {infos.Status}</Text>
                             <Text style={styles.text}>Assunto: {infos.Assunto}</Text>
@@ -90,12 +95,14 @@ export default function Form() {
                         </View>
                     )}
                     </View>
-                </Modalize>            
+                </Modalize>
 
-        </ScrollView>
+        </View>
                 
     )
 }
+
+
 
 
         // <View style = {styles.Caixabaixo}>

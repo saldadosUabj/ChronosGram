@@ -73,7 +73,13 @@ const styles = StyleSheet.create({
   },
   Mobilize: {
         flex: 1,
-        backgroundColor: '#73628A'
+        backgroundColor: '#73628A',
+        padding: 20,
+        borderRadius: 20,
+  },
+  text: {
+        padding: 5,
+        margin: 5,
   }
   });
 
