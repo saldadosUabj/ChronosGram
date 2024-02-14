@@ -73,14 +73,41 @@ const styles = StyleSheet.create({
   },
   Mobilize: {
         flex: 1,
+        // backgroundColor: '#fffff', // Pra ficar transparente
         backgroundColor: '#73628A',
         padding: 20,
-        borderRadius: 20,
+        borderRadius: 50,
   },
   text: {
+        fontSize: 15,
         padding: 5,
-        margin: 5,
-  }
+        marginVertical: 5,
+        fontFamily:'Nunito-Sans',
+        fontWeight:'bold',
+  },
+  Titulo: {
+        width:200,
+        top: 24,
+        left: 30,
+        fontStyle:'italic',
+        color: '#FFFBFF'
+    },
+    CaixaDentroEsquerda: {
+        width: 159,
+        height: 117,
+        top: 68,
+        left: 14,
+        borderRadius: 15,
+        backgroundColor:'#FFFFFF'
+    },
+    CaixaDentroDireita: {
+        width: 159,
+        height: 117,
+        top: 316,
+        left: 90,
+        borderRadius: 15,
+        backgroundColor:'#603F74'
+    },
   });
 
 export default styles

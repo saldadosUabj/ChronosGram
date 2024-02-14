@@ -14,6 +14,7 @@ export default function Form() {
     const userApi = new UserApi();
     const [dados,setDados] = useState(null);
     const modalizeRef = useRef(null);
+    const modalizeRefTrilha = useRef(null);
     const [infos, setInfos] = useState(null);
 
 
@@ -24,6 +25,10 @@ export default function Form() {
 
     const onOpen = () => {
         modalizeRef.current?.open();
+      };
+
+    const onOpenTrilha = () => {
+        modalizeRefTrilha.current?.open();
       };
 
     useEffect(() => {setInfos(userApi.getInfo())}, []);
@@ -71,10 +76,13 @@ export default function Form() {
 
             </ScrollView>
 
+            {/* Modalize das informações da cadeira */}
+
             <Modalize ref={modalizeRef}
-                          adjustToContentHeight={true}
-                          snapPoint={200}
-                          handleStyle={{backgroundColor: '#73628A'}}>
+                      adjustToContentHeight={true}
+                      snapPoint={180}
+                      handleStyle={{backgroundColor: '#73628A'}}
+                      modalStyle={styles.Mobilize}>
                     <View>
                     {infos && (
                         <View style={styles.Mobilize}>
@@ -95,6 +103,45 @@ export default function Form() {
                         </View>
                     )}
                     </View>
+                </Modalize>
+
+            {/* Modalize das informações da trilha */}
+
+                <Modalize ref={modalizeRefTrilha}
+                          adjustToContentHeight={false}
+                          snapPoint={150}
+                          handleStyle={{backgroundColor: '#73628A'}}
+                          modalStyle={styles.Mobilize}
+                          alwaysOpen={70}>
+
+                    <View>
+
+                        <Text style = {styles.Titulo}>Perfomance</Text>
+                        
+                        <View style = {styles.CaixaDentroEsquerda}>
+
+                            <Text style = {styles.Titulo2}>
+                                Ofensiva
+                            </Text>
+                            <Text style = {styles.Titulo3}>15</Text>
+                            <Text style = {styles.Titulo10}>12%</Text>
+                            <Image style= {styles.Fogo} source={require('../../../../../assets/Fogo.png')}/>
+
+                        </View>
+
+                        <View style = {styles.CaixaDentroDireita}>
+
+                            <Text style = {styles.Titulo4}>
+                                    Constância
+                            </Text>
+                            <Text style = {styles.Titulo5}>70</Text>
+                            <Image style = {styles.Polygon} source={require('../../../../../assets/polygon.png')}></Image> 
+                            <Text style = {styles.Titulo6}>24%</Text>
+                            
+                        </View>
+
+                    </View>
+
                 </Modalize>
 
         </View>
