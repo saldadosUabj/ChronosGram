@@ -78,6 +78,19 @@ const styles = StyleSheet.create({
         padding: 20,
         borderRadius: 50,
   },
+  MobilizeTrilha: {
+        flex: 1,
+        backgroundColor: '#73628A',
+        padding: 10,
+        borderRadius: 50,
+  },
+  View:{
+        flex: 1,
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        margin: 5,
+  },
   text: {
         fontSize: 15,
         padding: 5,
@@ -86,28 +99,62 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
   },
   Titulo: {
-        width:200,
-        top: 24,
-        left: 30,
+        marginTop: 15,
+        // marginLeft: 25,
+        alignSelf: 'center',
+        fontSize: 30,
         fontStyle:'italic',
-        color: '#FFFBFF'
+        fontWeight: 'bold',
+    },
+    Titulo2:{
+        fontSize: 18,
+        fontStyle:'italic',
+        color: '#1F2234',
+        marginTop: 5,
+        marginLeft: 15,
     },
     CaixaDentroEsquerda: {
         width: 159,
-        height: 117,
-        top: 68,
-        left: 14,
+        height: 120,
+        margin: 15,
         borderRadius: 15,
         backgroundColor:'#FFFFFF'
     },
     CaixaDentroDireita: {
         width: 159,
-        height: 117,
-        top: 316,
-        left: 90,
+        height: 120,
         borderRadius: 15,
         backgroundColor:'#603F74'
     },
+    Numero:{
+        marginLeft: 15,
+        fontSize: 45,
+        color: '#1F2234',
+        fontWeight: 'bold',
+        fontFamily: 'Nunito-Sans',
+    },
+    NumeroContancia:{
+        marginLeft: 15,
+        fontSize: 45,
+        color: '#E6E7ED',
+        fontWeight: 'bold',
+        fontFamily: 'Nunito-Sans',
+    },
+    Fogo: {
+        marginLeft: 15,
+        width: 25,
+    },
+    Polygon: {
+        marginTop: 5,
+        marginLeft: 15,
+        width: 18,
+        height: 18,
+    },
+    porcentagem:{
+        marginLeft: 45,
+        bottom: 19,
+
+    }
   });
 
 export default styles
@@ -168,13 +215,13 @@ export default styles
 //         fontStyle:'italic',
 //         color: '#FFFBFF'
 //     },
-//     Titulo2:{
-//         width:200,
-//         bottom: 35,
-//         left: 30,
-//         fontStyle:'italic',
-//         color: '#1F2234'
-//     },
+    // Titulo2:{
+    //     width:200,
+    //     bottom: 35,
+    //     left: 30,
+    //     fontStyle:'italic',
+    //     color: '#1F2234'
+    // },
 //     Titulo10:{
 //         width:200,
 //         bottom: 35,
