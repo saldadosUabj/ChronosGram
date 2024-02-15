@@ -25,8 +25,8 @@ export default function Form() {
                 UFRPE | Integral {/* Aqui deve ir a universidade do aluno, formatado, puxado do banco de dados atráves da api */}
             </Text>
 
-            <TouchableOpacity style={styles.button} >
-                <Text style={styles.buttonText} onPress={() => navigation.navigate('TelaPrincipal')}> Disciplinas </Text>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('disciplinas')} >
+                <Text style={styles.buttonText}> Disciplinas </Text>
             </TouchableOpacity> 
             
             <TouchableOpacity style={styles.button} >
