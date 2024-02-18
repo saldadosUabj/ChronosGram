@@ -29,7 +29,7 @@ export default function Form() {
                 <Text style={styles.buttonText}> Disciplinas </Text>
             </TouchableOpacity> 
             
-            <TouchableOpacity style={styles.button} >
+            <TouchableOpacity style={styles.button}>
                 <Text style={styles.buttonText} onPress={() => navigation.navigate('TelaPrincipal')}> Relatório </Text>
             </TouchableOpacity>
 

@@ -9,6 +9,7 @@ export default function App() {
     "Nunito-Sans-Italic": require("./assets/fonts/NunitoSans-Italic.ttf"),
     "Josefins-Sans": require("./assets/fonts/JosefinsSans.ttf"),
     "Josefins-Sans-Italic": require("./assets/fonts/JosefinSans-Italic.ttf"),
+    "Josefins-Sans-Bold": require("./assets/fonts/JosefinSans-Bold.ttf"),
   })
 
   if (!fontsLoaded) {
