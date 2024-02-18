@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import {Text, TextInput, View, Image, TouchableOpacity, Alert, Vibration} from 'react-native';
+import {Text, TextInput, View, Image, TouchableOpacity, Alert, Vibration, ActivityIndicator } from 'react-native';
 import styles from './style';
 import { useNavigation} from '@react-navigation/native';
 import UserAPI from '../../../services/userAPI';
+
 
 
 export default function Form(){
@@ -11,27 +12,34 @@ export default function Form(){
     const navigation = useNavigation();
     const [email, setEmail] = useState(null)
     const [senha, setSenha] = useState(null)
+    const [activityIndicator, setActivityIndicator] = useState(false);
 
     async function validation(){
+        setActivityIndicator(true);
+
         try{
             const user = await userApi.getUserById(1)
             if(email == null || senha == null){
                 Vibration.vibrate()
                 Alert.alert('Preencha todos os campos')
+                setActivityIndicator(false);
                 return
             }
             else if(email == user.email && senha == user.senha){
                 navigation.navigate('TelaPrincipal')
                 setEmail(null)
                 setSenha(null)
+                setActivityIndicator(false);
                 return
             }
             Vibration.vibrate()
             setEmail(null)
             setSenha(null)
+            setActivityIndicator(false);
             Alert.alert("Usuário Inválido, tente novamente!")            
         }catch(error){
             Vibration.vibrate()
+            setActivityIndicator(false);
             Alert.alert(error)
         }
     }  
