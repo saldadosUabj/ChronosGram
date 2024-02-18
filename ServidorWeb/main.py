@@ -17,48 +17,35 @@ class user(BaseModel):
 
 
 class Tarefa(BaseModel):
-    # nome: str
-    # status: int
-    # assunto : str
-    # material_estudo : str
-    # tipo_material : int
-    # recomendacao : float
-    # qualidade : int
-    # horario : int
-    # prioridade : float
-    # data_inicio : str
-    # data_fim : str
-    # tempo_estimado : float
-    # posicao : int
+    nome: str
+    status: int
+    assunto: str
+    material_estudo: str
     tempo_ate_meta: datetime
     tempo_livre_estudo: int
     tipo_material: int
     nota: int
     tempo_estudado: int
     indice_facilidade_disciplina: int
+    desgastes: int
+    saida: float
+
 
 
 class Neural(BaseModel):
-
-    # nome: str
-    # status: int
-    # assunto : str
-    # material_estudo : str
-    # tipo_material : int
-    # recomendacao : float
-    # qualidade : int
-    # horario : int
-    # prioridade : float
-    # data_inicio : str
-    # data_fim : str
-    # tempo_estimado : float
-    # posicao : int
+    nome: str
+    status: int
+    assunto: str
+    material_estudo: str
     tempo_ate_meta: datetime
     tempo_livre_estudo: int
     tipo_material: int
     nota: int
     tempo_estudado: int
     indice_facilidade_disciplina: int
+    desgastes: int
+    saida: float
+
 
 
 app = FastAPI()

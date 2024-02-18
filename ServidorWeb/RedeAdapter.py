@@ -6,47 +6,33 @@ import pandas as pd
 
 
 class Tarefa(BaseModel):
-    # nome: str
-    # status: int
-    # assunto : str
-    # material_estudo : str
-    # tipo_material : int
-    # recomendacao : float
-    # qualidade : int
-    # horario : int
-    # prioridade : float
-    # data_inicio : str
-    # data_fim : str
-    # tempo_estimado : float
-    # posicao : int
+    nome: str
+    status: int
+    assunto: str
+    material_estudo: str
     tempo_ate_meta: datetime
     tempo_livre_estudo: int
     tipo_material: int
     nota: int
     tempo_estudado: int
     indice_facilidade_disciplina: int
+    desgastes: int
+    saida: float
 
 
 class Neural(BaseModel):
-    # nome: str
-    # status: int
-    # assunto: str
-    # material_estudo: str
-    # tipo_material: int
-    # recomendacao: float
-    # qualidade: int
-    # horario: int
-    # prioridade: float
-    # data_inicio: str
-    # data_fim: str
-    # tempo_estimado: float
-    # posicao: int
+    nome: str
+    status: int
+    assunto: str
+    material_estudo: str
     tempo_ate_meta: datetime
     tempo_livre_estudo: int
     tipo_material: int
     nota: int
     tempo_estudado: int
     indice_facilidade_disciplina: int
+    desgastes: int
+    saida: float
 
 
 class RedeAdapter():
@@ -56,65 +42,41 @@ class RedeAdapter():
         self.cursor = self.con.cursor()
 
     def insert_task(self, tarefa):
+        nome = tarefa.nome
+        status = tarefa.status
+        assunto = tarefa.assunto
+        material_estudo = tarefa.material_estudo
         tempo_ate_meta = tarefa.tempo_ate_meta
         tempo_livre_estudo = tarefa.tempo_livre_estudo
         tipo_material = tarefa.tipo_material
         nota = tarefa.nota
         tempo_estudado = tarefa.tempo_estudado
         indice_facilidade_disciplina = tarefa.indice_facilidade_disciplina
-        # nome = tarefa.nome
-        # status = tarefa.status
-        # assunto = tarefa.assunto
-        # material_estudo = tarefa.material_estudo
-        # tipo_material = tarefa.tipo_material
-        # recomendacao = tarefa.recomendacao
-        # qualidade = tarefa.qualidade
-        # horario = tarefa.horario
-        # prioridade = tarefa.prioridade
-        # data_inicio = tarefa.data_inicio
-        # data_fim = tarefa.fim
-        # tempo_estimado = tarefa.tempo_estimado
-        # posicao = tarefa.posicao
+        desgastes = tarefa.desgastes
+        saida = tarefa.saida
 
-        # query = f"""INSERT INTO tarefa (nome, status, assunto, material_estudo, tipo_material, recomendacao, qualidade, horario, prioridade, data_inicio, data_fim, tempo_estimado, posicao) VALUES
-        #             ('{nome}', '{status}','{assunto}','{material_estudo}','{tipo_material}','{recomendacao}','{qualidade}','{horario}','{prioridade}','{data_inicio}','{data_fim}','{tempo_estimado}','{posicao}')
-        # """
-
-        query = f"""INSERT INTO tarefa (tempo_ate_meta, tempo_livre_estudo, tipo_material, nota, tempo_estudado, indice_facilidade_disciplina) VALUES
-                    ('{tempo_ate_meta}', '{tempo_livre_estudo}','{tipo_material}','{nota}','{tempo_estudado}','{indice_facilidade_disciplina}')
+        query = f"""INSERT INTO tarefa (nome, status, assunto, material_estudo,tempo_ate_meta, tempo_livre_estudo, tipo_material, nota, tempo_estudado, indice_facilidade_disciplina,desgastes, saida) VALUES
+                     ('{nome}', '{status}','{assunto}','{material_estudo}','{tempo_ate_meta}', '{tempo_livre_estudo}','{tipo_material}','{nota}','{tempo_estudado}','{indice_facilidade_disciplina}','{desgastes}','{saida}')
         """
         self.cursor.execute(query)
         self.con.commit()
 
     def insert_dataNerual(self, neural):
-
+        nome = neural.nome
+        status = neural.status
+        assunto = neural.assunto
+        material_estudo = neural.material_estudo
         tempo_ate_meta = neural.tempo_ate_meta
-        tempo_livre_estudo= neural.tempo_livre_estudo
+        tempo_livre_estudo = neural.tempo_livre_estudo
         tipo_material = neural.tipo_material
         nota = neural.nota
         tempo_estudado = neural.tempo_estudado
         indice_facilidade_disciplina = neural.indice_facilidade_disciplina
+        desgastes = neural.desgastes
+        saida = neural.saida
 
-        # nome = neural.nome
-        # status = neural.status
-        # assunto = neural.assunto
-        # material_estudo = neural.material_estudo
-        # tipo_material = neural.tipo_material
-        # recomendacao = neural.recomendacao
-        # qualidade = neural.qualidade
-        # horario = neural.horario
-        # prioridade = neural.prioridade
-        # data_inicio = neural.data_inicio
-        # data_fim = neural.fim
-        # tempo_estimado = neural.tempo_estimado
-        # posicao = neural.posicao
-
-        # query = f"""INSERT INTO tarefa (nome, status, assunto, material_estudo, tipo_material, recomendacao, qualidade, horario, prioridade, data_inicio, data_fim, tempo_estimado, posicao) VALUES
-        #             ('{nome}', '{status}','{assunto}','{material_estudo}','{tipo_material}','{recomendacao}','{qualidade}','{horario}','{prioridade}','{data_inicio}','{data_fim}','{tempo_estimado}','{posicao}')
-        # """
-
-        query = f"""INSERT INTO tarefa (tempo_ate_meta, tempo_livre_estudo, tipo_material, nota, tempo_estudado, indice_facilidade_disciplina) VALUES
-                    ('{tempo_ate_meta}', '{tempo_livre_estudo}','{tipo_material}','{nota}','{tempo_estudado}','{indice_facilidade_disciplina}')
+        query = f"""INSERT INTO neural (nome, status, assunto, material_estudo,tempo_ate_meta, tempo_livre_estudo, tipo_material, nota, tempo_estudado, indice_facilidade_disciplina,desgastes, saida) VALUES
+                    ('{nome}', '{status}','{assunto}','{material_estudo}','{tempo_ate_meta}', '{tempo_livre_estudo}','{tipo_material}','{nota}','{tempo_estudado}','{indice_facilidade_disciplina}','{desgastes}','{saida}')
         """
 
         self.cursor.execute(query)
