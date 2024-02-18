@@ -32,20 +32,6 @@ class Tarefa(BaseModel):
 
 
 
-class Neural(BaseModel):
-    nome: str
-    status: int
-    assunto: str
-    material_estudo: str
-    tempo_ate_meta: datetime
-    tempo_livre_estudo: int
-    tipo_material: int
-    nota: int
-    tempo_estudado: int
-    indice_facilidade_disciplina: int
-    desgastes: int
-    saida: float
-
 
 
 app = FastAPI()
@@ -323,18 +309,18 @@ def atualizar(info: user, id: int):
 
 
 @app.put("/redeNeural")
-def insert_neural_data(dados: Neural):
-    banco.insert_dataNerual(dados)
-    banco.finalizar
+def insert_neural_data(dados: Tarefa):
+     banco.insert_task(dados)
+     banco.finalizar
 
 
-@app.put("/tarefas")
-def insert_tarefas(tarefa: Tarefa):
-    print(tarefa)
-    banco.insert_task(tarefa)
-    banco.finalizar
+# @app.put("/tarefas")
+# def insert_tarefas(tarefa: Tarefa):
+#     print(tarefa)
+#     banco.insert_task(tarefa)
+#     banco.finalizar
 
 
-# @app.get("/tarefas")
-# def get_tarefa():
-#     rede_neural.prediz()
+@app.get("/tarefas")
+def get_tarefa():
+    rede_neural.prediz()
