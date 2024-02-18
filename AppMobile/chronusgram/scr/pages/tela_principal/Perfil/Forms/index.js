@@ -33,8 +33,8 @@ export default function Form() {
                 <Text style={styles.buttonText} onPress={() => navigation.navigate('TelaPrincipal')}> Relatório </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button} >
-                <Text style={styles.buttonText} onPress={() => navigation.navigate('TelaPrincipal')}> Calendário </Text>
+            <TouchableOpacity style={styles.button}  onPress={() => navigation.navigate('calendario')} >
+                <Text style={styles.buttonText}> Calendário </Text>
             </TouchableOpacity>
 
             <Text onPress={() => navigation.navigate('TelaDeLogin')} style={styles.sair}>
