@@ -24,10 +24,11 @@ class RedeNeural():
         dados_rede['tempo_ate_meta'] = (dados_rede['tempo_ate_meta'] - data_referencia).dt.days
         X_cols = ['tipo_material', 'recomendacao' , 'nota','indice_facilidade_disciplina', 'desgastes', 'tempo_estudado', 'tempo_livre_estudo', 'saida']
 
-        self.scaler_X.fit(dados_rede[X_cols]) #eu preciso de todos os dados que foram treinados
-        self.scaler_y.fit(dados_rede[['tempo_ate_meta','tempo_livre_estudo']])
+        dados_treinamento = pd.read_csv('teste_treinamento.csv')
+        self.scaler_X.fit(dados_treinamento[X_cols])
+        self.scaler_y.fit(dados_treinamento[['tempo_ate_meta','tempo_livre_estudo']])
         
-        dados_teste_padronizados = self.scaler_X.transform(dados_rede[X_cols])
+        dados_teste_padronizados = self.scaler_X.transform(dados_treinamento[X_cols])
         previsoes_teste_padronizadas = self.model.predict(dados_teste_padronizados) # type: ignore
         previsoes_teste = self.scaler_y.inverse_transform(previsoes_teste_padronizadas)
         resultado = pd.DataFrame(previsoes_teste, columns=['tempo_ate_meta', 'tempo_livre_estudo']) # type: ignore
