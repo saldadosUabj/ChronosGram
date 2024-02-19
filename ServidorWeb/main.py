@@ -1,4 +1,4 @@
-# Código para ser desenvolvido na feature
+# Código para ser desenvolvido na feature atulizado
 
 from datetime import datetime
 from fastapi import FastAPI
@@ -81,7 +81,11 @@ rede_neural = RedeNeural("./", "ChronosGram/ServidorWeb/banco.db")
 def insert_neural_data(dados: Tarefa):
      banco.insert_task(dados)
      banco.finalizar
-
+     
+@app.get("/redeNeural/{meta}/{data_entrega}")
+def get_neural_data(meta:str , data_entrega:str):
+    #fazer as conversões das datas 
+    return banco.get_best_task(meta,data_entrega)
 
 # @app.put("/tarefas")
 # def insert_tarefas(tarefa: Tarefa):
@@ -90,6 +94,6 @@ def insert_neural_data(dados: Tarefa):
 #     banco.finalizar
 
 
-@app.get("/tarefas")
-def get_tarefa():
-    rede_neural.prediz()
+@app.get("/redeNeural")
+def update_dados():
+    return rede_neural.update_saida()

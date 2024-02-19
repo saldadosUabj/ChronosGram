@@ -61,6 +61,13 @@ class RedeAdapter():
         df = pd.DataFrame(result, columns=columns)
         print(df)
         return df
-
+    def get_best_task(self,meta):
+        
+        #fazer uma consulta para retringir apenas as tarefas associadas aquela meta
+        #-----A consuta retona um Dataframe
+        #Ordenar as tarefas pela coluna saida 
+        #Retorna em json as tarefas da tabela 
+        
+        
     def finalizar(self):
         self.con.close()
