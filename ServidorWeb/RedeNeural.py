@@ -20,12 +20,13 @@ class RedeNeural():
     def prediz(self):
 
         data = self.rede.get_task()
+        data['saida'] = data['saida'].fillna(0)
         dados_teste = data[self.X_cols]
         self.scaler_X.fit(data[self.X_cols])
         dados_teste_padronizados = self.scaler_X.transform(dados_teste)
         dados_teste_tensor = tf.constant(dados_teste_padronizados, dtype=tf.float32)
         previsoes_teste_padronizadas = self.modelo(dados_teste_tensor)
-        self.scaler_y = StandardScaler()
+        
         self.scaler_y.fit(data['saida'].values.reshape(-1, 1))
         previsoes_teste = self.scaler_y.inverse_transform(previsoes_teste_padronizadas.numpy())
         
