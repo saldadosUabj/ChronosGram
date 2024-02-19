@@ -31,3 +31,8 @@ class RedeNeural():
         previsoes_teste = self.scaler_y.inverse_transform(previsoes_teste_padronizadas.numpy())
         
         return previsoes_teste
+    
+    def update_saida(self):
+        dados_previsoes = self.prediz()
+        #consultar o banco de dados e fazer o update das saidas 
+        return True
