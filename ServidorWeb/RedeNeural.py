@@ -15,7 +15,8 @@ class RedeNeural():
         self.rede = RedeAdapter(banco)
         self.scaler_X = StandardScaler()
         self.scaler_y = StandardScaler()
-        self.X_cols = ['tempo_ate_meta', 'tempo_livre_estudo', 'tipo_material', 'nota', 'tempo_estudado', 'indice_facilidade_disciplina', 'recomendacao', 'desgastes']
+        self.X_cols = ['tempo_ate_meta', 'tempo_livre_estudo', 'tipo_material', 'nota',
+                       'tempo_estudado', 'indice_facilidade_disciplina', 'recomendacao', 'desgastes']
 
     def prediz(self):
 
@@ -24,10 +25,12 @@ class RedeNeural():
         dados_teste = data[self.X_cols]
         self.scaler_X.fit(data[self.X_cols])
         dados_teste_padronizados = self.scaler_X.transform(dados_teste)
-        dados_teste_tensor = tf.constant(dados_teste_padronizados, dtype=tf.float32)
+        dados_teste_tensor = tf.constant(
+            dados_teste_padronizados, dtype=tf.float32)
         previsoes_teste_padronizadas = self.modelo(dados_teste_tensor)
-        
+
         self.scaler_y.fit(data['saida'].values.reshape(-1, 1))
-        previsoes_teste = self.scaler_y.inverse_transform(previsoes_teste_padronizadas.numpy())
-        
+        previsoes_teste = self.scaler_y.inverse_transform(
+            previsoes_teste_padronizadas.numpy())
+
         return previsoes_teste
