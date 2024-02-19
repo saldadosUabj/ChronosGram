@@ -18,20 +18,20 @@ class RedeNeural():
     def prediz(self):
 
         dados_rede = self.rede.get_task()
+        print(type(self.model))
+        print(dir(self.model))
+        print(tf.__version__)
 
-        dados_rede['tempo_ate_meta'] = pd.to_datetime(dados_rede['tempo_ate_meta'])
-        data_referencia = pd.Timestamp("2023-01-01")
-        dados_rede['tempo_ate_meta'] = (dados_rede['tempo_ate_meta'] - data_referencia).dt.days
-        X_cols = ['tipo_material', 'recomendacao' , 'nota','indice_facilidade_disciplina', 'desgastes', 'tempo_estudado', 'tempo_livre_estudo', 'saida']
-
+        X_cols = ['tempo_ate_meta', 'tempo_livre_estudo', 'tipo_material', 'recomendacao',
+                  'nota', 'indice_facilidade_disciplina', 'desgastes', 'tempo_estudado']
         dados_treinamento = pd.read_csv('teste_treinamento.csv')
         self.scaler_X.fit(dados_treinamento[X_cols])
-        self.scaler_y.fit(dados_treinamento[['tempo_ate_meta','tempo_livre_estudo']])
-        
+        self.scaler_y.fit(dados_treinamento[['saida']])
+
         dados_teste_padronizados = self.scaler_X.transform(dados_treinamento[X_cols])
-        previsoes_teste_padronizadas = self.model.predict(dados_teste_padronizados) # type: ignore
+        previsoes_teste_padronizadas = self.model.predict(dados_teste_padronizados)  # type: ignore
         previsoes_teste = self.scaler_y.inverse_transform(previsoes_teste_padronizadas)
-        resultado = pd.DataFrame(previsoes_teste, columns=['tempo_ate_meta', 'tempo_livre_estudo']) # type: ignore
+        resultado = pd.DataFrame(previsoes_teste, columns=[ 'saida'])  # type: ignore
         resultado = pd.concat([dados_rede, resultado], axis=1)
         resultado = resultado.to_json(orient='records')
         return resultado

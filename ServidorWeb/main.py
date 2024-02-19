@@ -21,7 +21,7 @@ class Tarefa(BaseModel):
     status: int
     assunto: str
     material_estudo: str
-    tempo_ate_meta: datetime
+    tempo_ate_meta: int
     tempo_livre_estudo: int
     tipo_material: int
     nota: int

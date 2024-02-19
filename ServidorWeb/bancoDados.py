@@ -67,7 +67,7 @@ queryTarefa = ("""CREATE TABLE IF NOT EXISTS tarefas (
 #cursor.execute(""" DROP TABLE sqlite_sequence""")
 
 
-cursor.execute(queryTarefa)
+#cursor.execute(queryTarefa)
 #cursor.execute(queryNeural)
 
 #Inserir dados aleatórios na tabela neural 
