@@ -11,7 +11,7 @@ class Tarefa(BaseModel):
     assunto: str
     material_estudo: str
     materia: str
-    tempo_ate_meta: datetime
+    tempo_ate_meta: int
     tempo_livre_estudo: int
     tipo_material: int
     nota: int
@@ -44,7 +44,7 @@ class RedeAdapter():
         desgastes = tarefa.desgastes
         saida = tarefa.saida
 
-        query = f"""INSERT INTO tarefa (nome, status, assunto, material_estudo, materia, tempo_ate_meta, tempo_livre_estudo, tipo_material, nota, tempo_estudado, indice_facilidade_disciplina,recomendacoes,desgastes, saida) VALUES
+        query = f"""INSERT INTO tarefa (nome, status, assunto, material_estudo, materia, tempo_ate_meta, tempo_livre_estudo, tipo_material, nota, tempo_estudado, indice_facilidade_disciplina,recomendacao,desgastes, saida) VALUES
                      ('{nome}', '{status}','{assunto}','{material_estudo}',''{materia},'{tempo_ate_meta}', '{tempo_livre_estudo}','{tipo_material}','{nota}','{tempo_estudado}','{indice_facilidade_disciplina}','{recomendacoes}','{desgastes}','{saida}')
         """
         self.cursor.execute(query)

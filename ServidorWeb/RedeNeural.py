@@ -7,31 +7,26 @@ from RedeAdapter import RedeAdapter
 import numpy as np
 
 
+
 class RedeNeural():
 
     def __init__(self, caminho_do_modelo, banco):
-        self.model = tf.saved_model.load(caminho_do_modelo)
+        self.modelo = tf.saved_model.load(caminho_do_modelo)
         self.rede = RedeAdapter(banco)
         self.scaler_X = StandardScaler()
         self.scaler_y = StandardScaler()
+        self.X_cols = ['tempo_ate_meta', 'tempo_livre_estudo', 'tipo_material', 'nota', 'tempo_estudado', 'indice_facilidade_disciplina', 'recomendacao', 'desgastes']
 
     def prediz(self):
 
-        dados_rede = self.rede.get_task()
-
-        dados_rede['tempo_ate_meta'] = pd.to_datetime(dados_rede['tempo_ate_meta'])
-        data_referencia = pd.Timestamp("2023-01-01")
-        dados_rede['tempo_ate_meta'] = (dados_rede['tempo_ate_meta'] - data_referencia).dt.days
-        X_cols = ['tipo_material', 'recomendacao' , 'nota','indice_facilidade_disciplina', 'desgastes', 'tempo_estudado', 'tempo_livre_estudo', 'saida']
-
-        dados_treinamento = pd.read_csv('teste_treinamento.csv')
-        self.scaler_X.fit(dados_treinamento[X_cols])
-        self.scaler_y.fit(dados_treinamento[['tempo_ate_meta','tempo_livre_estudo']])
+        data = self.rede.get_task()
+        dados_teste = data[self.X_cols]
+        self.scaler_X.fit(data[self.X_cols])
+        dados_teste_padronizados = self.scaler_X.transform(dados_teste)
+        dados_teste_tensor = tf.constant(dados_teste_padronizados, dtype=tf.float32)
+        previsoes_teste_padronizadas = self.modelo(dados_teste_tensor)
+        self.scaler_y = StandardScaler()
+        self.scaler_y.fit(data['saida'].values.reshape(-1, 1))
+        previsoes_teste = self.scaler_y.inverse_transform(previsoes_teste_padronizadas.numpy())
         
-        dados_teste_padronizados = self.scaler_X.transform(dados_treinamento[X_cols])
-        previsoes_teste_padronizadas = self.model.predict(dados_teste_padronizados) # type: ignore
-        previsoes_teste = self.scaler_y.inverse_transform(previsoes_teste_padronizadas)
-        resultado = pd.DataFrame(previsoes_teste, columns=['tempo_ate_meta', 'tempo_livre_estudo']) # type: ignore
-        resultado = pd.concat([dados_rede, resultado], axis=1)
-        resultado = resultado.to_json(orient='records')
-        return resultado
+        return previsoes_teste
