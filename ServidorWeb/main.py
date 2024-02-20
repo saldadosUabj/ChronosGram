@@ -31,8 +31,8 @@ class Tarefa(BaseModel):
     saida: float
 
 app = FastAPI()
-banco = RedeAdapter("ChronosGram/ServidorWeb/banco.db")
-rede_neural = RedeNeural("./", "ChronosGram/ServidorWeb/banco.db")
+banco = RedeAdapter("banco.db")
+rede_neural = RedeNeural("C:/Users/vini_/OneDrive/Desktop/Projeto Interdisciplinar 3/Projeto/ChronosGram/ModeloIa", "banco.db")
 
 
 # @app.get("/tarefas")
@@ -80,12 +80,15 @@ rede_neural = RedeNeural("./", "ChronosGram/ServidorWeb/banco.db")
 @app.put("/redeNeural")
 def insert_neural_data(dados: Tarefa):
      banco.insert_task(dados)
-     banco.finalizar
+     #banco.finalizar
      
 @app.get("/redeNeural/{meta}/{data_entrega}")
 def get_neural_data(meta:str , data_entrega:str):
-    #fazer as conversões das datas 
-    return banco.get_best_task(meta,data_entrega)
+    formato_string = "%d/%m/%Y"
+    data_entrega = datetime.strptime(data_entrega,formato_string) #type:ignore
+    data_today = datetime.today
+    duracao = abs(data_entrega - data_today).days #type:ignore
+    return banco.get_best_task(meta,duracao) # type: ignore
 
 # @app.put("/tarefas")
 # def insert_tarefas(tarefa: Tarefa):

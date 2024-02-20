@@ -59,15 +59,25 @@ class RedeAdapter():
         # Transforma os resultados em um DataFrame
         columns = [desc[0] for desc in self.cursor.description]
         df = pd.DataFrame(result, columns=columns)
-        print(df)
+        
         return df
     def get_best_task(self,meta):
-        
+        query_meta = "SELECT * FROM tarefas WHERE nome = '{}';".format(meta)
+        self.cursor.execute(query_meta)
+        resultado = self.cursor.fetchall()
+        self.con.commit()
+
+        colunas = [desc[0] for desc in self.cursor.description]
+        dataframe_metas = pd.DataFrame(resultado, columns = colunas)
+        dataframe_metas.sort_values(by = "saida")
+        dataframe_metas_json = dataframe_metas.to_json()
+
+        return dataframe_metas_json
         #fazer uma consulta para retringir apenas as tarefas associadas aquela meta
         #-----A consuta retona um Dataframe
         #Ordenar as tarefas pela coluna saida 
         #Retorna em json as tarefas da tabela 
         
         
-    def finalizar(self):
+    #def finalizar(self):
         self.con.close()
