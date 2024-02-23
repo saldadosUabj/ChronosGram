@@ -3,6 +3,7 @@ import { useFonts } from 'expo-font';
 import Routes from './scr/Routers';
 
 export default function App() {
+
   
   const [fontsLoaded] = useFonts({
     "Nunito-Sans": require("./assets/fonts/NunitoSans.ttf"),
