@@ -8,6 +8,7 @@ import tela_pre_principal from '../pages/tela_pre_principal/index'
 import resultados from '../pages/tela_principal_card/index'
 import Disciplinas from '../pages/tela_principal/Perfil/Disciplinas/index';
 import Calendario from '../pages/tela_principal/Perfil/Calendario/index';
+import Metas from '../pages/tela_principal/Perfil/Disciplinas/Metas/index';
 
 const Stack = createStackNavigator();
 
@@ -23,6 +24,7 @@ export default function StackRoutes() {
         <Stack.Screen name='resultados' component={resultados}/>
         <Stack.Screen name='disciplinas' component={Disciplinas} />
         <Stack.Screen name='calendario' component={Calendario}/>
+        <Stack.Screen name='metas' component={Metas}/>
       </Stack.Navigator>      
 
   );

@@ -28,6 +28,7 @@ export default function Disciplinas() {
             // Faça a lógica de atualização do banco aqui
 
             // Desative o indicador de atividade após a conclusão da operação
+            navigation.navigate('metas')
             setActivityIndicator(false);
         }, 2000); // Tempo de simulação (substitua pelo tempo real da operação)
     }
