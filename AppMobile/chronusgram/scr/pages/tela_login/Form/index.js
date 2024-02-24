@@ -14,20 +14,38 @@ export default function Form(){
     const [email, setEmail] = useState()
     const [password, setSenha] = useState()
 
-    const handleLogin = () => {
-        createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    
-    const user = userCredential.user;
-    console.log("Login Realizado");
-    
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorMessage)
-  });
+    async function validation(){
+        const handleLogin = () => {
+            signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        
+        const user = userCredential.user;
+        console.log("Login Realizado");
+        
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage)
+      });
+        }
     }
+
+    
+//     const handleLogin = () => {
+//         signInWithEmailAndPassword(auth, email, password)
+//   .then((userCredential) => {
+    
+//     const user = userCredential.user;
+//     console.log("Login Realizado");
+    
+//   })
+//   .catch((error) => {
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//     console.log(errorMessage)
+//   });
+//     }
     
 
     const [activityIndicator, setActivityIndicator] = useState(false);
@@ -79,8 +97,8 @@ export default function Form(){
                 placeholder='Password'
                 secureTextEntry={true}
                 keyboardType='default'/>
-            <TouchableOpacity style={styles.buttonEntrar}  onPress={handleLogin} >
-                <Text style={styles.buttonText} onPress={handleLogin}> Entrar </Text>
+            <TouchableOpacity style={styles.buttonEntrar}  onPress={() => validation()} >
+                <Text style={styles.buttonText} onPress={() => navigation.navigate('TelaPrincipal')}> Entrar </Text>
             </TouchableOpacity>            
             </View>
             <View style={styles.boxBottom}>
