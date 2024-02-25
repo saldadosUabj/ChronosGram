@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity,Image, ScrollView, Text, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, TouchableOpacity,Image, ScrollView, Text, ActivityIndicator, TextInput } from 'react-native';
 import styles from './style';
 import { useNavigation} from '@react-navigation/native';
 import { MultipleSelectList } from 'react-native-dropdown-select-list'
@@ -8,7 +8,7 @@ import { MultipleSelectList } from 'react-native-dropdown-select-list'
 export default function Metas() {
 
     const navigation = useNavigation();
-    const[metas, setMetas] = useState();
+    const[metas, setMetas] = useState(null);
     const [activityIndicator, setActivityIndicator] = useState(false);
 
 
@@ -29,6 +29,19 @@ export default function Metas() {
     return (
         <View style={styles.container}>
 
+            <Image style={styles.logo} source={require('../../../../../../assets/meta.png')}/>
+            <Text style={styles.titulo}> Metas </Text>
+
+            <View style={styles.BoxDisciplinas}>
+
+                <TextInput
+                    style={styles.inputBox}
+                    onChangeText={setMetas}
+                    value={metas}
+                    placeholder='Meta'
+                    keyboardType='default'/>
+
+            </View>
             
 
         </View>

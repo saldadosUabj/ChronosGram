@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
       marginBottom: 30,
       fontSize: 16,
       fontWeight: 'bold',
+      fontFamily: 'Josefins-Sans-Bold'
   },
   BoxDisciplinas:{
         width: 350,
