@@ -1,13 +1,11 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import Form from './Forms/index';
-import UserDate from './userDate/index';
+import { StyleSheet, View, Text } from 'react-native';
+import Form from './Forms';
 
-export default function App() {
+export default function Configuracao() {
     return (
         <View style={styles.container}>
-            <Form />
-            <UserDate/>
+            <Form/>
         </View>
     );
 }

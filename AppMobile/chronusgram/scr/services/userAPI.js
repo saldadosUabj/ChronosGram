@@ -22,10 +22,19 @@ class UserAPI {
     }
   }
 
+  async getMetas(userMeta,metaDia,metaMes,metaAno){
+    try{
+      const response = await api.get(`/redeNeural/${userMeta}/${metaDia}/${metaMes}/${metaAno}`);
+      return response;
+    }catch(error){
+      console.error('Error ao buscar dados da Meta')
+    }
+  }
+
   async addUser(userData) {
     try {
       const response = await api.post('/user', userData);
-      return response.data;
+      return response;
     } catch (error) {
       console.error('Erro ao adicionar usuário:', error);
       throw error;
