@@ -1,11 +1,15 @@
+from curses import meta
 from datetime import datetime
 import sqlite3 as sql
 from time import time
+from matplotlib.font_manager import stretch_dict
 from pydantic import BaseModel
 import pandas as pd
 
 
 class Tarefa(BaseModel):
+    meta :str
+    data_meta:str
     nome: str
     status: int
     assunto: str
@@ -29,6 +33,8 @@ class RedeAdapter():
         self.cursor = self.con.cursor()
 
     def insert_task(self, tarefa):
+        meta = tarefa.meta
+        data_meta = tarefa.data_meta
         nome = tarefa.nome
         status = tarefa.status
         assunto = tarefa.assunto
@@ -44,10 +50,22 @@ class RedeAdapter():
         desgastes = tarefa.desgastes
         saida = tarefa.saida
 
-        query = f"""INSERT INTO tarefa (nome, status, assunto, material_estudo, materia, tempo_ate_meta, tempo_livre_estudo, tipo_material, nota, tempo_estudado, indice_facilidade_disciplina,recomendacao,desgastes, saida) VALUES
-                     ('{nome}', '{status}','{assunto}','{material_estudo}',''{materia},'{tempo_ate_meta}', '{tempo_livre_estudo}','{tipo_material}','{nota}','{tempo_estudado}','{indice_facilidade_disciplina}','{recomendacoes}','{desgastes}','{saida}')
-        """
-        self.cursor.execute(query)
+        query = """INSERT INTO tarefas (
+                        meta, data_meta, nome, status, assunto, material_estudo, materia,
+                        tempo_ate_meta, tempo_livre_estudo, tipo_material, nota, tempo_estudado,
+                        indice_facilidade_disciplina, recomendacao, desgastes, saida
+                ) VALUES (
+                    ?, ?, ?, ?, ?, ?, ?,
+                    ?, ?, ?, ?, ?, ?, ?, ?, ?
+                )"""
+
+    # Assuming you have a tuple or list of values
+        values = (meta, data_meta, nome, status, assunto, material_estudo, materia,
+            tempo_ate_meta, tempo_livre_estudo, tipo_material, nota, tempo_estudado,
+            indice_facilidade_disciplina, recomendacoes, desgastes, saida)
+
+        self.cursor.execute(query, values)
+
         self.con.commit()
 
     def get_task(self):
@@ -61,23 +79,26 @@ class RedeAdapter():
         df = pd.DataFrame(result, columns=columns)
         
         return df
-    def get_best_task(self,meta):
-        query_meta = "SELECT * FROM tarefas WHERE nome = '{}';".format(meta)
-        self.cursor.execute(query_meta)
-        resultado = self.cursor.fetchall()
-        self.con.commit()
+    def get_best_task(self,meta,data_meta):
+        query_meta = "SELECT * FROM tarefas WHERE meta = '{}' and data_meta ='{}';".format(meta, data_meta)
+        tasks = pd.read_sql_query(query_meta,self.con)
+        print(tasks)
 
-        colunas = [desc[0] for desc in self.cursor.description]
-        dataframe_metas = pd.DataFrame(resultado, columns = colunas)
-        dataframe_metas.sort_values(by = "saida")
-        dataframe_metas_json = dataframe_metas.to_json()
+        tasks.sort_values(by = "saida", ascending=True)
+        dataframe_metas_json = tasks.to_json()
 
         return dataframe_metas_json
-        #fazer uma consulta para retringir apenas as tarefas associadas aquela meta
-        #-----A consuta retona um Dataframe
-        #Ordenar as tarefas pela coluna saida 
-        #Retorna em json as tarefas da tabela 
+     
         
+    
+    def update_saida(self,saida_values):
+        
+        for i, valor_saida in enumerate(saida_values):
+
+            update_query = f"UPDATE tarefas SET saida = {abs(valor_saida[0])} WHERE rowid = {i + 1}"
+            print(update_query)
+            self.cursor.execute(update_query)
+        return self.get_task().to_json()
         
     #def finalizar(self):
-        self.con.close()
+    #    self.con.close()

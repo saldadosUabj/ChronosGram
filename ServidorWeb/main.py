@@ -1,5 +1,6 @@
 # Código para ser desenvolvido na feature atulizado
 
+from ast import main
 from datetime import datetime
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -17,22 +18,27 @@ class user(BaseModel):
 
 
 class Tarefa(BaseModel):
+    meta :str
+    data_meta:str
     nome: str
     status: int
     assunto: str
     material_estudo: str
+    materia: str
     tempo_ate_meta: int
     tempo_livre_estudo: int
     tipo_material: int
     nota: int
     tempo_estudado: int
     indice_facilidade_disciplina: int
+    recomendacoes:int
     desgastes: int
     saida: float
 
+
 app = FastAPI()
 banco = RedeAdapter("banco.db")
-rede_neural = RedeNeural("C:/Users/vini_/OneDrive/Desktop/Projeto Interdisciplinar 3/Projeto/ChronosGram/ModeloIa", "banco.db")
+rede_neural = RedeNeural("/home/yrikes/Codigos/projeto/ChronosGram/ModeloIa", "banco.db")
 
 
 # @app.get("/tarefas")
@@ -82,13 +88,14 @@ def insert_neural_data(dados: Tarefa):
      banco.insert_task(dados)
      #banco.finalizar
      
-@app.get("/redeNeural/{meta}/{data_entrega}")
-def get_neural_data(meta:str , data_entrega:str):
-    formato_string = "%d/%m/%Y"
-    data_entrega = datetime.strptime(data_entrega,formato_string) #type:ignore
-    data_today = datetime.today
-    duracao = abs(data_entrega - data_today).days #type:ignore
-    return banco.get_best_task(meta,duracao) # type: ignore
+@app.get("/redeNeural/{meta}/{dia}/{mes}/{ano}")
+def get_neural_data(meta:str , dia:str , mes:str, ano:str):
+    #formato_string = "%d/%m/%Y"
+    data_entrega = f"{dia}/{mes}/{ano}"
+    #data_entrega = datetime.strptime(data_entrega,formato_string) #type:ignore
+    #data_today = datetime.today
+    #duracao = abs(data_entrega - data_today).days #type:ignore
+    return banco.get_best_task(meta,data_entrega) # type: ignore
 
 # @app.put("/tarefas")
 # def insert_tarefas(tarefa: Tarefa):
@@ -99,4 +106,11 @@ def get_neural_data(meta:str , data_entrega:str):
 
 @app.get("/redeNeural")
 def update_dados():
-    return rede_neural.update_saida()
+    return rede_neural.update_rede()
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    # Run the FastAPI app using uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)

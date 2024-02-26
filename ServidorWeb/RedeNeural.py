@@ -32,17 +32,12 @@ class RedeNeural():
         previsoes_teste_padronizadas = self.modelo(dados_teste_tensor) # type: ignore
         self.scaler_y.fit(data['saida'].values.reshape(-1, 1))# type: ignore
         previsoes_teste = self.scaler_y.inverse_transform(previsoes_teste_padronizadas.numpy())
+        
         return previsoes_teste
 
-    def update_saida(self):
+    def update_rede(self):
+        
         dados_previsoes = self.prediz()
-        dados_previsoes = dados_previsoes.tolist()  # type: ignore
-        dados_previsoes_plano = [item for sublist in dados_previsoes for item in sublist]
-        query = """SELECT * FROM tarefas;"""
-        self.cursor.execute(query)
-        all_dados = self.cursor.fetchall()
-        for i in range(len(all_dados)):
-            query_update = "UPDATE tarefas SET saida = '{}' WHERE saida = '{}';".format(dados_previsoes_plano[i], i)
-            self.cursor.execute(query_update)
-        self.con.commit()
-        return True
+        return self.rede.update_saida(dados_previsoes)
+            
+        

@@ -1,24 +1,32 @@
 from datetime import datetime
 from unittest import result
 from RedeNeural import RedeNeural
-# from RedeAdapter import RedeAdapter
+from RedeAdapter import RedeAdapter
 import sqlite3 as sql
-#Redeadaptar = RedeAdapter("banco.db")
-#redeNeural = RedeNeural("C:/Users/vini_/OneDrive/Desktop/Projeto Interdisciplinar 3/Projeto/ChronosGram/ModeloIa","banco.db")
-#print(redeNeural.prediz())
-#redeNeural.update_saida()
+# 
+Redeadaptar = RedeAdapter("banco.db")
+redeNeural = RedeNeural("/home/yrikes/Codigos/projeto/ChronosGram/ModeloIa","banco.db")
+print(Redeadaptar.get_task())
+saida = redeNeural.prediz()
+Redeadaptar.update_saida(saida)
+print(Redeadaptar.get_task())
+Redeadaptar.get_best_task('prova','10/03/2024')
+
+# redeNeural.update_saida()
 # #rede = RedeAdapter("ChronosGram/ServidorWeb/banco.db")
 #con = sql.connect("banco.db", check_same_thread=False)
 #cursor = con.cursor()
-data_entrega = "22/02/2024"
-formato_string = "%d/%m/%Y"
-data_entrega = datetime.strptime(data_entrega,formato_string) #type:ignore
-data_today = datetime.today()
-resultado = abs(data_entrega - data_today).days
-print(resultado)
+# data_entrega = "22/02/2024"
+# formato_string = "%d/%m/%Y"
+# data_entrega = datetime.strptime(data_entrega,formato_string) #type:ignore
+# data_today = datetime.today()
+# resultado = abs(data_entrega - data_today).days
+# print(resultado)
 
-# queryTarefa = ("""CREATE TABLE IF NOT EXISTS tarefas (
+# query = ("""CREATE TABLE IF NOT EXISTS tarefas (
 #                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+#                 meta TEXT,
+#                 data_meta TEXT,
 #                 nome TEXT,
 #                 status INTEGER,
 #                 assunto TEXT,
@@ -36,9 +44,9 @@ print(resultado)
 
 # );
 # """)
-# query = f"""INSERT INTO tarefas (nome, status, assunto, material_estudo, materia, tempo_ate_meta, tempo_livre_estudo, tipo_material, nota, tempo_estudado, indice_facilidade_disciplina,recomendacao,desgastes) VALUES
-#                       ('{'a'}', '{10}','{'b'}','{"oi"}','{"boa"}','{10}', '{2}','{2}','{4}','{2}','{5}','{2}','{8}')
-#          """
-
+# query = f"""INSERT INTO tarefas (meta,data_meta,nome, status, assunto, material_estudo, materia, tempo_ate_meta, tempo_livre_estudo, tipo_material, nota, tempo_estudado, indice_facilidade_disciplina,recomendacao,desgastes) VALUES
+                    #    ('{'prova'}','{'10/03/2024'}','{'a'}', '{10}','{'b'}','{"oi"}','{"boa"}','{10}', '{2}','{2}','{4}','{2}','{5}','{2}','{8}')
+        #   """
+# query = "INSERT INTO tarefa (meta, data_meta,nome, status, assunto, material_estudo, materia, tempo_ate_meta, tempo_livre_estudo, tipo_material, nota, tempo_estudado, indice_facilidade_disciplina,recomendacao,desgastes, saida) VALUES('{'s'}','st','st', '9','stng','sing',''strg,'2', '3','1','7','4','6','34','6','0.0')"
 # cursor.execute(query)
 # con.commit()#redeadaptar.get_task()
