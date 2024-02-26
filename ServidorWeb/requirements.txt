@@ -158,7 +158,6 @@ notebook==7.0.6
 notebook_shim==0.2.3
 numpy==1.26.2
 oauthlib==3.2.0
-onboard==1.4.1
 opencv-python==4.8.1.78
 opt-einsum==3.3.0
 overrides==7.4.0
