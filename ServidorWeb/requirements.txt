@@ -271,8 +271,8 @@ tk==0.1.0
 tldextract==3.1.2
 tomli==2.0.1
 tools==0.1.9
-torch==2.1.1+rocm5.6
-torchvision==0.16.1+rocm5.6
+torch==2.1.1
+torchvision==0.16.1
 tornado==6.4
 tqdm==4.66.1
 traitlets==5.14.0
