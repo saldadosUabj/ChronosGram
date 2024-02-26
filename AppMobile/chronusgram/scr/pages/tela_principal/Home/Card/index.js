@@ -4,7 +4,7 @@ import styles from './style';
 import { useNavigation} from '@react-navigation/native';
 
 
-export default function Card( {cadeira , horario, coins, onOpenModal}) {
+export default function Card( {cadeira , horario, coins, onOpenModal, onRemove}) {
 
     const navigation = useNavigation();
 
@@ -13,7 +13,7 @@ export default function Card( {cadeira , horario, coins, onOpenModal}) {
 
             <View style ={styles.Card}>
 
-                <TouchableOpacity onPress={onOpenModal}>
+                <TouchableOpacity>
                     <Text style={styles.NomeCadeira}> {cadeira} </Text>
                 </TouchableOpacity>
 
@@ -26,13 +26,13 @@ export default function Card( {cadeira , horario, coins, onOpenModal}) {
             </View>
 
             <View style = {styles.BoxButtons}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={onRemove}>
                    <Image style= {styles.Confirma} source={require('../../../../../assets/confirm.png')}/>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={onOpenModal}>
                     <Image style= {styles.Advert} source={require('../../../../../assets/adv.png')}/>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={onRemove}>
                     <Image style= {styles.X} source={require('../../../../../assets/xis.png')}/>
                 </TouchableOpacity>
             </View>   

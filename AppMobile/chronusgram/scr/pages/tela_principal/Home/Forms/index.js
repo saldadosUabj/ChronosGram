@@ -36,11 +36,17 @@ export default function Form() {
         modalizeRef.current?.open();
       };
 
-    useEffect(() => {setInfos(userApi.getInfo())}, []);
+    useEffect(() => {getDados(); setInfos(userApi.getInfo())}, []);
 
-    const inforCards = [
-        { nomeCadeira: 'Calculo 3' , horario: '20:00' , coins: '20'},
-    ]
+    const [inforCards, setInforCards] = useState([
+            { nomeCadeira: 'Calculo 2' , horario: '20:00' , coins: '20'},
+            { nomeCadeira: 'Sistemas Digitais' , horario: '21:00' , coins: '30'},
+            { nomeCadeira: 'Física Geral 3' , horario: '22:00' , coins: '50'},
+        ]) 
+
+    const removeCard = (nomeCadeira) => {
+        setInforCards((prevCards) => prevCards.filter((card) => card.nomeCadeira !== nomeCadeira));
+      };
         
 
     return (
@@ -53,7 +59,8 @@ export default function Form() {
                                                     cadeira={inforCards.nomeCadeira}
                                                     horario={inforCards.horario}
                                                     coins={inforCards.coins}
-                                                    onOpenModal={openModalFromCard}/>))}
+                                                    onOpenModal={openModalFromCard}
+                                                    onRemove={() => removeCard(inforCards.nomeCadeira)}/>))}
 
             </ScrollView>
 
