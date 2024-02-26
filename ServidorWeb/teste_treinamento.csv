@@ -1,0 +1,101 @@
+nome,status,assunto,material_estudo,Tipo,materia,tempo_ate_meta,tempo_livre_estudo,tipo_material,nota,tempo_estudado,indice_facilidade_disciplina,recomendacao,desgastes,saida
+Introdução à Engenharia Mecânica,25%,Introdução à Engenharia Mecânica,,leitura,Física I,11,5,2,5,8,6,10,4,0.51
+Videoaula: Fundamentos da Termodinâmica,80%,Fundamentos da Termodinâmica: Teoria e Prática,,videoaula,,42,4,2,8,5,0,17,3,0.81
+Exercícios 14 - 45,40%,Primeira Lei da Termodinâmica,,exercícios,,5,5,0,5,7,5,2,10,0.39
+Aplicações da Primeira Lei da Termodinâmica,70%,Aplicações da Primeira Lei da Termodinâmica em Sistemas Reais,,leitura,,26,3,8,2,1,6,7,0,0.53
+Videoaula: Segunda Lei da Termodinâmica,60%,Segunda Lei: Teoria e Aplicações,,videoaula,,12,2,7,8,7,0,3,9,0.48
+Exercios 28 - 64,10%,Ciclos Termodinâmicos,,exercícios,,19,2,4,8,6,0,12,9,0.6
+Revisão de Slides - Eletromagnetismo,90%,Princípios de Magnetismo e Eletromagnetismo,,revisão,,8,1,8,10,2,4,14,3,0.5
+Introdução à Engenharia Elétrica,20%,Introdução à Engenharia Elétrica,,leitura,,38,3,4,3,3,7,1,0,0.59
+Videoaula: Circuitos Elétricos Básicos,0%,Análise de Circuitos em Série e Paralelo,,videoaula,,3,3,8,0,1,4,13,3,0.35
+Exercícios 2 - 56,30%,Circuitos em Série e em Paralelo,,exercícios,,20,5,1,6,7,5,17,1,0.62
+Estudo de Componentes Eletrônicos,45%,Sistemas Digitais,,leitura,,4,1,0,7,6,5,10,7,0.4
+Videoaula: Magnetismo e Eletromagnetismo,85%,Lei de Faraday e Lei de Ampère: Conceitos e Exemplos,,videoaula,,3,4,3,9,4,1,11,4,0.39
+Exercícios 25 - 76,0%,Lei de Faraday e Lei de Ampère,,exercícios,,23,1,7,3,5,1,10,4,0.54
+Videoaula: Análise de Circuitos RLC,70%,Circuitos RLC,,videoaula,,24,1,3,4,3,1,11,3,0.5
+Introdução à Engenharia Civil,60%,Introdução à Engenharia Civil,,leitura,,50,4,4,7,4,9,5,2,0.85
+Videoaula: Materiais de Construção,0%,Processos Químicos: Teoria e Aplicações Industriais,,videoaula,,15,1,1,0,5,3,5,4,0.34
+Exercicios 5 - 10,20%,Propriedades dos Materiais,,exercícios,,26,2,8,7,0,5,9,4,0.61
+Revisão de Slides - Necessidades do Cliente,75%,Projeto de Rede de Compudatores,,revisão,,39,5,7,1,2,8,16,4,0.82
+Videoaula: Dinâmica dos Fluidos,85%,Leis da Hidrodinâmica,,videoaula,,9,1,8,3,4,0,4,1,0.3
+Exercícios 1 - 14,40%,Esforços em Estruturas,,exercícios,,27,4,4,1,8,0,11,4,0.59
+Introdução à Engenharia Química,0%,Introdução à Engenharia Química,,leitura,,21,1,2,10,7,0,19,6,0.66
+Videoaula: Balanço de Massa e Energia,60%,Dinâmica: Leis de Newton,,videoaula,,49,4,5,5,6,4,2,7,0.82
+Exercícios 26 - 32,50%,Processos Químicos,,exercícios,,28,3,3,0,4,7,3,0,0.48
+Revisão de Slides - Introdução a Prpgramação II,10%,Programação Orientada a Objetos: Princípios e Práticas,,revisão,,49,5,6,10,10,7,17,9,1.13
+Revisão de Slides - Engenharia de Software,90%,Desenvolvimento Web: Front-end e Back-end Development,,revisão,,38,2,9,0,10,3,2,5,0.69
+Banco de Dados: Análise e Conceitos,5%,Modelagem e Gerenciamento de Dados,,leitura,,32,2,6,7,6,1,7,1,0.62
+Videoaula: Gestão de Projetos,80%,Modelo Scrum,,videoaula,,10,2,4,2,5,7,16,2,0.48
+Exercícios 10 - 20,30%,Materiais Aeroespaciais: Propriedades e Aplicações,,exercícios,,22,0,4,0,2,7,1,5,0.41
+Planejamento e Controle da Produção,50%,Introdução à Engenharia de Produção,,leitura,,0,1,2,10,8,9,19,8,0.57
+Videoaula: Logística Industrial,75%,Gestão Industrial ,,videoaula,,29,1,9,9,6,2,2,10,0.68
+Exercícios 12 - 23,0%,Biomecânica: Fundamentos e Aplicações em Engenharia Biomédica,,exercícios,,9,3,2,1,3,4,9,8,0.39
+Revisão de Slides - Bioquímica Aplicada,65%,Biomateriais: Desenvolvimento e Caracterização,,revisão,,5,3,2,4,7,10,12,1,0.44
+Introdução à Engenharia de Computação,15%,Instrumentação Biomédica: Sensores e Dispositivos Médicos,,,,37,2,3,9,4,7,4,6,0.72
+Videoaula: Lógica de Programação,80%,Processamento de Sinais Biomédicos: Métodos Avançados,,,,23,4,3,4,3,5,20,0,0.62
+Exercícios sobre Estruturas de Dados,20%,Imagens Médicas: Aquisição e Análise de Imagens,,,,41,2,8,7,7,10,2,9,0.86
+Programação Orientada a Objetos,50%,Engenharia de Reabilitação: Tecnologias Assistivas e Terapias,,,,13,4,7,2,2,9,20,1,0.58
+Videoaula: Desenvolvimento Web,75%,Gestão de Recursos Hídricos: Desafios e Estratégias,,,,1,2,9,3,4,6,3,6,0.34
+"Exercícios sobre HTML, CSS e JavaScript",10%,Tratamento de Águas Residuais: Processos e Tecnologias,,,,24,1,8,3,3,4,16,2,0.61
+Bancos de Dados e Sistemas de Informação,85%,Qualidade do Ar: Monitoramento e Controle da Poluição,,,,8,0,8,2,3,4,16,7,0.48
+Introdução à Engenharia Aeroespacial,0%,Energias Renováveis: Potencial e Desafios,,,,15,4,2,4,5,7,5,9,0.51
+Videoaula: Mecânica dos Fluidos,30%,Energia Solar: Tecnologias e Aplicações,,,,11,3,0,5,5,10,19,1,0.54
+Exercícios sobre Escoamento de Fluidos,70%,Energia Eólica: Princípios e Desenvolvimento,,,,40,1,2,1,5,9,20,4,0.82
+Aerodinâmica e Propulsão,40%,Gestão de Resíduos Sólidos: Estratégias de Gerenciamento,,,,16,1,1,8,10,4,13,1,0.54
+Videoaula: Estruturas Aeroespaciais,90%,Geologia do Petróleo: Exploração e Avaliação,,,,41,3,3,10,7,2,14,6,0.86
+Exercícios sobre Materiais Aeroespaciais,60%,Métodos de Lavra: Técnicas de Extração Mineral,,,,13,1,3,2,2,3,13,4,0.41
+Controle e Navegação de Aeronaves,0%,Refino de Petróleo: Processos e Tecnologias,,,,7,1,7,10,5,2,13,10,0.55
+Introdução à Engenharia Biomédica,20%,Processamento de Gás Natural: Produção e Distribuição,,,,37,4,2,2,0,1,14,5,0.65
+Videoaula: Biomecânica,75%,Transporte de Petróleo: Logística e Segurança,,,,27,0,2,3,9,6,8,5,0.6
+Exercícios sobre Biomateriais,35%,Hidrodinâmica Aplicada: Princípios e Aplicações,,,,39,2,9,6,3,2,11,5,0.77
+Instrumentação Biomédica,85%,Estabilidade de Navios: Projeto e Análise Estrutural,,,,30,1,4,2,4,2,17,2,0.62
+Videoaula: Processamento de Sinais Biomédicos,0%,Construção Naval: Tecnologias e Tendências,,,,23,0,8,7,10,2,18,4,0.72
+Exercícios sobre Imagens Médicas,40%,Sistemas de Propulsão Marítima: Desempenho e Eficiência,,,,3,5,5,10,3,1,2,6,0.35
+Engenharia de Reabilitação,70%,Máquinas Marítimas: Manutenção e Operação,,,,12,1,3,4,3,8,10,8,0.49
+Introdução à Engenharia Ambiental,50%,Comunicações Digitais: Teoria e Prática,,,,40,3,4,3,5,3,8,2,0.68
+Videoaula: Gestão de Recursos Hídricos,0%,Redes de Comunicação: Arquiteturas e Protocolos,,,,13,3,8,4,6,7,13,1,0.55
+Exercícios sobre Tratamento de Águas Residuais,65%,Sistemas de Transmissão de Sinais: Tecnologias Emergentes,,,,5,4,4,7,9,5,13,9,0.56
+Qualidade do Ar e Controle de Poluição,80%,Tecnologias Sem Fio: Desenvolvimento e Aplicações,,,,43,5,1,9,9,0,1,7,0.75
+Videoaula: Energias Renováveis,45%,Redes Móveis: Evolução e Perspectivas,,,,2,3,5,2,5,2,19,9,0.47
+Exercícios sobre Energia Solar e Eólica,90%,Antenas e Propagação de Ondas Eletromagnéticas,,,,10,2,3,4,8,2,12,0,0.41
+Gestão de Resíduos Sólidos,0%,Sistemas de Controle: Teoria e Aplicações,,,,16,1,3,7,1,0,16,2,0.46
+Introdução à Engenharia de Petróleo,55%,Automação Industrial: Desenvolvimento e Implementação,,,,5,0,10,0,4,1,7,10,0.37
+Videoaula: Geologia do Petróleo,80%,Robótica: Aplicações e Tendências Futuras,,,,28,1,8,8,0,4,7,7,0.63
+Exercícios sobre Exploração e Produção,25%,Visão Computacional: Algoritmos e Aplicações,,,,45,4,0,7,6,9,17,1,0.89
+Perfuração e Completação de Poços,70%,Processamento de Imagens: Métodos e Técnicas,,,,0,4,1,8,7,9,9,1,0.39
+Videoaula: Refino de Petróleo,10%,Sistemas Embarcados: Desenvolvimento e Aplicações,,,,30,3,1,9,6,2,8,9,0.68
+Exercícios sobre Processamento de Gás Natural,85%,Internet das Coisas (IoT): Tecnologias e Aplicações,,,,47,2,7,5,4,9,14,8,0.96
+Transporte e Distribuição de Petróleo,40%,Geologia de Mineração: Exploração e Avaliação de Jazidas,,,,26,0,9,2,4,0,6,7,0.54
+Introdução à Engenharia Naval,0%,Métodos de Lavra: Técnicas e Equipamentos,,,,36,4,10,10,1,4,2,6,0.73
+Videoaula: Hidrodinâmica,75%,Processamento de Minérios: Separação e Concentração,,,,49,2,1,8,0,1,7,5,0.73
+Exercícios sobre Estabilidade de Navios,20%,Segurança na Mineração: Práticas e Procedimentos,,,,36,2,6,7,4,1,7,1,0.64
+Construção Naval e Tecnologia de Materiais,60%,Gestão Ambiental em Mineração: Estratégias e Normas,,,,36,4,8,3,7,9,11,8,0.86
+Videoaula: Sistemas de Propulsão Marítima,90%,Mineração Sustentável: Desafios e Soluções,,,,39,3,9,7,4,8,6,10,0.86
+Exercícios sobre Máquinas e Equipamentos Marítimos,50%,Física Nuclear: Fundamentos e Aplicações,,,,24,4,4,5,8,7,16,7,0.75
+Design e Arquitetura Naval,0%,Reatores Nucleares: Projeto e Operação,,,,32,1,3,4,8,4,14,1,0.67
+Introdução à Engenharia de Telecomunicações,35%,Segurança em Instalações Nucleares: Normas e Procedimentos,,,,46,4,9,7,5,0,11,6,0.88
+Videoaula: Comunicações Digitais,80%,Gestão de Resíduos Radioativos: Armazenamento e Descarte,,,,49,3,8,6,5,9,10,6,0.96
+Exercícios sobre Redes de Comunicação,15%,Engenharia de Transportes: Desafios e Soluções,,,,35,4,9,4,1,3,19,10,0.85
+Sistemas de Transmissão e Recebimento de Sinais,65%,Análise de Tráfego: Modelagem e Previsão,,,,2,1,10,2,2,6,9,9,0.41
+Videoaula: Tecnologias Sem Fio,90%,Planejamento Urbano: Infraestrutura e Mobilidade,,,,23,1,6,9,0,0,10,7,0.56
+Exercícios sobre Redes Móveis e Wireless,0%,Transporte Público: Sistemas e Políticas,,,,50,2,1,5,10,7,1,5,0.81
+Antenas e Propagação de Ondas Eletromagnéticas,40%,Infraestrutura Rodoviária: Projeto e Manutenção,,,,19,4,8,1,5,0,15,3,0.55
+Introdução à Engenharia de Controle e Automação,70%,Engenharia Ferroviária: Desenvolvimento e Modernização,,,,31,3,7,9,10,2,7,4,0.73
+Videoaula: Sistemas de Controle,50%,Transporte Marítimo: Logística e Operações Portuárias,,,,41,5,8,2,4,5,12,2,0.79
+Exercícios sobre Automação Industrial,75%,Engenharia de Aeroportos: Projetos e Gestão,,,,22,4,7,7,5,0,19,1,0.65
+Robótica e Sistemas Autônomos,20%,Sistemas de Navegação: Tecnologias e Aplicações,,,,45,3,4,2,9,0,8,10,0.81
+Videoaula: Visão Computacional,60%,Engenharia de Pavimentos: Materiais e Projeto,,,,24,4,3,9,8,4,18,3,0.73
+Exercícios sobre Processamento de Imagens,35%,Sistemas de Transporte Inteligente: Tecnologias e Aplicações,,,,32,3,5,3,9,7,11,3,0.73
+Sistemas Embarcados e Internet das Coisas (IoT),80%,Economia dos Transportes: Custos e Benefícios,,,,44,0,7,9,5,7,9,7,0.88
+Introdução à Engenharia de Minas,10%,Planejamento Regional: Desenvolvimento e Sustentabilidade,,,,23,0,10,4,1,5,9,6,0.58
+Videoaula: Geologia de Mineração,45%,Engenharia de Tráfego: Gestão e Controle,,,,13,3,0,7,9,8,8,2,0.5
+Exercícios sobre Métodos de Lavra,70%,Tecnologias Emergentes em Transporte: Tendências e Inovações,,,,33,3,9,5,3,9,19,0,0.81
+Processamento de Minérios,25%,Engenharia de Tratamento de Água: Processos e Tecnologias,,,,44,3,7,8,2,5,3,1,0.73
+Videoaula: Segurança na Mineração,60%,Saneamento Básico: Infraestrutura e Sustentabilidade,,,,32,3,8,9,6,4,13,2,0.77
+Exercícios sobre Gestão Ambiental em Mineração,90%,Gestão de Recursos Hídricos: Estratégias e Políticas,,,,14,0,8,5,7,4,1,5,0.44
+Tecnologias para Mineração Sustentável,0%,Engenharia Costeira: Proteção e Manejo de Zonas Costeiras,,,,42,3,4,6,1,10,6,8,0.8
+Introdução à Engenharia Nuclear,50%,Engenharia Ambiental: Avaliação e Controle de Impactos,,,,39,4,7,8,0,1,20,5,0.84
+Videoaula: Física Nuclear,75%,Gestão de Resíduos Sólidos: Tratamento e Destinação,,,,43,1,2,8,2,4,12,9,0.81
+Exercícios sobre Reatores Nucleares,40%,Conservação de Recursos Naturais: Estratégias e Práticas,,,,1,4,7,8,3,6,19,9,0.57
+Segurança em Instalações Nucleares,85%,Energias Renováveis: Tecnologias e Aplicações,,,,31,3,7,7,9,5,17,3,0.82
+Gestão de Resíduos Radioativos,0%,Futuro da Engenharia: Desafios e Inovações,,,,44,1,3,5,7,4,7,2,0.73
