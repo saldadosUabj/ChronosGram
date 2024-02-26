@@ -20,7 +20,7 @@ export default function Form() {
 
 
     async function getDados(){
-        let response = await userApi.getInfo();
+        let response = await userApi.getInfo(1);
         setDados(response)
     }
 
@@ -32,10 +32,14 @@ export default function Form() {
         modalizeRefTrilha.current?.open();
       };
 
+    const openModalFromCard = () => {
+        modalizeRef.current?.open();
+      };
+
     useEffect(() => {setInfos(userApi.getInfo())}, []);
 
     const inforCards = [
-        { nomeCadeira: 'Calculo 2' , horario: '20:00' , coins: '20'},
+        { nomeCadeira: 'Calculo 3' , horario: '20:00' , coins: '20'},
     ]
         
 
@@ -48,7 +52,8 @@ export default function Form() {
                                                     key={inforCards.nomeCadeira}
                                                     cadeira={inforCards.nomeCadeira}
                                                     horario={inforCards.horario}
-                                                    coins={inforCards.coins}/>))}
+                                                    coins={inforCards.coins}
+                                                    onOpenModal={openModalFromCard}/>))}
 
             </ScrollView>
 
