@@ -35,7 +35,6 @@ configobj==5.0.6
 configparser==6.0.0
 contourpy==1.2.0
 cryptography==3.4.8
-cupshelpers==1.0
 cycler==0.12.1
 db==0.1.1
 db-sqlite3==0.0.1
