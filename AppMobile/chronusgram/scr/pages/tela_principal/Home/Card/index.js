@@ -6,10 +6,9 @@ import { useNavigation} from '@react-navigation/native';
 import { BlurView } from 'expo-blur';
 import { Avatar, Button, Text } from 'react-native-paper';
 import { Modalize } from 'react-native-modalize';
-import Card from '../Card/index.js';
 
 
-export default function Form() {
+export default function Card( {cadeira , horario, coins}) {
 
     const navigation = useNavigation();
     const userApi = new UserApi();
@@ -33,24 +32,30 @@ export default function Form() {
       };
 
     useEffect(() => {setInfos(userApi.getInfo())}, []);
-
-    const inforCards = [
-        { nomeCadeira: 'Calculo 2' , horario: '20:00' , coins: '20'},
-    ]
         
 
     return (
         <View>
 
-            <ScrollView style={styles.container}>
+            <View style ={styles.Card}>
 
-                {inforCards.map( (inforCards) => (<Card
-                                                    key={inforCards.nomeCadeira}
-                                                    cadeira={inforCards.nomeCadeira}
-                                                    horario={inforCards.horario}
-                                                    coins={inforCards.coins}/>))}
+                <TouchableOpacity onPress={onOpen}>
+                    <Text style={styles.NomeCadeira}> {cadeira} </Text>
+                </TouchableOpacity>
 
-            </ScrollView>
+                <Text style={styles.HorarioPNG}>
+                    <Image style= {styles.Relojo} source={require('../../../../../assets/relojo.png')}/>  {horario}
+                </Text>
+                <Text style={styles.Coins}> {coins} coins</Text>
+
+            </View>
+
+            <View style = {styles.BoxButtons}>
+                <Image style= {styles.Confirma} source={require('../../../../../assets/confirm.png')}/>
+                <Image style= {styles.Advert} source={require('../../../../../assets/adv.png')}/>
+                <Image style= {styles.X} source={require('../../../../../assets/xis.png')}/>
+            </View>   
+
 
             {/* Modalize das informações da cadeira */}
 
@@ -79,41 +84,6 @@ export default function Form() {
                         </View>
                     )}
                     </View>
-                </Modalize>
-
-            {/* Modalize das informações da trilha */}
-
-                <Modalize ref={modalizeRefTrilha}
-                          modalHeight={300} 
-                          snapPoint={150}
-                          handleStyle={{backgroundColor: '#73628A', width: 200}}
-                          modalStyle={styles.MobilizeTrilha}
-                          alwaysOpen={70}>
-
-                    <Text style = {styles.Titulo}>Performance</Text>
-                    
-                    <View style={styles.View}>
-
-                        <View style = {styles.CaixaDentroEsquerda}>
-
-                            <Text style = {styles.Titulo2}> Ofensiva </Text>
-                            <Text style = {styles.Numero}>15</Text>
-                            <Image style= {styles.Fogo} source={require('../../../../../assets/Fogo.png')}/>
-                            <Text style = {styles.porcentagem}>12%</Text>
-
-                        </View>
-
-                        <View style = {styles.CaixaDentroDireita}>
-
-                            <Text style = {styles.Titulo2}> Constância </Text>
-                            <Text style = {styles.NumeroContancia}>70</Text>
-                            <Image style = {styles.Polygon} source={require('../../../../../assets/polygon.png')}></Image> 
-                            <Text style = {styles.porcentagem}>24%</Text>
-
-                        </View>
-
-                    </View>
-
                 </Modalize>
 
         </View>
