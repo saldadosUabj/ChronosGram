@@ -34,7 +34,7 @@ export default function Calendario() {
 
             </View>
 
-            <TouchableOpacity style={styles.button} onPress={() => (null)}> 
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('disciplinas')}> 
                 <Text style={styles.buttonText}> Adicionar Evento </Text>
             </TouchableOpacity>
 
