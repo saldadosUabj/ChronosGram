@@ -37,8 +37,8 @@ class Tarefa(BaseModel):
 
 
 app = FastAPI()
-banco = RedeAdapter("banco.db")
-rede_neural = RedeNeural("/home/yrikes/Codigos/projeto/ChronosGram/ModeloIa", "banco.db")
+banco = RedeAdapter("ServidorWeb/banco.db")
+rede_neural = RedeNeural("ServidorWeb/ModeloIa", "ServidorWeb/banco.db")
 
 
 # @app.get("/tarefas")
