@@ -1,9 +1,18 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity,Image, ScrollView, Text, ActivityIndicator, TextInput } from 'react-native';
+import { View, StyleSheet, TouchableOpacity,Image, ScrollView, Text, ActivityIndicator, TextInput, Alert } from 'react-native';
 import styles from './style';
 import { useNavigation , useRoute} from '@react-navigation/native';
 import { MultipleSelectList, SelectList } from 'react-native-dropdown-select-list';
 import Modal from 'react-native-modal';
+import * as Notifications from 'expo-notifications'
+
+Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldPlaySound: true,
+      shouldSetBadge: true,
+    }),
+  });
 
 
 export default function Metas() {
@@ -17,6 +26,30 @@ export default function Metas() {
     const [date, setDate] = useState(null);
     const [activityIndicator, setActivityIndicator] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
+
+    const handleCallNotifications = async () => {
+
+        const{ status } = await Notifications.getPermissionsAsync();
+
+        if(status !== 'granted'){
+            console.log('Notificações não disponíveis')
+
+            return;
+        }
+
+        await Notifications.scheduleNotificationAsync({
+            content: {
+              title: 'ChronusGram',
+              body: `A meta ${NomeMetas} foi adicionada para ${selectedDisc} na data ${date} por um usuário relacionado ao seu... Clique aqui para ver`,
+              color: '#73628A',  // Cor da notificação (pode não ser suportada em todas as plataformas)
+              sound: true,       // Valor booleano indicando se deve reproduzir um som ou não
+            },
+            trigger: {
+              seconds: 1,
+            },
+          });
+          
+    }
 
     const dataToSave = {
         selectedDisc: selectedDisc,
@@ -46,6 +79,8 @@ export default function Metas() {
 
             console.log(jsonData);
 
+
+            handleCallNotifications()
             setActivityIndicator(false);
             setModalVisible(true)
 
