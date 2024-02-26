@@ -245,7 +245,6 @@ SecretStorage==3.3.1
 Send2Trash==1.8.2
 sentry-sdk==1.35.0
 setproctitle==1.2.2
-shiboken2==5.15.2.1
 shiboken6==6.5.1.1
 simplejson==3.19.2
 six==1.16.0
