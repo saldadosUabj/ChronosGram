@@ -212,7 +212,6 @@ PySide6-Essentials==6.5.1.1
 pytest==7.3.2
 python-apt==2.4.0+ubuntu3
 python-dateutil==2.8.2
-python-debian==0.1.43+ubuntu1.1
 python-decouple==3.8
 python-engineio==3.14.2
 python-gnupg==0.4.8
