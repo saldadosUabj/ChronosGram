@@ -223,7 +223,6 @@ pytorch-triton-rocm==2.1.0
 pytz==2022.1
 pyxdg==0.27
 pyxnat==1.6.2
-PyYAML==5.4.1
 pyzmq==25.1.2
 qrcode==6.1
 qtconsole==5.5.1
