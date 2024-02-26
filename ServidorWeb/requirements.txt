@@ -31,7 +31,6 @@ click==8.1.4
 cmake==3.27.7
 colorama==0.4.6
 comm==0.2.0
-command-not-found==0.3
 configobj==5.0.6
 configparser==6.0.0
 contourpy==1.2.0
