@@ -42,7 +42,16 @@ const styles = StyleSheet.create({
         marginTop: 30,
         marginHorizontal: 10,
         padding: 15,
-    }
+    },
+    button:{
+        backgroundColor: '#CBC5EA',
+        alignItems: 'center', 
+        justifyContent:'center',
+        width: 48,
+        height: 48,
+        borderRadius: 10,
+        marginVertical: 20,
+  },
 });
 
 export default styles
