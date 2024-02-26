@@ -52,6 +52,20 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginVertical: 20,
   },
+    inputSelectdBox: {
+        width: 300,
+        height: 'auto',
+        marginTop: 30,
+        borderColor: '#CBC5EA',
+        borderWidth: 2,
+        alignSelf: 'center',       
+    },
+    inputSelectdBoxDropdown: {
+        maxWidth: 'auto',
+        height: 'auto',
+        borderColor: '#CBC5EA',
+        borderWidth: 2,
+    },
 });
 
 export default styles
