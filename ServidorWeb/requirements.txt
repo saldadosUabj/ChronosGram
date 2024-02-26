@@ -38,7 +38,6 @@ cryptography==3.4.8
 cycler==0.12.1
 db==0.1.1
 db-sqlite3==0.0.1
-dbus-python==1.2.18
 debugpy==1.8.0
 decorator==4.4.2
 defusedxml==0.7.1
@@ -185,14 +184,12 @@ pyasn1-modules==0.3.0
 pycairo==1.20.1
 pycodestyle==2.10.0
 pycparser==2.21
-pycups==2.0.1
 pycurl==7.44.1
 pydantic==2.5.2
 pydantic_core==2.14.5
 pydot==2.0.0
 pyelftools==0.27
 Pygments==2.17.2
-PyGObject==3.42.1
 PyICU==2.8.1
 pyinotify==0.9.6
 PyJWT==2.3.0
@@ -225,7 +222,6 @@ qtconsole==5.5.1
 QtPy==2.4.1
 rdflib==7.0.0
 referencing==0.32.0
-reportlab==3.6.8
 requests==2.31.0
 requests-file==1.5.1
 requests-oauthlib==1.3.1
