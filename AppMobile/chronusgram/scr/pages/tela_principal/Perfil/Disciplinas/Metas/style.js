@@ -28,6 +28,11 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginBottom: 20,
     },
+    text: {
+        fontFamily: 'Josefins-Sans-Bold',
+        fontSize: 14,
+        marginBottom: 10,
+    },
     logo: {
         width: 100,
         height: 100,
@@ -66,6 +71,24 @@ const styles = StyleSheet.create({
         borderColor: '#CBC5EA',
         borderWidth: 2,
     },
+    modalContainer: {
+        margin: 20,
+        backgroundColor: '#CBC5EA',
+        borderRadius: 20,
+        padding: 20,
+        alignItems: 'center',
+        shadowColor: '#ffff',
+        shadowOffset: {
+        width: 0,
+        height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    modalGreenButton:{
+        backgroundColor: "#69f",
+    }
 });
 
 export default styles
