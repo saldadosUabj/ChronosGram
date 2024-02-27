@@ -13,8 +13,14 @@ export default function Disciplinas() {
 
     const disciplinas_array = [
         { label: 'Física 3', value: 'Física 3' },
+        { label: 'Física 2', value: 'Física 2' },
+        { label: 'Física 1', value: 'Física 1' },
+        { label: 'Cálculo 3', value: 'Cálculo 3' },
         { label: 'Cálculo 2', value: 'Cálculo 2' },
+        { label: 'Cálculo 1', value: 'Cálculo 1' },
         { label: 'Sistemas Digitais', value: 'Sistemas Digitais' },
+        { label: 'Algoritmo', value: 'Algoritmo' },
+        { label: 'Arquitetura de Computadores', value: 'Arquitetura de Computadores' },
     ]
 
 

@@ -36,22 +36,23 @@ export default function Form(){
 
     async function RegisterSend() {
         try {
-            console.log(horario_livre)
-            console.log(freeTimeStyle)
-            if (!horario_livre || !freeTimeStyle) {
-                Vibration.vibrate()
-                Alert.alert('Por favor, preencha todos os campos.')
-                throw new Error('Por favor, preencha todos os campos.');
-            }else{
-                const response = await userApi.addUser(dataUser);
-                console.log(response.status)
-                console.log(response.data)
-                if(response.status == 200){
-                    navigation.navigate('TelaPrePrincipal')
-                }else{
-                    throw new Error('Erro ao registrar usuário');
-                }
-            }
+            navigation.navigate('TelaPrePrincipal')
+            // console.log(horario_livre)
+            // console.log(freeTimeStyle)
+            // if (!horario_livre || !freeTimeStyle) {
+            //     Vibration.vibrate()
+            //     Alert.alert('Por favor, preencha todos os campos.')
+            //     throw new Error('Por favor, preencha todos os campos.');
+            // }else{
+            //     const response = await userApi.addUser(dataUser);
+            //     console.log(response.status)
+            //     console.log(response.data)
+            //     if(response.status == 200){
+            //         navigation.navigate('TelaPrePrincipal')
+            //     }else{
+            //         throw new Error('Erro ao registrar usuário');
+            //     }
+            // }
         } catch (error) {
             console.error(error);
             Alert.alert('Erro ao registrar usuário:', error.message);

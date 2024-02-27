@@ -87,7 +87,6 @@ export default function Form() {
 
     const [inforCards, setInforCards] = useState([
             { nomeCadeira: 'Física 2' , horario: '20:00' , coins: '20'},
-
         ]) 
 
     const removeCard = (nomeCadeira) => {

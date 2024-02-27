@@ -27,16 +27,10 @@ export default function Form() {
                  style={styles.TextInputBox}
                  value={cadeira1}
                  onChangeText={SetCadeira1}
-                 placeholder='Física 3'
+                 placeholder='Adicione Aqui'
                  keyboardType='default'>                    
                 </TextInput>
-                <TextInput 
-                 style={styles.TextInputBox}
-                 value={cadeira2}
-                 onChangeText={SetCadeira2}
-                 placeholder='Cálculo 2'
-                 keyboardType='default'>                    
-                </TextInput>
+
                 <TouchableOpacity style={styles.buttonBox}>
                     <Text style={styles.TextButtonBox}>
                         +
