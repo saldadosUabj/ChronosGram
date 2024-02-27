@@ -38,7 +38,7 @@ class Tarefa(BaseModel):
 
 app = FastAPI()
 banco = RedeAdapter("banco.db")
-rede_neural = RedeNeural("ServidorWeb/ModeloIa", "banco.db")
+rede_neural = RedeNeural("ModeloIa", "banco.db")
 
 
 # @app.get("/tarefas")
