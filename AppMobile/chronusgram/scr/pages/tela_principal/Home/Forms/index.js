@@ -16,7 +16,53 @@ export default function Form() {
     const [dados,setDados] = useState(null);
     const modalizeRef = useRef(null);
     const modalizeRefTrilha = useRef(null);
-    const [infos, setInfos] = useState(null);
+    const [infos, setInfos] = useState([]);
+    const [nome, setNome] = useState('');
+    const [assunto, setAssunto] = useState('');
+    const [status, setStatus] = useState('');
+    const [materialEstudo, setMaterialEstudo] = useState('');
+    const [materia, setMateria] = useState('');
+    const [tempoAteMeta, setTempoAteMeta] = useState('');
+    const [tempoLivreEstudo, setTempoLivreEstudo] = useState('');
+    const [tipoMaterial, setTipoMaterial] = useState('');
+    const [nota, setNota] = useState('');
+    const [tempoEstudado, setTempoEstudado] = useState('');
+    const [data_inicio, setDataInicio] = useState('');
+    const [recomendacao, setRecomendacao] = useState('');
+    const [desgastes, setDesgastes] = useState('');
+    const [saida, setSaida] = useState('');
+
+    const meta = 'prova';
+    const dia = '10';
+    const mes = '04';
+    const ano = '2024';
+
+    async function getMetas() {
+        try {
+        const response = await userApi.getMetas(meta, dia, mes, ano);
+        const responseData = JSON.parse(response.data);
+        setNome(responseData.nome[0]);
+        setAssunto(responseData.assunto[0]);
+        setStatus(responseData.status[0]);
+        setDataInicio(responseData.data_meta[0]);
+        setMaterialEstudo(responseData.material_estudo[0]);
+        setMateria(responseData.materia[0]);
+        setTempoAteMeta(responseData.tempo_ate_meta[0]);
+        setTempoLivreEstudo(responseData.tempo_livre_estudo[0]);
+        setTipoMaterial(responseData.tipo_material[0]);
+        setNota(responseData.nota[0]);
+        setTempoEstudado(responseData.tempo_estudado[0]);
+        setRecomendacao(responseData.recomendacao[0]);
+        setDesgastes(responseData.desgastes[0]);
+        setSaida(responseData.saida[0]);
+
+        setInfos([responseData]);
+        return responseData;
+        } catch (error) {
+        console.error(`${error}`);
+        }
+    }
+    
 
 
     async function getDados(){
@@ -32,9 +78,10 @@ export default function Form() {
         modalizeRefTrilha.current?.open();
       };
 
-    const openModalFromCard = () => {
+      const openModalFromCard = async () => {
+        await getMetas(); // Aguarda a conclusão da chamada da API
         modalizeRef.current?.open();
-      };
+    };
 
     useEffect(() => {getDados(); setInfos(userApi.getInfo())}, []);
 
@@ -66,31 +113,33 @@ export default function Form() {
 
             {/* Modalize das informações da cadeira */}
 
-            <Modalize ref={modalizeRef}
-                      adjustToContentHeight={true}
-                      snapPoint={180}
-                      handleStyle={{backgroundColor: '#73628A'}}
-                      modalStyle={styles.Mobilize}>
-                    <View>
+            <Modalize
+                ref={modalizeRef}
+                adjustToContentHeight={true}
+                snapPoint={180}
+                handleStyle={{ backgroundColor: '#73628A' }}
+                modalStyle={styles.Mobilize}
+                >
+                <View>
                     {infos && (
-                        <View style={styles.Mobilize}>
-                            <Text style={styles.text}>Nome: {infos.Nome}</Text>
-                            <Text style={styles.text}>Status: {infos.Status}</Text>
-                            <Text style={styles.text}>Assunto: {infos.Assunto}</Text>
-                            <Text style={styles.text}>Material de Estudo: {infos['Material de Estudo']}</Text>
-                            <Text style={styles.text}>Tipo: {infos.Tipo}</Text>
-                            <Text style={styles.text}>Recomendações: {infos.Recomendações}</Text>
-                            <Text style={styles.text}>Qualidade: {infos.Qualidade}</Text>
-                            <Text style={styles.text}>Pontuação: {infos.Pontuação}</Text>
-                            <Text style={styles.text}>Horário: {infos['Horário']}</Text>
-                            <Text style={styles.text}>Prioridade: {infos.Prioridade}</Text>
-                            <Text style={styles.text}>Data Início: {infos['Data Início']}</Text>
-                            <Text style={styles.text}>Data Final: {infos['Data Final']}</Text>
-                            <Text style={styles.text}>Tempo Estimado: {infos['Tempo Estimado']}</Text>
-                            <Text style={styles.text}>Posição: {infos.posição}</Text>          
-                        </View>
-                    )}
+                    <View style={styles.Mobilize}>
+                        <Text style={styles.text}>Nome: {nome}</Text>
+                        <Text style={styles.text}>Status: {status}</Text>
+                        <Text style={styles.text}>Assunto: {assunto}</Text>
+                        <Text style={styles.text}>Material de Estudo: {materialEstudo}</Text>
+                        <Text style={styles.text}>Meta: {meta}</Text>
+                        <Text style={styles.text}>Recomendações: {recomendacao}</Text>
+                        <Text style={styles.text}>Pontuação: {recomendacao}</Text>
+                        <Text style={styles.text}>Horário: 20:00</Text>
+                        <Text style={styles.text}>Prioridade: {saida}</Text>
+                        <Text style={styles.text}>Data Início: {data_inicio}</Text>
+                        <Text style={styles.text}>Tempo Estudado: {tempoEstudado}</Text>
+                        <Text style={styles.text}>Tempo Livre: {tempoLivreEstudo}</Text>
+                        <Text style={styles.text}>Tempo Estimado: {tempoAteMeta}</Text>
+                        <Text style={styles.text}>Nota: {nota}</Text>
                     </View>
+                    )}
+                </View>
                 </Modalize>
 
             {/* Modalize das informações da trilha */}

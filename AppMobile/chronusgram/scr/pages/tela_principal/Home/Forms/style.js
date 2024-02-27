@@ -93,10 +93,9 @@ const styles = StyleSheet.create({
   },
   text: {
         fontSize: 15,
-        padding: 5,
+        padding: 2,
         marginVertical: 5,
-        fontFamily:'Nunito-Sans',
-        fontWeight:'bold',
+        fontFamily:'Josefins-Sans-Bold',
   },
   Titulo: {
         marginTop: 15,

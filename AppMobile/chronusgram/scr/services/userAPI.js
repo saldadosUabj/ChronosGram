@@ -27,7 +27,7 @@ class UserAPI {
       const response = await api.get(`/redeNeural/${userMeta}/${metaDia}/${metaMes}/${metaAno}`);
       return response;
     }catch(error){
-      console.error('Error ao buscar dados da Meta')
+      console.error(`${error}`)
     }
   }
 
