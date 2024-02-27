@@ -86,7 +86,10 @@ export default function Form() {
     useEffect(() => {getDados(); setInfos(userApi.getInfo())}, []);
 
     const [inforCards, setInforCards] = useState([
-            { nomeCadeira: 'Física 2' , horario: '20:00' , coins: '20'},
+            { nomeCadeira: 'Exercício 14-25 - 1º Lei Termodinâmica' , horario: '30 - Min' , coins: '20'},
+            { nomeCadeira: 'Vídeo Aula' , horario: '40 - Min' , coins: '20'},
+            { nomeCadeira: 'Exercício 20-35' , horario: '30 - Min' , coins: '20'},
+            { nomeCadeira: 'Resumo' , horario: '15 - Min' , coins: '20'},
         ]) 
 
     const removeCard = (nomeCadeira) => {
