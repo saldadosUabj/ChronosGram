@@ -11,7 +11,7 @@ export default function Form() {
     return (
         <View style={styles.container}>
 
-            <Image style={styles.perfil} source={require('../../../../../assets/perfil.png')}/>
+            <Image style={styles.perfil} source={require('../../../../../assets/perfil_2.jpg')}/>
             
             <Text style={styles.text}>
                 Wandson Emanuel dos Santos Silva {/* Aqui deve ir o nome do aluno, puxado do banco de dados atráves da api */}

@@ -1,6 +1,7 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { StyleSheet, Image } from 'react-native';
 import Constants from 'expo-constants';
+import { useRoute } from '@react-navigation/native';
 
 
 import Home from '../pages/tela_principal/Home/index';
@@ -10,6 +11,13 @@ import Perfil from '../pages/tela_principal/Perfil';
 const Tab = createMaterialTopTabNavigator();
 
 export default function TabRoutes(){
+
+  const route = useRoute();
+  const NomeMetas = route.params?.NomeMetas
+  const date = route.params?.date
+
+  console.log(NomeMetas)
+
     return(
         <Tab.Navigator 
       initialRouteName="Home" 
@@ -32,9 +40,21 @@ export default function TabRoutes(){
         },
       })}
     >
-            <Tab.Screen name="Perfil" component={Perfil}/>
-            <Tab.Screen name="Home" component={Home} />
-            <Tab.Screen name="Configuração" component={Configuracao}/>
+            <Tab.Screen
+              name="Perfil"
+              component={Perfil}
+              initialParams={{ NomeMetas, date }}
+            />
+            <Tab.Screen
+              name="Home"
+              component={Home}
+              initialParams={{ NomeMetas, date }}
+            />
+            <Tab.Screen
+              name="Configuração"
+              component={Configuracao}
+              initialParams={{ NomeMetas, date }}
+            />
         </Tab.Navigator>
     )
 }

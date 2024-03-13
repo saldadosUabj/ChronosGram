@@ -9,7 +9,7 @@ import { Modalize } from 'react-native-modalize';
 import Card from '../Card/index.js';
 
 
-export default function Form() {
+export default function Form({ NomeMetas, date }) {
 
     const navigation = useNavigation();
     const userApi = new UserApi();
@@ -31,6 +31,9 @@ export default function Form() {
     const [recomendacao, setRecomendacao] = useState('');
     const [desgastes, setDesgastes] = useState('');
     const [saida, setSaida] = useState('');
+
+    console.log(NomeMetas)
+    console.log(date)
 
     const meta = 'prova';
     const dia = '10';
@@ -124,6 +127,7 @@ export default function Form() {
                 <View>
                     {infos && (
                     <View style={styles.Mobilize}>
+                        <Text style={styles.text}>Cadeira {materia}</Text>
                         <Text style={styles.text}>Nome: {nome}</Text>
                         <Text style={styles.text}>Status: {status}</Text>
                         <Text style={styles.text}>Assunto: {assunto}</Text>

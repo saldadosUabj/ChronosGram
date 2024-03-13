@@ -27,6 +27,7 @@ export default function Metas() {
     const [activityIndicator, setActivityIndicator] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
 
+
     const handleCallNotifications = async () => {
 
         const{ status } = await Notifications.getPermissionsAsync();
@@ -84,9 +85,6 @@ export default function Metas() {
             setActivityIndicator(false);
             setModalVisible(true)
 
-            setSelectedDisc(null);
-            setNomeMetas(null);
-            setDate(null);
         }, 2000);
     }
   
@@ -144,7 +142,7 @@ export default function Metas() {
                         </TouchableOpacity>
 
                         <TouchableOpacity style={{backgroundColor: '#BB1D1D', padding: 8, borderRadius: 10,
-                                          marginHorizontal: 10,}} onPress={() => navigation.navigate('TelaPrincipal')}>
+                                          marginHorizontal: 10,}} onPress={() => navigation.navigate('TelaPrincipal',{NomeMetas,date})}>
                             <Text style={{fontFamily:'Josefins-Sans-Bold', marginHorizontal: 40}}>NÃO</Text>
                         </TouchableOpacity>
 
