@@ -1,10 +1,13 @@
 from curses import meta
 from datetime import datetime
+import imp
 import sqlite3 as sql
 from time import time
 from matplotlib.font_manager import stretch_dict
 from pydantic import BaseModel
 import pandas as pd
+from firebase_admin import db
+import uuid
 
 
 class Tarefa(BaseModel):
@@ -27,10 +30,13 @@ class Tarefa(BaseModel):
 
 
 class RedeAdapter():
+    
 
     def __init__(self, banco_dados):
         self.con = sql.connect(banco_dados, check_same_thread=False)
         self.cursor = self.con.cursor()
+        self.ref = db.reference("/tarefas")
+        
 
     def insert_task(self, tarefa):
         meta = tarefa.meta
@@ -49,36 +55,58 @@ class RedeAdapter():
         recomendacoes = tarefa.recomendacoes
         desgastes = tarefa.desgastes
         saida = tarefa.saida
+        
+        
+        
+    
+        doc_data = {
+            'meta': meta,
+            'data_meta': data_meta,
+            'nome': nome,
+            'status': status,
+            'assunto': assunto,
+            'material_estudo': material_estudo,
+            'materia': materia,
+            'tempo_ate_meta': tempo_ate_meta,
+            'tempo_livre_estudo': tempo_livre_estudo,
+            'tipo_material': tipo_material,
+            'nota': nota,
+            'tempo_estudado': tempo_estudado,
+            'indice_facilidade_disciplina': indice_facilidade_disciplina,
+            'recomendacao': recomendacoes,
+            'desgastes': desgastes,
+            'saida': saida
+        }
+        self.ref.child(str(uuid.uuid1())).set(doc_data)
 
-        query = """INSERT INTO tarefas (
-                        meta, data_meta, nome, status, assunto, material_estudo, materia,
-                        tempo_ate_meta, tempo_livre_estudo, tipo_material, nota, tempo_estudado,
-                        indice_facilidade_disciplina, recomendacao, desgastes, saida
-                ) VALUES (
-                    ?, ?, ?, ?, ?, ?, ?,
-                    ?, ?, ?, ?, ?, ?, ?, ?, ?
-                )"""
+    #     query = """INSERT INTO tarefas (
+    #                     meta, data_meta, nome, status, assunto, material_estudo, materia,
+    #                     tempo_ate_meta, tempo_livre_estudo, tipo_material, nota, tempo_estudado,
+    #                     indice_facilidade_disciplina, recomendacao, desgastes, saida
+    #             ) VALUES (
+    #                 ?, ?, ?, ?, ?, ?, ?,
+    #                 ?, ?, ?, ?, ?, ?, ?, ?, ?
+    #             )"""
 
-    # Assuming you have a tuple or list of values
-        values = (meta, data_meta, nome, status, assunto, material_estudo, materia,
-            tempo_ate_meta, tempo_livre_estudo, tipo_material, nota, tempo_estudado,
-            indice_facilidade_disciplina, recomendacoes, desgastes, saida)
+    # # Assuming you have a tuple or list of values
+    #     values = (meta, data_meta, nome, status, assunto, material_estudo, materia,
+    #         tempo_ate_meta, tempo_livre_estudo, tipo_material, nota, tempo_estudado,
+    #         indice_facilidade_disciplina, recomendacoes, desgastes, saida)
 
-        self.cursor.execute(query, values)
+    #     self.cursor.execute(query, values)
 
-        self.con.commit()
+    #     self.con.commit()
 
     def get_task(self):
-        query = "SELECT * FROM tarefas;"
-        self.cursor.execute(query)
-        result = self.cursor.fetchall()  # Recupera os resultados da consulta
-        self.con.commit()
-
-        # Transforma os resultados em um DataFrame
-        columns = [desc[0] for desc in self.cursor.description]
-        df = pd.DataFrame(result, columns=columns)
+        # query = "SELECT * FROM tarefas;"
+        # self.cursor.execute(query)
+        # result = self.cursor.fetchall()  # Recupera os resultados da consulta
+        # self.con.commit()
+        list_taks_saves = self.ref.get()
+        columns = [desc for desc in list_taks_saves]
+        df = pd.DataFrame(list_taks_saves, columns=columns)
         
-        return df
+        return df.T
     def get_best_task(self,meta,data_meta):
         query_meta = "SELECT * FROM tarefas WHERE meta = '{}' and data_meta ='{}';".format(meta, data_meta)
         tasks = pd.read_sql_query(query_meta,self.con)

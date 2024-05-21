@@ -1,0 +1,60 @@
+import sqlite3
+import firebase_admin 
+from firebase_admin import credentials, db,firestore
+import json
+import uuid
+
+import pandas as pd
+
+cred = credentials.Certificate("ServidorWeb\chronosgram-b6288-firebase-adminsdk-rvgjf-74165c4cc3.json")
+default_app = firebase_admin.initialize_app(cred, {
+	'databaseURL':"https://banco-usuario-default-rtdb.firebaseio.com/"
+	})
+
+ref = db.reference("/tarefas")
+
+# with open("ServidorWeb/testefirebase.json", "r") as read:
+#     file_contents = json.load(read)
+
+#ref.set(file_contents)
+tarefas = ref.get()
+#print(tarefas)
+print(type(tarefas))
+columns = [desc for desc in tarefas]
+df = pd.DataFrame(tarefas, columns=columns)
+print(df.T)
+
+# conn = sqlite3.connect('ServidorWeb/banco.db')
+# cursor = conn.cursor()
+# cursor.execute("SELECT * FROM tarefas")
+# rows = cursor.fetchall()
+
+# for row in rows:
+#     doc_data = {
+#         'meta': row[1],
+#         'data_meta': row[2],
+#         'nome': row[3],
+#         'status': row[4],
+#         'assunto': row[5],
+#         'material_estudo': row[6],
+#         'materia': row[7],
+#         'tempo_ate_meta': row[8],
+#         'tempo_livre_estudo': row[9],
+#         'tipo_material': row[10],
+#         'nota': row[11],
+#         'tempo_estudado': row[12],
+#         'indice_facilidade_disciplina': row[13],
+#         'recomendacao': row[14],
+#         'desgastes': row[15],
+#         'saida': row[16]
+#     }
+    
+   
+#     ref.child(str(uuid.uuid1())).set(doc_data)
+
+# conn.close()
+
+# print("Dados transferidos com sucesso!")
+
+
+    
