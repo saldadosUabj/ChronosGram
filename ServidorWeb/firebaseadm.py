@@ -1,28 +1,34 @@
+from curses import meta
 import sqlite3
-import firebase_admin 
-from firebase_admin import credentials, db,firestore
+import firebase_admin
+from firebase_admin import credentials, db
 import json
 import uuid
-
 import pandas as pd
 
-cred = credentials.Certificate("ServidorWeb\chronosgram-b6288-firebase-adminsdk-rvgjf-74165c4cc3.json")
+cred = credentials.Certificate(
+    "ServidorWeb\chronosgram-b6288-firebase-adminsdk-rvgjf-74165c4cc3.json")
 default_app = firebase_admin.initialize_app(cred, {
-	'databaseURL':"https://banco-usuario-default-rtdb.firebaseio.com/"
-	})
+    'databaseURL': "https://banco-usuario-default-rtdb.firebaseio.com/"
+})
 
 ref = db.reference("/tarefas")
 
 # with open("ServidorWeb/testefirebase.json", "r") as read:
 #     file_contents = json.load(read)
 
-#ref.set(file_contents)
+# ref.set(file_contents)
 tarefas = ref.get()
-#print(tarefas)
-print(type(tarefas))
+# print(tarefas)
 columns = [desc for desc in tarefas]
 df = pd.DataFrame(tarefas, columns=columns)
-print(df.T)
+df =df.T
+df = df[['meta', 'data_meta', 'saida']]
+selecionar = (df['meta'] == 'prova') & (df['data_meta'] == "15/04/2024")
+df = df[selecionar]
+df = df.sort_values(by = "saida", ascending=False)
+print(df.to_json())
+
 
 # conn = sqlite3.connect('ServidorWeb/banco.db')
 # cursor = conn.cursor()
@@ -48,13 +54,10 @@ print(df.T)
 #         'desgastes': row[15],
 #         'saida': row[16]
 #     }
-    
-   
+
+
 #     ref.child(str(uuid.uuid1())).set(doc_data)
 
 # conn.close()
 
 # print("Dados transferidos com sucesso!")
-
-
-    

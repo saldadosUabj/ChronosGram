@@ -23,7 +23,7 @@ class RedeNeural():
 
     def prediz(self):
 
-        data = self.rede.get_task()
+        data = self.rede.get_tasks()
         data['saida'] = data['saida'].fillna(0)
         dados_teste = data[self.X_cols]
         self.scaler_X.fit(data[self.X_cols])
