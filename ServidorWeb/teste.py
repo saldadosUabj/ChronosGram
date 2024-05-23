@@ -7,7 +7,19 @@ from RedeAdapter import RedeAdapter
 import sqlite3 as sql
 from firebase_admin import db
 # 
-# Redeadaptar = RedeAdapter("banco.db")
+Redeadaptar = RedeAdapter("banco.db")
+con = sql.connect("banco.db", check_same_thread=False)
+cursor = con.cursor()
+meta = "prova"
+data_meta = "15/04/2024"
+query_meta = "SELECT * FROM tarefas WHERE meta = '{}' and data_meta ='{}';".format(meta, data_meta)
+tasks = pd.read_sql_query(query_meta,con)
+print(tasks)
+
+tasks.sort_values(by = "saida", ascending=True)
+dataframe_metas_json = tasks.to_json()
+
+print(dataframe_metas_json)
 # redeNeural = RedeNeural("/home/yrikes/Codigos/projeto/ChronosGram/ModeloIa","banco.db")
 # print(Redeadaptar.get_task())
 # saida = redeNeural.prediz()

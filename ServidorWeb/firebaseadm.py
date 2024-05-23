@@ -22,10 +22,10 @@ tarefas = ref.get()
 columns = [desc for desc in tarefas]
 df = pd.DataFrame(tarefas, columns=columns)
 df =df.T
-df = df[['meta', 'data_meta', 'saida']]
+#df = df[['meta', 'data_meta', 'saida']]
 selecionar = (df['meta'] == 'prova') & (df['data_meta'] == "15/04/2024")
 df = df[selecionar]
-df = df.sort_values(by = "saida", ascending=False)
+df = df.sort_values(by = "saida", ascending=True) 
 print(df.to_json())
 
 

@@ -95,7 +95,7 @@ def get_neural_data(meta:str , dia:str , mes:str, ano:str):
     #data_entrega = datetime.strptime(data_entrega,formato_string) #type:ignore
     #data_today = datetime.today
     #duracao = abs(data_entrega - data_today).days #type:ignore
-    return banco.get_best_task(meta,data_entrega) # type: ignore
+    return banco.get_best_task(meta,data_entrega) 
 
 # @app.put("/tarefas")
 # def insert_tarefas(tarefa: Tarefa):

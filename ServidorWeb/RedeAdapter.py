@@ -94,13 +94,13 @@ class RedeAdapter():
         list_taks_saves = admin.ref.get()
         columns = [desc for desc in list_taks_saves]
         df = pd.DataFrame(list_taks_saves, columns=columns)
-        df = df[['meta', 'data_meta', 'saida']]
+        df = df.T
+        #df = df[['meta', 'data_meta', 'saida']]
         selecionar = (df['meta'] == {meta}) & (df['data_meta'] == {data_meta})
         df = df[selecionar]
         df = df.sort_values(by="saida", ascending=False)
-        dataframe_metas_json = df.to_json()
 
-        return dataframe_metas_json
+        return df.to_json()
 
     def update_saida(self, saida_values):
         for i, valor_saida in enumerate(saida_values):
