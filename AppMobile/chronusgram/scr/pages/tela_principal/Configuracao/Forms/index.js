@@ -73,8 +73,11 @@ export default function Form() {
                  <MultipleSelectList
                     boxStyles={styles.inputSelectdBox}
                     dropdownStyles={styles.inputBox}
+                    dropdownTextStyles={styles.textStyle}
+                    inputStyles={styles.textStyle}
                     data={getData()}
                     setSelected={(val) => setHorarioLivre(val)}
+                    save={setHorarioLivre}
                     value={horario_livre}
                     placeholder='Horário Livre'/>
 
@@ -85,6 +88,8 @@ export default function Form() {
                 <SelectList
                     boxStyles={styles.inputSelectdBox}
                     dropdownStyles={styles.inputBox}
+                    dropdownTextStyles={styles.textStyle}
+                    inputStyles={styles.textStyle}
                     data={data_freeTime}
                     setSelected={setFreeTimeStyle}
                     value={freeTimeStyle}

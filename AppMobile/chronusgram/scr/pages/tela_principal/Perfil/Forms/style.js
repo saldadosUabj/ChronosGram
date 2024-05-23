@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',  
     },
     button:{
+      color: 'white',
       backgroundColor: '#73628A',
       alignItems: 'center', 
       justifyContent:'center',  
@@ -13,6 +14,10 @@ const styles = StyleSheet.create({
       padding: 20,
       borderRadius: 8,
       marginBottom: 25,
+  },
+  buttonText:{
+    color: 'white',
+    fontFamily: 'Josefins-Sans-Bold',
   },
     perfil:{
       width: 135,
@@ -22,10 +27,14 @@ const styles = StyleSheet.create({
       marginTop: 30,
     },
     text:{
+      color: 'white',
+      fontFamily: 'Josefins-Sans-Bold',
       fontSize: 14,
     },
     Lasttext:{
+      color: 'white',
       fontSize: 14,
+      fontFamily: 'Josefins-Sans-Bold',
       marginBottom: 40,
     },
     sair:{

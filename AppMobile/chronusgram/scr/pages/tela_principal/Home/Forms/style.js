@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
         padding: 2,
         marginVertical: 5,
         fontFamily:'Josefins-Sans-Bold',
+        color: 'white',
   },
   Titulo: {
         marginTop: 15,

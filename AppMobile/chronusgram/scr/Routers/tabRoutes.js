@@ -20,22 +20,21 @@ export default function TabRoutes(){
 
     return(
         <Tab.Navigator 
-      initialRouteName="Home" 
-      screenOptions={({ route }) => ({
-        tabBarStyle: styles.containerStyle,
-        tabBarIndicatorStyle: styles.indicator,
-        tabBarShowLabel: false,
+        initialRouteName="Home" 
+        screenOptions={({ route }) => ({
+                        tabBarStyle: styles.containerStyle,
+                        tabBarIndicatorStyle: styles.indicator,
+                        tabBarShowLabel: false,
         tabBarIcon: ({ focused }) => {
-          let iconName;
+                      let iconName;
 
-          if (route.name === 'Perfil') {
-            iconName = focused ? require('../../assets/perfil-de-usuario.png') : require('../../assets/perfil-de-usuario.png');
-          } else if (route.name === 'Home') {
-            iconName = focused ? require('../../assets/botao-home.png') : require('../../assets/botao-home.png');
-          } else if (route.name === 'Configuração') {
-            iconName = focused ? require('../../assets/configuracao.png') : require('../../assets/configuracao.png');
-          }
-
+                      if (route.name === 'Perfil') {
+                        iconName = focused ? require('../../assets/perfil-de-usuario.png') : require('../../assets/perfil-de-usuario.png');
+                      } else if (route.name === 'Home') {
+                        iconName = focused ? require('../../assets/botao-home.png') : require('../../assets/botao-home.png');
+                      } else if (route.name === 'Configuração') {
+                        iconName = focused ? require('../../assets/configuracao.png') : require('../../assets/configuracao.png');
+                      }
           return <Image source={iconName} style={styles.icon} />;
         },
       })}
@@ -66,7 +65,8 @@ const styles = StyleSheet.create({
         backgroundColor: "#76618D", 
         borderRadius: 12,
         elevation: 5,
-        paddingTop: Constants.statusBarHeight + 10, 
+        paddingTop: Constants.statusBarHeight + 10,
+        paddingBottom: 8
     },
     indicator:{
         backgroundColor: "#CBC5EA",

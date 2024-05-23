@@ -50,6 +50,8 @@ export default function Disciplinas() {
                 <MultipleSelectList 
                     boxStyles={styles.inputSelectdBox}
                     dropdownStyles={styles.inputSelectdBoxDropdown}
+                    dropdownTextStyles={{color: 'white', fontFamily: 'Josefins-Sans-Bold',}}
+                    inputStyles={{color: "white", fontFamily: 'Josefins-Sans-Bold',}}
                     data={disciplinas_array}
                     setSelected={setDisciplinas}
                     value={disciplinas}
