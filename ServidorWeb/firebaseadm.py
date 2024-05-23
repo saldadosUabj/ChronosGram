@@ -1,13 +1,12 @@
 from curses import meta
 import sqlite3
-import firebase_admin
-from firebase_admin import credentials, db
+import firebase_admin 
+from firebase_admin import credentials, db 
 import json
 import uuid
 import pandas as pd
 
-cred = credentials.Certificate(
-    "ServidorWeb\chronosgram-b6288-firebase-adminsdk-rvgjf-74165c4cc3.json")
+cred = credentials.Certificate("chronosgram-b6288-firebase-adminsdk-rvgjf-74165c4cc3.json")
 default_app = firebase_admin.initialize_app(cred, {
     'databaseURL': "https://banco-usuario-default-rtdb.firebaseio.com/"
 })

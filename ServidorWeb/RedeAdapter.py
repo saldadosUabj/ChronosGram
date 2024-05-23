@@ -12,12 +12,20 @@ from firebase_admin import db
 import uuid
 
 
+class admin():
+    cred = credentials.Certificate(
+        "chronosgram-b6288-firebase-adminsdk-rvgjf-74165c4cc3.json")
+    default_app = firebase_admin.initialize_app(cred, {
+        'databaseURL': "https://banco-usuario-default-rtdb.firebaseio.com/"
+    })
+    ref = db.reference("/tarefas")
+
 
 class Tarefa(BaseModel):
-    meta :str
-    data_meta:str
+    meta: str
+    data_meta: str
     nome: str
-    status: int
+    status: str
     assunto: str
     material_estudo: str
     materia: str
@@ -27,19 +35,16 @@ class Tarefa(BaseModel):
     nota: int
     tempo_estudado: int
     indice_facilidade_disciplina: int
-    recomendacoes:int
+    recomendacoes: int
     desgastes: int
     saida: float
 
 
 class RedeAdapter():
-    
 
     def __init__(self, banco_dados):
         self.con = sql.connect(banco_dados, check_same_thread=False)
         self.cursor = self.con.cursor()
-        self.ref = db.reference("/tarefas")
-        
 
     def insert_task(self, tarefa):
         meta = tarefa.meta
@@ -58,7 +63,7 @@ class RedeAdapter():
         recomendacoes = tarefa.recomendacoes
         desgastes = tarefa.desgastes
         saida = tarefa.saida
-        
+
         doc_data = {
             'meta': meta,
             'data_meta': data_meta,
@@ -77,35 +82,32 @@ class RedeAdapter():
             'desgastes': desgastes,
             'saida': saida
         }
-        self.ref.child(str(uuid.uuid1())).set(doc_data)
+        admin.ref.child(str(uuid.uuid1())).set(doc_data)
 
     def get_tasks(self):
-        list_taks_saves = self.ref.get()
+        list_taks_saves = admin.ref.get()
         columns = [desc for desc in list_taks_saves]
         df = pd.DataFrame(list_taks_saves, columns=columns)
         return df.T
-    
-    def get_best_task(self,meta,data_meta):
-        list_taks_saves = self.ref.get()
+
+    def get_best_task(self, meta, data_meta):
+        list_taks_saves = admin.ref.get()
         columns = [desc for desc in list_taks_saves]
         df = pd.DataFrame(list_taks_saves, columns=columns)
         df = df[['meta', 'data_meta', 'saida']]
         selecionar = (df['meta'] == {meta}) & (df['data_meta'] == {data_meta})
         df = df[selecionar]
-        df = df.sort_values(by = "saida", ascending=False)
+        df = df.sort_values(by="saida", ascending=False)
         dataframe_metas_json = df.to_json()
 
         return dataframe_metas_json
-     
-        
-    
-    def update_saida(self,saida_values):
+
+    def update_saida(self, saida_values):
         for i, valor_saida in enumerate(saida_values):
             update_query = f"UPDATE tarefas SET saida = {abs(valor_saida[0])} WHERE rowid = {i + 1}"
             print(update_query)
             self.cursor.execute(update_query)
         return self.get_tasks().to_json()
-        
-    #def finalizar(self):
-    #    self.con.close()
 
+    # def finalizar(self):
+    #    self.con.close()

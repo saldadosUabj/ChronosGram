@@ -21,7 +21,7 @@ class Tarefa(BaseModel):
     meta :str
     data_meta:str
     nome: str
-    status: int
+    status: str
     assunto: str
     material_estudo: str
     materia: str
@@ -83,7 +83,7 @@ rede_neural = RedeNeural("ModeloIa", "banco.db")
 #     return "produto inexistente"
 
 
-@app.put("/redeNeural")
+@app.post("/redeNeural")
 def insert_neural_data(dados: Tarefa):
      banco.insert_task(dados)
      #banco.finalizar
