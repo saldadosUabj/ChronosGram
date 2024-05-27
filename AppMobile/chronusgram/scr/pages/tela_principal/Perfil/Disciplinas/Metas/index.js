@@ -4,6 +4,7 @@ import styles from './style';
 import { useNavigation , useRoute} from '@react-navigation/native';
 import { MultipleSelectList, SelectList } from 'react-native-dropdown-select-list';
 import Modal from 'react-native-modal';
+import UserAPI from '../../../../../services/userAPI';
 import * as Notifications from 'expo-notifications'
 
 Notifications.setNotificationHandler({
@@ -19,6 +20,7 @@ export default function Metas() {
 
     const navigation = useNavigation();
     const route = useRoute();
+    const userApi = new UserAPI()
     
     const disciplinas = route.params?.disciplinas
     const [selectedDisc, setSelectedDisc] =  useState(null);
@@ -50,13 +52,7 @@ export default function Metas() {
             },
           });
           
-    }
-
-    const dataToSave = {
-        selectedDisc: selectedDisc,
-        NomeMetas: NomeMetas,
-        Date: date
-    };
+    }    
   
     const handleDateChange = (text) => {
       // Remove caracteres não numéricos
@@ -71,20 +67,37 @@ export default function Metas() {
         setDate(`${newText.substring(0, 2)}/${newText.substring(2, 4)}/${newText.substring(4, 6)}`);
       }
     };
+
+    async function envia(json){
+      try{
+          let response = await userApi.insertTarefas(json);
+          console.log("foi")
+      }catch(error){
+          console.log(error)
+      }
+    }
+
+    function updateDados(){
+      const objeto = {
+        selectedDisc: selectedDisc,
+        NomeMetas: NomeMetas,
+        Date: date
+    };
+      const dadosJSON = JSON.stringify(objeto,null,2)
+      envia(dadosJSON)
+    }
   
-    function AttBanco() {
-        console.log(dataToSave)
+    function handlerDados() {
         setActivityIndicator(true);
         setTimeout(() => {
-            const jsonData = JSON.stringify(dataToSave);
-
-            console.log(jsonData);
-
-
+          try{
+            updateDados()
             handleCallNotifications()
             setActivityIndicator(false);
-            setModalVisible(true)
-
+            setModalVisible(true)  
+          }catch(error){
+            console.log(error)
+          }
         }, 2000);
     }
   
@@ -120,7 +133,7 @@ export default function Metas() {
                 keyboardType='number-pad'
             />
     
-            <TouchableOpacity style={styles.button} onPress={() => AttBanco()}>
+            <TouchableOpacity style={styles.button} onPress={() => handlerDados()}>
                 {activityIndicator ? (
                 <ActivityIndicator size="large" color="#16041B" />
                 ) : (

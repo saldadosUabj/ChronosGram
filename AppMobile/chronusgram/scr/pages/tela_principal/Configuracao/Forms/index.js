@@ -59,7 +59,25 @@ export default function Form() {
         ];
         
         return data_horarios_integral
-    } 
+    }
+
+    async function envia(json){
+        try{
+            let response = await userApi.insertNeuralData(json);
+            console.log("foi")
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    function updateDados(){
+        const objeto={
+            horario_livre: horario_livre,
+            freeTimeStyle: freeTimeStyle,
+        }
+        const dadosJSON = JSON.stringify(objeto,null,2)
+        envia(dadosJSON)
+    }
 
     return (
         <ScrollView style={styles.container}>
@@ -95,7 +113,7 @@ export default function Form() {
                     value={freeTimeStyle}
                     placeholder='Free Time Style'/>
 
-                <TouchableOpacity style={styles.buttonEntrar}>
+                <TouchableOpacity style={styles.buttonEntrar} onPress={() => updateDados()}>
                     <Text style={styles.buttonText}>
                         Salvar
                     </Text>
