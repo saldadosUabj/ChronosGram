@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
         elevation: 10, // Somente para Android
     },
     titulo: {
+        color: 'white',
         fontFamily: 'Josefins-Sans-Bold',
         fontSize: 16,
         marginBottom: 20,

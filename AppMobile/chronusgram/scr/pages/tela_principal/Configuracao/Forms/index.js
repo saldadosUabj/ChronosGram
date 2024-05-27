@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity,Image, ScrollView, Text } from 'react-native';
+import { View, StyleSheet, TouchableOpacity,Image, ScrollView, Text, ActivityIndicator } from 'react-native';
 import styles from './style';
 import UserApi from '../../../../services/userAPI'
 import { useNavigation} from '@react-navigation/native';
@@ -9,8 +9,10 @@ import { SelectList, MultipleSelectList  } from 'react-native-dropdown-select-li
 export default function Form() {
 
     const navigation = useNavigation();
-    const userApi = new UserApi()
-    const [dados,setDados] = useState(null)
+    const userApi = new UserApi();
+    const [dados,setDados] = useState(null);
+    const [activityIndicator, setActivityIndicator] = useState(false);
+
 
     const data_freeTime = [
         { key: 'equilibrada', value: 'Equilibrada' },
@@ -79,6 +81,18 @@ export default function Form() {
         envia(dadosJSON)
     }
 
+    function handlerDados() {
+        setActivityIndicator(true);
+        setTimeout(() => {
+          try{
+            updateDados()
+            setActivityIndicator(false);
+          }catch(error){
+            console.log(error)
+          }
+        }, 2000);
+    }
+
     return (
         <ScrollView style={styles.container}>
 
@@ -113,10 +127,12 @@ export default function Form() {
                     value={freeTimeStyle}
                     placeholder='Free Time Style'/>
 
-                <TouchableOpacity style={styles.buttonEntrar} onPress={() => updateDados()}>
-                    <Text style={styles.buttonText}>
-                        Salvar
-                    </Text>
+                <TouchableOpacity style={styles.buttonEntrar} onPress={() => handlerDados()}>
+                    { activityIndicator? (
+                        <ActivityIndicator size="large" color="#CBC5EA" />
+                    ) :<Text style={styles.buttonText}>
+                             Salvar
+                       </Text>}
                 </TouchableOpacity>          
 
             </View>

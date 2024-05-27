@@ -112,6 +112,7 @@ export default function Metas() {
             <SelectList
                     boxStyles={styles.inputSelectdBox}
                     dropdownStyles={styles.inputSelectdBoxDropdown}
+                    dropdownTextStyles={{color: 'white', fontFamily: 'Josefins-Sans-Bold',}}
                     data={disciplinas}
                     setSelected={setSelectedDisc}
                     value={selectedDisc}
