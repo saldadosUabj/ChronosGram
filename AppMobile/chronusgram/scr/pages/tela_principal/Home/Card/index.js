@@ -11,32 +11,35 @@ export default function Card( {cadeira , horario, coins, onOpenModal, onRemove})
     const navigation = useNavigation();
     const userApi = new UserAPI();
 
-    async function envia(json){
-        try{
+    async function envia(json) {
+        try {
             let response = await userApi.insertNeuralData(json);
-            console.log("foi")
-        }catch(error){
-            console.log(error)
+            console.log("foi");
+            return true;  // Indica que a requisição foi bem-sucedida
+        } catch (error) {
+            console.log(error);
+            return false;  // Indica que a requisição falhou
         }
     }
 
-
-    function updateDados(status){
-        const objeto={
+    async function updateDados(status) {
+        const objeto = {
             cadeira: cadeira,
             horario: horario,
             coins: coins,
             status: status
-        }
-        const dadosJSON = JSON.stringify(objeto,null,2)
-        envia(dadosJSON)
+        };
+        const dadosJSON = JSON.stringify(objeto, null, 2);
+        return await envia(dadosJSON);
     }
 
-    function handlerDados( bolleano ){
-        setStatus(bolleano)
-        updateDados(status)
-        onRemove()
-        setStatus(null)
+    async function handlerDados(bolleano) {
+        setStatus(bolleano);
+        const success = await updateDados(bolleano);
+        if (success) {
+            onRemove();
+        }
+        setStatus(null);
     }
 
     return (
