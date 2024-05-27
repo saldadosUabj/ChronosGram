@@ -36,7 +36,6 @@ class RedeNeural():
         return previsoes_teste
 
     def update_rede(self):
-        
         dados_previsoes = self.prediz()
         return self.rede.update_saida(dados_previsoes)
             

@@ -17,16 +17,26 @@ ref = db.reference("/tarefas")
 #     file_contents = json.load(read)
 
 # ref.set(file_contents)
-tarefas = ref.get()
+# tarefas = ref.get()
 # print(tarefas)
-columns = [desc for desc in tarefas]
-df = pd.DataFrame(tarefas, columns=columns)
-df =df.T
+# columns = [desc for desc in tarefas]
+# df = pd.DataFrame(tarefas, columns=columns)
+# df =df.T
 #df = df[['meta', 'data_meta', 'saida']]
-selecionar = (df['meta'] == 'prova') & (df['data_meta'] == "15/04/2024")
-df = df[selecionar]
-df = df.sort_values(by = "saida", ascending=True) 
-print(df.to_json())
+# selecionar = (df['meta'] == 'prova') & (df['data_meta'] == "15/04/2024")
+# df = df[selecionar]
+# df = df.sort_values(by = "saida", ascending=True) 
+# print(df.to_json())
+def dataframeTarefas():
+        list_taks_saves = ref.get()
+        columns = [desc for desc in list_taks_saves]
+        df = pd.DataFrame(list_taks_saves, columns=columns)
+        return  df.T
+
+
+print(dataframeTarefas())
+df = dataframeTarefas()
+df.loc
 
 
 # conn = sqlite3.connect('ServidorWeb/banco.db')

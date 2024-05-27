@@ -45,6 +45,12 @@ class RedeAdapter():
     def __init__(self, banco_dados):
         self.con = sql.connect(banco_dados, check_same_thread=False)
         self.cursor = self.con.cursor()
+    
+    def dataframeTarefas(self):
+        list_taks_saves = admin.ref.get()
+        columns = [desc for desc in list_taks_saves]
+        df = pd.DataFrame(list_taks_saves, columns=columns)
+        return  df.T
 
     def insert_task(self, tarefa):
         meta = tarefa.meta
@@ -85,16 +91,16 @@ class RedeAdapter():
         admin.ref.child(str(uuid.uuid1())).set(doc_data)
 
     def get_tasks(self):
-        list_taks_saves = admin.ref.get()
-        columns = [desc for desc in list_taks_saves]
-        df = pd.DataFrame(list_taks_saves, columns=columns)
-        return df.T
+        # list_taks_saves = admin.ref.get()
+        # columns = [desc for desc in list_taks_saves]
+        # df = pd.DataFrame(list_taks_saves, columns=columns)
+        return self.dataframeTarefas()
 
     def get_best_task(self, meta, data_meta):
-        list_taks_saves = admin.ref.get()
-        columns = [desc for desc in list_taks_saves]
-        df = pd.DataFrame(list_taks_saves, columns=columns)
-        df = df.T
+        # list_taks_saves = admin.ref.get()
+        # columns = [desc for desc in list_taks_saves]
+        # df = pd.DataFrame(list_taks_saves, columns=columns)
+        df = self.dataframeTarefas()
         #df = df[['meta', 'data_meta', 'saida']]
         selecionar = (df['meta'] == {meta}) & (df['data_meta'] == {data_meta})
         df = df[selecionar]
@@ -103,11 +109,16 @@ class RedeAdapter():
         return df.to_json()
 
     def update_saida(self, saida_values):
+        df = self.dataframeTarefas()
         for i, valor_saida in enumerate(saida_values):
-            update_query = f"UPDATE tarefas SET saida = {abs(valor_saida[0])} WHERE rowid = {i + 1}"
-            print(update_query)
-            self.cursor.execute(update_query)
+            # list_taks_saves = admin.ref.get()
+            # columns = [desc for desc in list_taks_saves]
+            # df = pd.DataFrame(list_taks_saves, columns=columns)
+            df = df.loc[i,'saida'] = abs(valor_saida[0]) 
+            #update_query = f"UPDATE tarefas SET saida = {abs(valor_saida[0])} WHERE rowid = {i + 1}"
+            #print(update_query)
+            #self.cursor.execute(update_query)
         return self.get_tasks().to_json()
+    
+    
 
-    # def finalizar(self):
-    #    self.con.close()
