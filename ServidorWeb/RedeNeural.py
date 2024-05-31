@@ -12,8 +12,6 @@ import sqlite3 as sql
 class RedeNeural():
 
     def __init__(self, caminho_do_modelo, banco):
-        self.con = sql.connect(banco, check_same_thread=False)
-        self.cursor = self.con.cursor()
         self.modelo = tf.saved_model.load(caminho_do_modelo)
         self.rede = RedeAdapter(banco)
         self.scaler_X = StandardScaler()

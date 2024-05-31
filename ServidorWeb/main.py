@@ -7,15 +7,14 @@ from pydantic import BaseModel
 import sqlite3 as sql
 from RedeAdapter import RedeAdapter
 from RedeNeural import RedeNeural
+from Usuarios import Usuarios
 
-
-class user(BaseModel):
+class User(BaseModel):
     id: int
     nome: str
     turno_livre: str
     email: str
     senha: str
-
 
 class Tarefa(BaseModel):
     meta :str
@@ -37,10 +36,9 @@ class Tarefa(BaseModel):
 
 
 app = FastAPI()
-banco = RedeAdapter("banco.db")
-rede_neural = RedeNeural("ModeloIa", "banco.db")
-
-
+rede_neural = RedeNeural("ModeloIa", "tarefas")
+banco = RedeAdapter("tarefas")
+usuario = Usuarios("users")
 # @app.get("/tarefas")
 # def pesquisa():
 #     return alunos
@@ -81,10 +79,15 @@ rede_neural = RedeNeural("ModeloIa", "banco.db")
 #         return "atualizado"
 #         contador += 1
 #     return "produto inexistente"
+@app.post("/users")
+def create_user(dados: User):
+     usuario.createUser(dados)
+
+
 
 
 @app.post("/redeNeural")
-def insert_neural_data(dados: Tarefa):
+def insert_neural_data(dados:Tarefa):
      banco.insert_task(dados)
      #banco.finalizar
      

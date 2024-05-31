@@ -1,17 +1,24 @@
 from curses import meta
-import sqlite3
-import firebase_admin 
-from firebase_admin import credentials, db 
-import json
-import uuid
+import firebase_admin
+from firebase_admin import credentials, db
 import pandas as pd
 
-cred = credentials.Certificate("chronosgram-b6288-firebase-adminsdk-rvgjf-74165c4cc3.json")
-default_app = firebase_admin.initialize_app(cred, {
-    'databaseURL': "https://banco-usuario-default-rtdb.firebaseio.com/"
-})
 
-ref = db.reference("/tarefas")
+class FirebaseAdm():
+        cred = credentials.Certificate(
+        "chronosgram-b6288-firebase-adminsdk-rvgjf-74165c4cc3.json")
+        default_app = firebase_admin.initialize_app(cred, {
+        'databaseURL': "https://banco-usuario-default-rtdb.firebaseio.com/"
+        })
+            
+        def tabela(tabela):
+            ref = db.reference("/{tabela}")
+            return ref
+            
+
+
+
+
 
 # with open("ServidorWeb/testefirebase.json", "r") as read:
 #     file_contents = json.load(read)
@@ -22,21 +29,23 @@ ref = db.reference("/tarefas")
 # columns = [desc for desc in tarefas]
 # df = pd.DataFrame(tarefas, columns=columns)
 # df =df.T
-#df = df[['meta', 'data_meta', 'saida']]
+# df = df[['meta', 'data_meta', 'saida']]
 # selecionar = (df['meta'] == 'prova') & (df['data_meta'] == "15/04/2024")
 # df = df[selecionar]
-# df = df.sort_values(by = "saida", ascending=True) 
+# df = df.sort_values(by = "saida", ascending=True)
 # print(df.to_json())
-def dataframeTarefas():
-        list_taks_saves = ref.get()
-        columns = [desc for desc in list_taks_saves]
-        df = pd.DataFrame(list_taks_saves, columns=columns)
-        return  df.T
 
 
-print(dataframeTarefas())
-df = dataframeTarefas()
-df.loc
+# def dataframeTarefas():
+#     list_taks_saves = ref.get()
+#     columns = [desc for desc in list_taks_saves]
+#     df = pd.DataFrame(list_taks_saves, columns=columns)
+#     return df.T
+
+
+# print(dataframeTarefas())
+# df = dataframeTarefas()
+# df.loc
 
 
 # conn = sqlite3.connect('ServidorWeb/banco.db')

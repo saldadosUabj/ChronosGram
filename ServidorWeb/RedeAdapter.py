@@ -3,6 +3,7 @@ from datetime import datetime
 import imp
 import sqlite3 as sql
 from time import time
+from matplotlib import table
 from matplotlib.font_manager import stretch_dict
 from pydantic import BaseModel
 import pandas as pd
@@ -11,14 +12,7 @@ from firebase_admin import credentials, db
 from firebase_admin import db
 import uuid
 
-
-class admin():
-    cred = credentials.Certificate(
-        "chronosgram-b6288-firebase-adminsdk-rvgjf-74165c4cc3.json")
-    default_app = firebase_admin.initialize_app(cred, {
-        'databaseURL': "https://banco-usuario-default-rtdb.firebaseio.com/"
-    })
-    ref = db.reference("/tarefas")
+from FireBaseAdm import FirebaseAdm
 
 
 class Tarefa(BaseModel):
@@ -42,12 +36,11 @@ class Tarefa(BaseModel):
 
 class RedeAdapter():
 
-    def __init__(self, banco_dados):
-        self.con = sql.connect(banco_dados, check_same_thread=False)
-        self.cursor = self.con.cursor()
+    def __init__(self,tabela):
+        self.ref = FirebaseAdm.tabela(tabela)
     
     def dataframeTarefas(self):
-        list_taks_saves = admin.ref.get()
+        list_taks_saves = self.ref.get()
         columns = [desc for desc in list_taks_saves]
         df = pd.DataFrame(list_taks_saves, columns=columns)
         return  df.T
@@ -88,24 +81,16 @@ class RedeAdapter():
             'desgastes': desgastes,
             'saida': saida
         }
-        admin.ref.child(str(uuid.uuid1())).set(doc_data)
+        self.ref.child(str(uuid.uuid1())).set(doc_data)
 
     def get_tasks(self):
-        # list_taks_saves = admin.ref.get()
-        # columns = [desc for desc in list_taks_saves]
-        # df = pd.DataFrame(list_taks_saves, columns=columns)
         return self.dataframeTarefas()
 
     def get_best_task(self, meta, data_meta):
-        # list_taks_saves = admin.ref.get()
-        # columns = [desc for desc in list_taks_saves]
-        # df = pd.DataFrame(list_taks_saves, columns=columns)
         df = self.dataframeTarefas()
-        #df = df[['meta', 'data_meta', 'saida']]
         selecionar = (df['meta'] == {meta}) & (df['data_meta'] == {data_meta})
         df = df[selecionar]
         df = df.sort_values(by="saida", ascending=False)
-
         return df.to_json()
 
     def update_saida(self, saida_values):
