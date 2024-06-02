@@ -12,7 +12,7 @@ class User(BaseModel):
     senha: str
 
 class Tarefa(BaseModel):
-    id: int  # Certifique-se de incluir o campo 'id'
+    id: int  
     meta: str
     data_meta: str
     nome: str
@@ -130,3 +130,9 @@ def delete_tarefa(tarefa_id: int):
         raise HTTPException(status_code=404, detail="Tarefa not found")
     fake_tarefas_db.remove(tarefa)
     return tarefa
+
+if __name__ == "__main__":
+    import uvicorn
+
+    # Run the FastAPI app using uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
