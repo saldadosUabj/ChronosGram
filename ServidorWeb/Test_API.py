@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from .main import app
+from main import app
 
 client = TestClient(app)
 
@@ -70,7 +70,9 @@ def test_read_tarefas():
 def test_read_tarefa():
     response = client.get("/tarefas/1")
     assert response.status_code == 200
-    assert response.json()["id"] == 1
+    json_response = response.json()
+    assert "id" in json_response  
+    assert json_response["id"] == 1
 
 def test_update_tarefa():
     response = client.put("/tarefas/1", json={
@@ -95,6 +97,27 @@ def test_update_tarefa():
     assert response.json()["meta"] == "Updated Task"
 
 def test_delete_tarefa():
+    client.post("/tarefas/", json={
+        "id": 1,
+        "meta": "Task to Delete",
+        "data_meta": "2024-07-01",
+        "nome": "Task Work",
+        "status": 1,
+        "assunto": "Study",
+        "material_estudo": "Notes",
+        "materia": "Math",
+        "tempo_ate_meta": 5,
+        "tempo_livre_estudo": 3,
+        "tipo_material": 1,
+        "nota": 10,
+        "tempo_estudado": 2,
+        "indice_facilidade_disciplina": 5,
+        "recomendacoes": 3,
+        "desgastes": 1,
+        "saida": 88.5
+    })
     response = client.delete("/tarefas/1")
     assert response.status_code == 200
-    assert response.json()["id"] == 1
+    json_response = response.json()
+    assert "id" in json_response  
+    assert json_response["id"] == 1
