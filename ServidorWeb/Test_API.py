@@ -91,4 +91,10 @@ def test_update_tarefa():
         "desgastes": 2,
         "saida": 90.0
     })
-    assert response.status_code ==
+    assert response.status_code == 200
+    assert response.json()["meta"] == "Updated Task"
+
+def test_delete_tarefa():
+    response = client.delete("/tarefas/1")
+    assert response.status_code == 200
+    assert response.json()["id"] == 1
