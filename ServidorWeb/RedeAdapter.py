@@ -14,6 +14,9 @@ import uuid
 
 from FireBaseAdm import FirebaseAdm
 
+class FireBaseAdmRede():
+    firebase_admin.get_app()
+    ref = db.reference("/tarefas")
 
 class Tarefa(BaseModel):
     meta: str
@@ -36,11 +39,11 @@ class Tarefa(BaseModel):
 
 class RedeAdapter():
 
-    def __init__(self,tabela):
-        self.ref = FirebaseAdm.tabela(tabela)
+    def __init__(self) -> None:
+        pass
     
     def dataframeTarefas(self):
-        list_taks_saves = self.ref.get()
+        list_taks_saves = FireBaseAdmRede.ref.get()
         columns = [desc for desc in list_taks_saves]
         df = pd.DataFrame(list_taks_saves, columns=columns)
         return  df.T
@@ -81,7 +84,7 @@ class RedeAdapter():
             'desgastes': desgastes,
             'saida': saida
         }
-        self.ref.child(str(uuid.uuid1())).set(doc_data)
+        FireBaseAdmRede.ref.child(str(uuid.uuid1())).set(doc_data) 
 
     def get_tasks(self):
         return self.dataframeTarefas()

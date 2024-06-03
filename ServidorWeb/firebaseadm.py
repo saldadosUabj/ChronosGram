@@ -11,10 +11,6 @@ class FirebaseAdm():
         'databaseURL': "https://banco-usuario-default-rtdb.firebaseio.com/"
         })
             
-        def tabela(tabela):
-            ref = db.reference("/{tabela}")
-            return ref
-            
 
 
 

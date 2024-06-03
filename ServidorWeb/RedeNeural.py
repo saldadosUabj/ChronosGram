@@ -11,9 +11,9 @@ import sqlite3 as sql
 
 class RedeNeural():
 
-    def __init__(self, caminho_do_modelo, banco):
+    def __init__(self, caminho_do_modelo):
         self.modelo = tf.saved_model.load(caminho_do_modelo)
-        self.rede = RedeAdapter(banco)
+        self.rede = RedeAdapter()
         self.scaler_X = StandardScaler()
         self.scaler_y = StandardScaler()
         self.X_cols = ['tempo_ate_meta', 'tempo_livre_estudo', 'tipo_material', 'nota',

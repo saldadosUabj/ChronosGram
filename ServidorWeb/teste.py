@@ -1,25 +1,29 @@
 from datetime import datetime
+from email.policy import default
 from unittest import result
 
 import pandas as pd
+from pydantic import BaseModel
 from RedeNeural import RedeNeural
 from RedeAdapter import RedeAdapter
 import sqlite3 as sql
-from firebase_admin import db
+from firebase_admin import db, credentials
+import firebase_admin
+
 # 
-Redeadaptar = RedeAdapter("banco.db")
-con = sql.connect("banco.db", check_same_thread=False)
-cursor = con.cursor()
-meta = "prova"
-data_meta = "15/04/2024"
-query_meta = "SELECT * FROM tarefas WHERE meta = '{}' and data_meta ='{}';".format(meta, data_meta)
-tasks = pd.read_sql_query(query_meta,con)
-print(tasks)
+# Redeadaptar = RedeAdapter("banco.db")
+# con = sql.connect("banco.db", check_same_thread=False)
+# cursor = con.cursor()
+# meta = "prova"
+# data_meta = "15/04/2024"
+# query_meta = "SELECT * FROM tarefas WHERE meta = '{}' and data_meta ='{}';".format(meta, data_meta)
+# tasks = pd.read_sql_query(query_meta,con)
+# print(tasks)
 
-tasks.sort_values(by = "saida", ascending=True)
-dataframe_metas_json = tasks.to_json()
+# tasks.sort_values(by = "saida", ascending=True)
+# dataframe_metas_json = tasks.to_json()
 
-print(dataframe_metas_json)
+# print(dataframe_metas_json)
 # redeNeural = RedeNeural("/home/yrikes/Codigos/projeto/ChronosGram/ModeloIa","banco.db")
 # print(Redeadaptar.get_task())
 # saida = redeNeural.prediz()
@@ -77,5 +81,31 @@ print(dataframe_metas_json)
 # columns = [desc[-1] for desc in cursor.description]
 # df = pd.DataFrame(result, columns=columns)
 # print(df)
+class User(BaseModel):
+    nome: str
+    turno_livre: str
+    email: str
+    senha: str
 
+firebase_admin.get_app()
+ref = db.reference("/users")
+#print(ref.pegarTabela().get()) 
+
+dataBase = ref.get()
+columns = [desc for desc in dataBase]
+df = pd.DataFrame(dataBase, columns=columns)
+df = df.T
+email = 'vini@gmail.com'
+senha = '123456'
+
+# select_df = (df['email'] == email) & (df['senha'] == senha)
+# if(select_df):
+#         if((new_Data.nome != None)):
+#                 ref.child(select_df['id']).update({"nome":{new_Data.nome}})
+#         if((new_Data.email != None)):
+#                 ref.child(select_df['id']).update({"nome":{new_Data.email}})
+#         if((new_Data.senha!= None)):
+#                 ref.child(select_df['id']).update({"nome":{new_Data.senha}})
+#         if((new_Data.turno_livre!= None)):
+#                 ref.child(select_df['id']).update({"nome":{new_Data.turno}})
 

@@ -2,6 +2,7 @@
 
 from ast import main
 from datetime import datetime
+from re import U
 from fastapi import FastAPI
 from pydantic import BaseModel
 import sqlite3 as sql
@@ -10,7 +11,6 @@ from RedeNeural import RedeNeural
 from Usuarios import Usuarios
 
 class User(BaseModel):
-    id: int
     nome: str
     turno_livre: str
     email: str
@@ -36,9 +36,9 @@ class Tarefa(BaseModel):
 
 
 app = FastAPI()
-rede_neural = RedeNeural("ModeloIa", "tarefas")
-banco = RedeAdapter("tarefas")
-usuario = Usuarios("users")
+rede_neural = RedeNeural("ModeloIa")
+banco = RedeAdapter()
+usuario = Usuarios()
 # @app.get("/tarefas")
 # def pesquisa():
 #     return alunos
@@ -52,39 +52,18 @@ usuario = Usuarios("users")
 #     return "not found"
 
 
-# @app.post("/user")
-# def inserir(info: user):
-#     alunos.append({
-#         "id": info.id,
-#         "nome": info.nome,
-#         "email": info.email,
-#         "senha": info.senha,
-#         "turno_livre": info.turno_livre
-#     })
-#     return alunos
+@app.put("/user")
+def atualizar(info: User, email, senha):
+    atualizado_df = usuario.updateUser(info,email,senha)
+    return atualizado_df
 
-
-# @app.put("/user/id")
-# def atualizar(info: user, id: int):
-#     contador = 0
-#     for aluno in alunos:
-#         if aluno["id"] == id:
-#             alunos[contador] = {
-#                 "id": info.id,
-#                 "nome": info.nome,
-#                 "email": info.email,
-#                 "senha": info.senha,
-#                 "turno_livre": info.turno_livre
-#             }
-#         return "atualizado"
-#         contador += 1
-#     return "produto inexistente"
 @app.post("/users")
 def create_user(dados: User):
      usuario.createUser(dados)
 
-
-
+@app.get("/users")
+def read_users():
+    return usuario.readUser()
 
 @app.post("/redeNeural")
 def insert_neural_data(dados:Tarefa):
