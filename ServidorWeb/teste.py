@@ -1,14 +1,18 @@
 from datetime import datetime
 from email.policy import default
+import random
 from unittest import result
+import uuid
 
 import pandas as pd
 from pydantic import BaseModel
+from pyparsing import NoMatch
 from RedeNeural import RedeNeural
 from RedeAdapter import RedeAdapter
 import sqlite3 as sql
-from firebase_admin import db, credentials
+from firebase_admin import credentials, db
 import firebase_admin
+from FireBaseAdm import FirebaseAdm
 
 # 
 # Redeadaptar = RedeAdapter("banco.db")
@@ -81,31 +85,64 @@ import firebase_admin
 # columns = [desc[-1] for desc in cursor.description]
 # df = pd.DataFrame(result, columns=columns)
 # print(df)
-class User(BaseModel):
-    nome: str
-    turno_livre: str
-    email: str
-    senha: str
+# class User(BaseModel):
+#     nome: str
+#     turno_livre: str
+#     email: str
+#     senha: str
+
+# firebase_admin.get_app()
+# ref = db.reference("/users")
+# #print(ref.pegarTabela().get()) 
+# newData = {
+#   "nome": "string",
+#   "turno_livre": "string",
+#   "email": "string",
+#   "senha": "string"
+# }
+
+# dataBase = ref.get()
+
+# print(filtrar)
+# for key, value in dataBase:
+#             if((value["email"] == "{}".format(verificar_email)) & (value["senha"] == "{}".format(verificar_senha))):
+#                 if(nome != None):
+#                   FireBaseAdmUser.ref.child(key).update({"nome":{nome}})
+#                 if(turno_livre != None):
+#                   FireBaseAdmUser.ref.child(key['email']).update({"turno":{turno_livre}})
+#                 if(email != None):
+#                   FireBaseAdmUser.ref.child(key['email']).update({"email":{email}})
+#                 if(senha!= None):
+#                   FireBaseAdmUser.ref.child(key['email']).update({"nome":{senha}})
+# columns = [desc for desc in dataBase]
+# df = pd.DataFrame(dataBase, columns=columns)
+# df = df.T
+# email = 'vini@gmail.com'
+# senha = '123456'
+# selecionar = (df['email'] == '{}'.format(email)) & (df['senha'] == '{}'.format(senha))
+# select_df = df[selecionar]
+# print(select_df.iloc[:,0])
+
+
+# if((User.nome != None)):
+#     ref.child(select_df).update({"nome":{User.nome}})
+# if((User.email != None)):
+#     ref.child(select_df).update({"email":{User.email}})
+# if((User.senha!= None)):
+#     ref.child(select_df).update({"senha":{User.senha}})
+# if((User.turno_livre!= None)):
+#     ref.child(select_df).update({"turno":{User.turno_livre}})
 
 firebase_admin.get_app()
-ref = db.reference("/users")
-#print(ref.pegarTabela().get()) 
 
-dataBase = ref.get()
-columns = [desc for desc in dataBase]
-df = pd.DataFrame(dataBase, columns=columns)
-df = df.T
-email = 'vini@gmail.com'
-senha = '123456'
+ref = db.reference("/alocacao")
 
-# select_df = (df['email'] == email) & (df['senha'] == senha)
-# if(select_df):
-#         if((new_Data.nome != None)):
-#                 ref.child(select_df['id']).update({"nome":{new_Data.nome}})
-#         if((new_Data.email != None)):
-#                 ref.child(select_df['id']).update({"nome":{new_Data.email}})
-#         if((new_Data.senha!= None)):
-#                 ref.child(select_df['id']).update({"nome":{new_Data.senha}})
-#         if((new_Data.turno_livre!= None)):
-#                 ref.child(select_df['id']).update({"nome":{new_Data.turno}})
+keyUser = "3b265655-1773-11ef-88ba-2c6dc1b23710"
+keyTarefa = "a7b08e66-21b0-11ef-b3f1-2c6dc1b23710"
+
+doc = {
+            'id_user': keyUser,
+            'id_tarefa': keyTarefa
+        }
+ref.child(str(uuid.uuid1())).set(doc)
 

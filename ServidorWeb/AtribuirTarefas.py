@@ -1,0 +1,33 @@
+import random
+from uuid import uuid1
+import uuid
+import firebase_admin
+from firebase_admin import db
+from numpy import integer
+from pydantic import BaseModel
+
+class FireBaseAdmGeral():
+    firebase_admin.get_app()
+    ref_tarefas = db.reference("/tarefas")
+    ref_users = db.reference("/users")
+    ref_alocar = db.reference("/alocacao")
+
+class Atribuir(BaseModel):
+    keyUser : str
+    keyTarefa: str
+
+class AtribuirTarefas():
+
+    def __init__(self) -> None:
+        pass
+
+    def alocacao(self, atribuir):
+        keyUser = atribuir.keyUser
+        keyTarefa =  atribuir.keyTarefa
+
+        doc = {
+            'id_user': keyUser,
+            'id_tarefa': keyTarefa
+        }
+
+        FireBaseAdmGeral.ref_alocar.child(str(uuid.uuid1())).set(doc)

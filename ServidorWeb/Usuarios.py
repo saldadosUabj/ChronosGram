@@ -1,5 +1,8 @@
+from curses import OK
+from email.policy import HTTP
 from typing import Self
 import uuid
+from fastapi import responses
 import firebase_admin
 from firebase_admin import credentials, db
 from h11 import Response
@@ -49,19 +52,26 @@ class Usuarios():
     def readUser(self):
         return self.dataframeUser()
 
-    def updateUser(self, new_Data, email, senha):
-        df = self.dataframeUser()
-        select_df = (df['email'] == email) & (df['senha'] == senha)
-        if(select_df):
-            if((new_Data.nome != None)):
-                FireBaseAdmUser.ref.child(select_df['id']).update({"nome":{new_Data.nome}})
-            if((new_Data.email != None)):
-                FireBaseAdmUser.ref.child(select_df['id']).update({"nome":{new_Data.email}})
-            if((new_Data.senha!= None)):
-                FireBaseAdmUser.ref.child(select_df['id']).update({"nome":{new_Data.senha}})
-            if((new_Data.turno_livre!= None)):
-                FireBaseAdmUser.ref.child(select_df['id']).update({"nome":{new_Data.turno}})
-        return select_df
+    def updateUser(self, new_Data, verificar_email, verificar_senha):
+        nome = new_Data.nome
+        turno_livre = new_Data.turno_livre
+        email = new_Data.email
+        senha = new_Data.senha
+        dataBase = FireBaseAdmUser.ref.get()
+        for key, value in dataBase.items(): # type: ignore
+            if (value["email"] == verificar_email) and (value["senha"] == verificar_senha):
+                if nome != "string":
+                    FireBaseAdmUser.ref.child(key).update({"nome": nome})
+                if turno_livre != "string":
+                    FireBaseAdmUser.ref.child(key).update({"turno": turno_livre})
+                if email != "string":
+                    FireBaseAdmUser.ref.child(key).update({"email": email})
+                if senha != "string":
+                    FireBaseAdmUser.ref.child(key).update({"senha": senha})
+                break
+
+        return "OK"
+
 
 
 
