@@ -4,6 +4,7 @@ import uuid
 import firebase_admin
 from firebase_admin import db
 from numpy import integer
+import pandas as pd
 from pydantic import BaseModel
 
 class FireBaseAdmGeral():
@@ -31,3 +32,13 @@ class AtribuirTarefas():
         }
 
         FireBaseAdmGeral.ref_alocar.child(str(uuid.uuid1())).set(doc)
+    
+    def getTask_byUser(self,id_user):
+        dataBase = FireBaseAdmGeral.ref_alocar.get()
+        columns = [desc for desc in dataBase]
+        df = pd.DataFrame(dataBase, columns=columns)
+        df = df.T
+        filtro = df['id_user'] == id_user
+        df = df[filtro]
+        return df.to_json()
+    
