@@ -91,8 +91,8 @@ export default function Form({ NomeMetas, date }) {
     const [inforCards, setInforCards] = useState([
             { nomeCadeira: 'Exercício 14-25 - 1º Lei Termodinâmica' , horario: '30 - Min' , coins: '20'},
             { nomeCadeira: 'Vídeo Aula' , horario: '40 - Min' , coins: '20'},
-            { nomeCadeira: 'Exercício 20-35' , horario: '30 - Min' , coins: '20'},
-            { nomeCadeira: 'Resumo' , horario: '15 - Min' , coins: '20'},
+            // { nomeCadeira: 'Exercício 20-35' , horario: '30 - Min' , coins: '20'},
+            // { nomeCadeira: 'Resumo' , horario: '15 - Min' , coins: '20'},
         ]) 
 
     const removeCard = (nomeCadeira) => {
