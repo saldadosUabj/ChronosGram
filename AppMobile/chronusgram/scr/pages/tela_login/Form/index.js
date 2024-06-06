@@ -1,6 +1,6 @@
 // Dependências //
 import React, { useState } from 'react';
-import {Text, TextInput, View, TouchableOpacity, Alert, Vibration, ActivityIndicator } from 'react-native';
+import {Text, TextInput, View, TouchableOpacity, Vibration, ActivityIndicator } from 'react-native';
 import styles from './style';
 import { useNavigation} from '@react-navigation/native';
 import UserAPI from '../../../services/userAPI';
@@ -10,26 +10,42 @@ import { auth } from '../../../services/firebaseConfig';
 // Função de renderização // 
 export default function Form(){
 
+    // Declaração de variáveis //
     const userApi = new UserAPI()
     const navigation = useNavigation();
     const [email, setEmail] = useState()
     const [password, setSenha] = useState()
     const [activityIndicator, setActivityIndicator] = useState(false);
 
+    // Funções auxiliares //
     async function validation(){
         const handleLogin = () => {
             signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         
         const user = userCredential.user;
+        navigation.navigate('TelaPrincipal', user)
         console.log("Login Realizado");        
       })
       .catch((error) => {
+        Vibration.vibrate()
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorMessage)
       });
         }
+    }
+
+    function handlerValidation() {
+        setActivityIndicator(true);
+        setTimeout(() => {
+          try{
+            validation()
+            setActivityIndicator(false);
+          }catch(error){
+            console.log(error)
+          }
+        }, 2000);
     }
 
     // Renderização //    
@@ -54,8 +70,9 @@ export default function Form(){
                     secureTextEntry={true}
                     keyboardType='default'/>
 
-                <TouchableOpacity style={styles.buttonEntrar}  onPress={() => validation()} >
-                    <Text style={styles.buttonText} onPress={() => navigation.navigate('TelaPrincipal')}> Entrar </Text>
+                <TouchableOpacity style={styles.buttonEntrar}  onPress={() => handlerValidation()} >
+                    { activityIndicator? (<ActivityIndicator size="large" color="#CBC5EA"/>) : 
+                    <Text style={styles.buttonText} onPress={() => navigation.navigate('TelaPrincipal')}> Entrar </Text>}
                 </TouchableOpacity>
 
             </View>

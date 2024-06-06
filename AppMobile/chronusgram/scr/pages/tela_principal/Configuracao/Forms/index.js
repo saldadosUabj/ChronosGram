@@ -128,11 +128,9 @@ export default function Form() {
                     placeholder='Free Time Style'/>
 
                 <TouchableOpacity style={styles.buttonEntrar} onPress={() => handlerDados()}>
-                    { activityIndicator? (
-                        <ActivityIndicator size="large" color="#CBC5EA" />
-                    ) :<Text style={styles.buttonText}>
-                             Salvar
-                       </Text>}
+                    { activityIndicator? 
+                        (<ActivityIndicator size="large" color="#CBC5EA" />) :
+                        <Text style={styles.buttonText}> Salvar </Text>}
                 </TouchableOpacity>          
 
             </View>
