@@ -10,10 +10,11 @@ export default function App() {
 
     // Declaração de varíaveis //
     const route = useRoute();
+    const objeto = route.params?.objeto
     const NomeMetas = route.params?.NomeMetas
     const date = route.params?.date
 
-    console.log(`${NomeMetas} ${date}`)
+    console.log(`${objeto} aqui`)
 
     // Função de renderização
     return (

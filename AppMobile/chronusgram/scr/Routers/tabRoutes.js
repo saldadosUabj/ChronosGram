@@ -17,8 +17,11 @@ export default function TabRoutes(){
   const route = useRoute();
   const NomeMetas = route.params?.NomeMetas
   const date = route.params?.date
-
-  console.log(NomeMetas)
+  const objeto = {
+    NomeMetas: NomeMetas,
+    date: date,
+  }
+  console.log(objeto.NomeMetas)
   
   // Renderização
   return(
@@ -45,17 +48,17 @@ export default function TabRoutes(){
               <Tab.Screen
                 name="Perfil"
                 component={Perfil}
-                initialParams={{ NomeMetas, date }}/>
+                initialParams={{ objeto }}/>
 
               <Tab.Screen
                 name="Home"
                 component={Home}
-                initialParams={{ NomeMetas, date }}/>
+                initialParams={{ objeto }}/>
 
               <Tab.Screen
                 name="Configuração"
                 component={Configuracao}
-                initialParams={{ NomeMetas, date }}/>
+                initialParams={{ objeto }}/>
 
         </Tab.Navigator>
 
