@@ -73,7 +73,6 @@ export default function Form(){
     function getData(turno) {
         const horarios = {
           matutino: [
-            { key: '10-12', value: '10h - 12h' },
             { key: '12-14', value: '12h - 14h' },
             { key: '14-16', value: '14h - 16h' },
             { key: '16-18', value: '16h - 18h' },
@@ -81,7 +80,7 @@ export default function Form(){
             { key: '20-22', value: '20h - 22h' },
             { key: '22-24', value: '22h - 24h' },
           ],
-          vespertino: [
+          vespetino: [
             { key: '6-8', value: '6h - 8h' },
             { key: '8-10', value: '8h - 10h' },
             { key: '10-12', value: '10h - 12h' },
@@ -101,9 +100,8 @@ export default function Form(){
             { key: '22-24', value: '22h - 24h' },
           ],
         };
-      
-        return horarios[turno] || horarios.integral;
-      }
+      return horarios[turno] || horarios.integral;
+    }
       
     
     // Renderização
