@@ -109,7 +109,7 @@ export default function Form(){
 
                 <TouchableOpacity style={styles.buttonEntrar} onPress={() => continuarRegistro()}>
 
-                    <Text style={styles.buttonText} onPress={() => navigation.navigate('TelaDeRegistro2')}> Continuar </Text>
+                    <Text style={styles.buttonText} onPress={() => navigation.navigate('TelaDeRegistro2', turno)}> Continuar </Text>
                     
                 </TouchableOpacity>  
 

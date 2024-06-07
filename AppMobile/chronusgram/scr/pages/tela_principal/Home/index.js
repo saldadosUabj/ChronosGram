@@ -1,9 +1,9 @@
 // Dependências //
 import React from 'react';
+import { useRoute } from '@react-navigation/native';
 import { StyleSheet, View } from 'react-native';
 import Form from './Forms/index';
 import UserDate from './userDate/index';
-import { useRoute } from '@react-navigation/native';
 
 // Função de renderização //
 export default function App() {

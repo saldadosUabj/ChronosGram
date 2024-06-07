@@ -1,18 +1,19 @@
+// Dependências //
 import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity,Image, ScrollView, Text, ActivityIndicator } from 'react-native';
+import { View, TouchableOpacity, ScrollView, Text, ActivityIndicator } from 'react-native';
+import { SelectList, MultipleSelectList  } from 'react-native-dropdown-select-list'
+import { useNavigation} from '@react-navigation/native'; 
 import styles from './style';
 import UserApi from '../../../../services/userAPI'
-import { useNavigation} from '@react-navigation/native';
-import { SelectList, MultipleSelectList  } from 'react-native-dropdown-select-list'
 
-
+// Função de renderização
 export default function Form() {
 
+    // Declaração de variáveis // 
     const navigation = useNavigation();
     const userApi = new UserApi();
     const [dados,setDados] = useState(null);
     const [activityIndicator, setActivityIndicator] = useState(false);
-
 
     const data_freeTime = [
         { key: 'equilibrada', value: 'Equilibrada' },
@@ -24,6 +25,7 @@ export default function Form() {
     const [freeTimeStyle, setFreeTimeStyle] = useState(null)
     const [turno,setTurno] = useState(null)
 
+    // Funções auxiliares
     function getData(){
         if(turno == 'matutino'){
             const data_horarios_matutino = [
