@@ -37,7 +37,9 @@ def test_read_users():
 def test_read_user():
     response = client.get("/users/1")
     assert response.status_code == 200
-    assert response.json()["id"] == 1
+    json_response = response.json()
+    assert "id" in json_response  
+    assert json_response["id"] == 1
 
 def test_update_user():
     response = client.put("/users/1", json={
