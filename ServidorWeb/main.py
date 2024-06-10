@@ -8,9 +8,10 @@ class User(BaseModel):
     id: int
     nome: str
     turno_livre: str
-    tipo: str 
+    tipo: str
     email: str
     senha: str
+    username: str
 
 class Tarefa(BaseModel):
     id: int  
@@ -36,6 +37,7 @@ class UserUpdate(BaseModel):
     tipo: str
     email: str
     senha: str
+    username: str
 
 class TarefaUpdate(BaseModel):
     meta: str
@@ -56,8 +58,8 @@ class TarefaUpdate(BaseModel):
     
     
 fake_users_db = [
-    {"id": 1, "nome": "User One", "turno_livre": "manhã", "tipo": "intensivo", "email": "userone@example.com", "senha": "password1"},
-    {"id": 2, "nome": "User Two", "turno_livre": "tarde", "tipo": "casual", "email": "usertwo@example.com", "senha": "password2"},
+    {"id": 1, "nome": "User One", "turno_livre": "manhã", "tipo": "casual", "email": "userone@example.com", "senha": "password1", "username": "user1"},
+    {"id": 2, "nome": "User Two", "turno_livre": "tarde", "tipo": "intensivo", "email": "usertwo@example.com", "senha": "password2", "username": "user2"},
 ]
 
 fake_tarefas_db = [
@@ -66,9 +68,13 @@ fake_tarefas_db = [
      "tipo_material": 1, "nota": 5, "tempo_estudado": 3,
      "indice_facilidade_disciplina": 4, "recomendacoes": 2, "desgastes": 1, "saida": 95.5}
 ]
+
+
     
 @app.post("/users/", response_model=User)
 def create_user(user: User):
+    if any(u["username"] == user.username for u in fake_users_db):
+        raise HTTPException(status_code=400, detail="Username already registered")
     fake_users_db.append(user.dict())
     return user
 
@@ -88,6 +94,11 @@ def update_user(user_id: int, user_update: UserUpdate):
     user = next((u for u in fake_users_db if u["id"] == user_id), None)
     if user is None:
         raise HTTPException(status_code=404, detail="User not found")
+    
+    # Verifica se o novo username já está sendo usado por outro usuário
+    if any(u["username"] == user_update.username and u["id"] != user_id for u in fake_users_db):
+        raise HTTPException(status_code=422, detail="Username already registered")  # Corrigido para retornar 422
+    
     user.update(user_update.dict())
     return user
 

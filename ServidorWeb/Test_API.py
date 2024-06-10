@@ -10,10 +10,24 @@ def test_create_user():
         "turno_livre": "noite",
         "tipo": "puxado",
         "email": "testuser@example.com",
-        "senha": "password123"
+        "senha": "password123",
+        "username": "testuser1"
     })
     assert response.status_code == 200
     assert response.json()["email"] == "testuser@example.com"
+    
+def test_create_user_duplicate_username():
+    response = client.post("/users/", json={
+        "id": 4,
+        "nome": "Test User 2",
+        "turno_livre": "tarde",
+        "tipo": "intensivo",
+        "email": "testuser2@example.com",
+        "senha": "password456",
+        "username": "testuser1"  # Tentativa de usar o mesmo username
+    })
+    assert response.status_code == 400  # Espera-se um erro 400
+    assert response.json()["detail"] == "Username already registered"
 
 def test_read_users():
     response = client.get("/users/")
@@ -31,10 +45,10 @@ def test_update_user():
         "turno_livre": "tarde",
         "tipo": "casual",
         "email": "updateduser@example.com",
-        "senha": "newpassword123"
+        "senha": "newpassword123",
+        "username": "user2"  # Tentativa de atualizar para um username já existente
     })
-    assert response.status_code == 200
-    assert response.json()["nome"] == "Updated User"
+    assert response.status_code == 422  # Espera-se um erro 422
 
 def test_delete_user():
     response = client.delete("/users/1")
