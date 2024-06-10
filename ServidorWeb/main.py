@@ -8,6 +8,7 @@ class User(BaseModel):
     id: int
     nome: str
     turno_livre: str
+    tipo: str 
     email: str
     senha: str
 
@@ -21,7 +22,6 @@ class Tarefa(BaseModel):
     material_estudo: str
     materia: str
     tempo_ate_meta: int
-    tempo_livre_estudo: int
     tipo_material: int
     nota: int
     tempo_estudado: int
@@ -33,6 +33,7 @@ class Tarefa(BaseModel):
 class UserUpdate(BaseModel):
     nome: str
     turno_livre: str
+    tipo: str
     email: str
     senha: str
 
@@ -45,7 +46,6 @@ class TarefaUpdate(BaseModel):
     material_estudo: str
     materia: str
     tempo_ate_meta: int
-    tempo_livre_estudo: int
     tipo_material: int
     nota: int
     tempo_estudado: int
@@ -56,14 +56,14 @@ class TarefaUpdate(BaseModel):
     
     
 fake_users_db = [
-    {"id": 1, "nome": "User One", "turno_livre": "manhã", "email": "userone@example.com", "senha": "password1"},
-    {"id": 2, "nome": "User Two", "turno_livre": "tarde", "email": "usertwo@example.com", "senha": "password2"},
+    {"id": 1, "nome": "User One", "turno_livre": "manhã", "tipo": "intensivo", "email": "userone@example.com", "senha": "password1"},
+    {"id": 2, "nome": "User Two", "turno_livre": "tarde", "tipo": "casual", "email": "usertwo@example.com", "senha": "password2"},
 ]
 
 fake_tarefas_db = [
     {"id": 1, "meta": "Complete project", "data_meta": "2024-06-30", "nome": "Project Work", "status": 1,
      "assunto": "Development", "material_estudo": "Books", "materia": "CS", "tempo_ate_meta": 10,
-     "tempo_livre_estudo": 2, "tipo_material": 1, "nota": 5, "tempo_estudado": 3,
+     "tipo_material": 1, "nota": 5, "tempo_estudado": 3,
      "indice_facilidade_disciplina": 4, "recomendacoes": 2, "desgastes": 1, "saida": 95.5}
 ]
     

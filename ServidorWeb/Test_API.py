@@ -8,6 +8,7 @@ def test_create_user():
         "id": 3,
         "nome": "Test User",
         "turno_livre": "noite",
+        "tipo": "puxado",
         "email": "testuser@example.com",
         "senha": "password123"
     })
@@ -28,6 +29,7 @@ def test_update_user():
     response = client.put("/users/1", json={
         "nome": "Updated User",
         "turno_livre": "tarde",
+        "tipo": "casual",
         "email": "updateduser@example.com",
         "senha": "newpassword123"
     })
@@ -50,7 +52,6 @@ def test_create_tarefa():
         "material_estudo": "Notes",
         "materia": "Math",
         "tempo_ate_meta": 5,
-        "tempo_livre_estudo": 3,
         "tipo_material": 1,
         "nota": 10,
         "tempo_estudado": 2,
@@ -84,7 +85,6 @@ def test_update_tarefa():
         "material_estudo": "Textbooks",
         "materia": "Science",
         "tempo_ate_meta": 7,
-        "tempo_livre_estudo": 4,
         "tipo_material": 2,
         "nota": 8,
         "tempo_estudado": 5,
@@ -107,7 +107,6 @@ def test_delete_tarefa():
         "material_estudo": "Notes",
         "materia": "Math",
         "tempo_ate_meta": 5,
-        "tempo_livre_estudo": 3,
         "tipo_material": 1,
         "nota": 10,
         "tempo_estudado": 2,
