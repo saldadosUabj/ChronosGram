@@ -89,9 +89,10 @@ class RedeAdapter():
     def get_tasks(self):
         return self.dataframeTarefas()
 
-    def get_best_task(self, meta, data_meta):
+    def get_best_task(self, meta, data_meta,id):
         df = self.dataframeTarefas()
-        selecionar = (df['meta'] == {meta}) & (df['data_meta'] == {data_meta})
+        selecionar = (df["id"] == {id})
+        #selecionar = (df['meta'] == {meta}) & (df['data_meta'] == {data_meta})
         df = df[selecionar]
         df = df.sort_values(by="saida", ascending=False)
         return df.to_json()
@@ -99,9 +100,6 @@ class RedeAdapter():
     def update_saida(self, saida_values):
         df = self.dataframeTarefas()
         for i, valor_saida in enumerate(saida_values):
-            # list_taks_saves = admin.ref.get()
-            # columns = [desc for desc in list_taks_saves]
-            # df = pd.DataFrame(list_taks_saves, columns=columns)
             df = df.loc[i,'saida'] = abs(valor_saida[0]) 
             #update_query = f"UPDATE tarefas SET saida = {abs(valor_saida[0])} WHERE rowid = {i + 1}"
             #print(update_query)
