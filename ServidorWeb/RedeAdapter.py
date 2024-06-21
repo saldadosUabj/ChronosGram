@@ -12,7 +12,7 @@ from firebase_admin import credentials, db
 from firebase_admin import db
 import uuid
 
-from FireBaseAdm import FirebaseAdm
+from firebaseadm import FirebaseAdm
 
 class FireBaseAdmRede():
     firebase_admin.get_app()
