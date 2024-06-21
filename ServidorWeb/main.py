@@ -1,4 +1,10 @@
 from fastapi import FastAPI, HTTPException
+# Código para ser desenvolvido na feature atulizado
+
+from ast import main
+from datetime import datetime
+from re import U
+from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
 from passlib.context import CryptContext
@@ -7,14 +13,20 @@ app = FastAPI()
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
+import sqlite3 as sql
+from RedeAdapter import RedeAdapter
+from RedeNeural import RedeNeural
+from Usuarios import Usuarios
+
 class User(BaseModel):
-    id: int
+    id:int
     nome: str
     turno_livre: str
     tipo: str
     email: str
     senha: str
     username: str
+
 
 class Tarefa(BaseModel):
     id: int  
@@ -46,7 +58,7 @@ class TarefaUpdate(BaseModel):
     meta: str
     data_meta: str
     nome: str
-    status: int
+    status: str
     assunto: str
     material_estudo: str
     materia: str
@@ -58,6 +70,11 @@ class TarefaUpdate(BaseModel):
     recomendacoes: int
     desgastes: int
     saida: float
+
+app = FastAPI()
+rede_neural = RedeNeural("ModeloIa")
+banco = RedeAdapter()
+usuario = Usuarios()
     
     
 fake_users_db = [
@@ -74,7 +91,7 @@ fake_tarefas_db = [
 
     
 @app.post("/users/", response_model=User)
-def create_user(user: User):
+def create_user_matheus(user: User):
     if any(u["username"] == user.username for u in fake_users_db):
         raise HTTPException(status_code=400, detail="Username already registered")
     user_dict = user.dict()
@@ -83,7 +100,7 @@ def create_user(user: User):
     return user
 
 @app.get("/users/", response_model=List[User])
-def read_users():
+def read_users_matheus():
     return fake_users_db
 
 @app.get("/users/{user_id}", response_model=User)
@@ -144,6 +161,55 @@ def delete_tarefa(tarefa_id: int):
         raise HTTPException(status_code=404, detail="Tarefa not found")
     fake_tarefas_db.remove(tarefa)
     return tarefa
+
+
+# @app.get("/tarefas")
+# def pesquisa():
+#     return alunos
+
+
+# @app.get("/user/{id}")
+# def pesquisa_id(id: int):
+#     for aluno in alunos:
+#         if aluno['id'] == id:
+#             return aluno
+#     return "not found"
+
+
+@app.put("/user")
+def atualizar(info: User, email, senha):
+    atualizado_df = usuario.updateUser(info,email,senha)
+    return atualizado_df
+
+@app.post("/users")
+def create_user(dados: User):
+     usuario.createUser(dados)
+
+@app.get("/users")
+def read_users():
+    return usuario.readUser()
+
+@app.post("/redeNeural")
+def insert_neural_data(dados:Tarefa):
+     banco.insert_task(dados)
+     #banco.finalizar
+     
+@app.get("/redeNeural/{meta}/{dia}/{mes}/{ano}/{id}")
+def get_neural_data(meta:str , dia:str , mes:str, ano:str,id:str):
+    data_entrega = f"{dia}/{mes}/{ano}"
+    return banco.get_best_task(meta,data_entrega,id) 
+
+# @app.put("/tarefas")
+# def insert_tarefas(tarefa: Tarefa):
+#     print(tarefa)
+#     banco.insert_task(tarefa)
+#     banco.finalizar
+
+
+@app.get("/redeNeural")
+def update_dados():
+    return rede_neural.update_rede()
+
 
 if __name__ == "__main__":
     import uvicorn
