@@ -135,14 +135,21 @@ from FireBaseAdm import FirebaseAdm
 
 firebase_admin.get_app()
 
-ref = db.reference("/alocacao")
+ref = db.reference("/tarefas")
 
-keyUser = "3b265655-1773-11ef-88ba-2c6dc1b23710"
-keyTarefa = "a7b08e66-21b0-11ef-b3f1-2c6dc1b23710"
+list_taks_saves = ref.get()
+columns = [desc for desc in list_taks_saves]
+df = pd.DataFrame(list_taks_saves, columns=columns)
+# for key,value in list_taks_saves.items(): # type: ignore
+#     print(key)
+a = list_taks_saves.keys()# type: ignore
+print(a.list())  
+# keyUser = "3b265655-1773-11ef-88ba-2c6dc1b23710"
+# keyTarefa = "a7b08e66-21b0-11ef-b3f1-2c6dc1b23710"
 
-doc = {
-            'id_user': keyUser,
-            'id_tarefa': keyTarefa
-        }
-ref.child(str(uuid.uuid1())).set(doc)
+# doc = {
+#             'id_user': keyUser,
+#             'id_tarefa': keyTarefa
+#         }
+# ref.child(str(uuid.uuid1())).set(doc)
 
