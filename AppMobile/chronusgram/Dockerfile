@@ -7,5 +7,5 @@ RUN npm install
 RUN npm install -g expo-cli
 COPY . .
 
-EXPOSE 19000
+EXPOSE 8080
 CMD ["npm","start"]
