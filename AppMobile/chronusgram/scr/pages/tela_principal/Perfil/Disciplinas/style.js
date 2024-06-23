@@ -8,9 +8,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',  
     },
     logo: {
-        width: 100,
-        height: 100,
-        marginBottom: 20,
+        width: 250,
+        height: 250,
+        marginBottom: -50,
+        marginTop: -100,
     },
     button:{
         backgroundColor: '#CBC5EA',
@@ -22,6 +23,7 @@ const styles = StyleSheet.create({
         marginVertical: 20,
   },
   text:{
+      color: 'white',
       marginBottom: 30,
       fontSize: 16,
       fontWeight: 'bold',

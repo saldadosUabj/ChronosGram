@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
       inputSelectdBox:{
         width: '85%',
         height: 'auto',
-        backgroundColor: '#FFF',
+        backgroundColor: '#E6E7ED',
         marginTop: 15,
         marginHorizontal: 10,
         padding: 10,
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
       inputSelectdBoxDropdown: {
         width: '85%',
         height: 'auto',
-        backgroundColor: '#FFF',
+        backgroundColor: '#E6E7ED',
       },          
   });
 
