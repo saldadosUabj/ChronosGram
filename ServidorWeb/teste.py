@@ -12,7 +12,7 @@ from RedeAdapter import RedeAdapter
 import sqlite3 as sql
 from firebase_admin import credentials, db
 import firebase_admin
-from FireBaseAdm import FirebaseAdm
+from firebaseadm import FirebaseAdm
 
 # 
 # Redeadaptar = RedeAdapter("banco.db")

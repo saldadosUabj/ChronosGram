@@ -9,7 +9,7 @@ from h11 import Response
 import pandas as pd
 from pydantic import BaseModel
 
-from FireBaseAdm import FirebaseAdm
+from firebaseadm import FirebaseAdm
 
 
 class FireBaseAdmUser():
