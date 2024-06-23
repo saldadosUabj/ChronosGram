@@ -1,0 +1,10 @@
+fastapi==0.111.0
+firebase_admin==6.5.0
+matplotlib==3.9.0
+numpy==1.26.4
+pandas==2.2.2
+pydantic==2.7.4
+scikit_learn==1.5.0
+tensorflow==2.16.1
+tensorflow_intel==2.16.1
+uvicorn==0.30.1
