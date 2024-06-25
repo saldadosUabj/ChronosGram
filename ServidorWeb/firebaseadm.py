@@ -2,17 +2,12 @@ import os
 import uuid
 import firebase_admin
 import hashlib
-from firebase_admin import credentials, db
-
+from firebase_admin import db
+from firebasedefault import Default
 
 class FirebaseAdm:
-    def __init__(self):
-        current_dir = os.path.dirname(__file__)
-        cred_path = os.path.join(current_dir, "FBSDK.json")
-        self.cred = credentials.Certificate(cred_path)
-        self.default_app = firebase_admin.initialize_app(self.cred, {
-            'databaseURL': "https://banco-usuario-default-rtdb.firebaseio.com/"
-        })
+    def __init__(self) :
+        firebase_admin.get_app()
 
     def hash_password(self, password):
         return hashlib.sha256(password.encode()).hexdigest()

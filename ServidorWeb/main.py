@@ -1,8 +1,14 @@
 from fastapi import FastAPI, HTTPException
 from firebaseadm import FirebaseAdm
+from RedeNeural import RedeNeural
+from RedeAdapter import RedeAdapter
+from tarefas import Tarefa
 
 app = FastAPI()
 firebase_adm = FirebaseAdm()
+rede_neural = RedeNeural("ModeloIa")
+banco = RedeAdapter()
+
 
 @app.post("/users/")
 def create_user(nome: str, turno_livre: str, tipo: str, email: str, senha: str, username: str):
@@ -109,6 +115,20 @@ def delete_tarefa(tarefa_id: str):
         raise HTTPException(status_code=404, detail="Tarefa not found")
     firebase_adm.delete_tarefa(tarefa_id)
     return tarefa_data
+
+@app.post("/redeNeural")
+def insert_neural_data(dados:Tarefa):
+     banco.insert_task(dados)
+
+@app.get("/redeNeural/{meta}/{dia}/{mes}/{ano}")
+def get_neural_data(meta:str , dia:str , mes:str, ano:str):
+    data_entrega = f"{dia}/{mes}/{ano}"
+    return banco.get_best_task(meta,data_entrega) 
+
+@app.get("/redeNeural")
+def update_dados():
+    return rede_neural.update_rede()
+
 
 if __name__ == "__main__":
     import uvicorn
