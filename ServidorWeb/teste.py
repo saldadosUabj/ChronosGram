@@ -80,7 +80,11 @@ df = df.T
 # selecionar = (df['meta'] == {meta}) & (df['data_meta'] == {data_meta})
 # df = df[selecionar]
 redeneural = RedeNeural("ModeloIa")
-print(type(redeneural.update_rede()))
-for i, valor_saida in enumerate(redeneural.update_rede()): # type: ignore
-        df.iloc[i,'saida'] = abs(valor_saida[1])  # type: ignore
+new_values =  pd.DataFrame(redeneural.update_rede())
+print(type(new_values))
+print(df["saida"])
+# df["saida"] = new_values
+# print(df["saida"])
+
+
 

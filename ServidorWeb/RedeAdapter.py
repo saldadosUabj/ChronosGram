@@ -5,6 +5,7 @@ import sqlite3 as sql
 from time import time
 from matplotlib import table
 from matplotlib.font_manager import stretch_dict
+import numpy as np
 from pydantic import BaseModel
 import pandas as pd
 import firebase_admin
@@ -103,13 +104,12 @@ class RedeAdapter():
         return df.to_json()
 
     def update_saida(self, saida_values):
-        print(saida_values)
-        # df = self.dataframeTarefas()
-        # for i, valor_saida in enumerate(saida_values):
-        #     df.iloc[i,'saida'] = abs(valor_saida[0])  # type: ignore
-            #update_query = f"UPDATE tarefas SET saida = {abs(valor_saida[0])} WHERE rowid = {i + 1}"
-            #print(update_query)
-            #self.cursor.execute(update_query)
+        saida_values=saida_values[np.isfinite(saida_values)].tolist()
+        list_taks_saves = FireBaseAdmRede.ref.get()
+        for i,(key,values) in enumerate(list_taks_saves.items()): # type: ignore
+            if i < len(saida_values):
+                values['saida'] = saida_values[i]
+                FireBaseAdmRede.ref.child(key).set(values)
         return self.get_tasks().to_json()
     
     

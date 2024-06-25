@@ -122,11 +122,7 @@ def insert_neural_data(dados:Tarefa):
 
 @app.get("/redeNeural/{meta}/{dia}/{mes}/{ano}")
 def get_neural_data(meta:str , dia:str , mes:str, ano:str):
-    #formato_string = "%d/%m/%Y"
     data_entrega = f"{dia}/{mes}/{ano}"
-    #data_entrega = datetime.strptime(data_entrega,formato_string) #type:ignore
-    #data_today = datetime.today
-    #duracao = abs(data_entrega - data_today).days #type:ignore
     return banco.get_best_task(meta,data_entrega) 
 
 @app.get("/redeNeural")
