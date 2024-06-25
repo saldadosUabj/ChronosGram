@@ -11,11 +11,9 @@ import sqlite3 as sql
 
 class RedeNeural():
 
-    def __init__(self, caminho_do_modelo, banco):
-        self.con = sql.connect(banco, check_same_thread=False)
-        self.cursor = self.con.cursor()
+    def __init__(self, caminho_do_modelo):
         self.modelo = tf.saved_model.load(caminho_do_modelo)
-        self.rede = RedeAdapter(banco)
+        self.rede = RedeAdapter()
         self.scaler_X = StandardScaler()
         self.scaler_y = StandardScaler()
         self.X_cols = ['tempo_ate_meta', 'tempo_livre_estudo', 'tipo_material', 'nota',
@@ -23,7 +21,7 @@ class RedeNeural():
 
     def prediz(self):
 
-        data = self.rede.get_task()
+        data = self.rede.get_tasks()
         data['saida'] = data['saida'].fillna(0)
         dados_teste = data[self.X_cols]
         self.scaler_X.fit(data[self.X_cols])
@@ -36,7 +34,6 @@ class RedeNeural():
         return previsoes_teste
 
     def update_rede(self):
-        
         dados_previsoes = self.prediz()
         return self.rede.update_saida(dados_previsoes)
             
