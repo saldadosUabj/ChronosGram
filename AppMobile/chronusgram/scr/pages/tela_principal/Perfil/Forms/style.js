@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
       fontFamily: 'Josefins-Sans-Bold',
       fontSize: 14,
     },
-    Lasttext:{
+    textUniversidade:{
       color: 'white',
       fontSize: 14,
       fontFamily: 'Josefins-Sans-Bold',

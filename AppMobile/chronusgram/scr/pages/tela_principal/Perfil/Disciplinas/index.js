@@ -1,12 +1,14 @@
+// Dependências //
 import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity,Image, ScrollView, Text, ActivityIndicator } from 'react-native';
-import styles from './style';
-import { useNavigation} from '@react-navigation/native';
+import { View, TouchableOpacity, Image, Text, ActivityIndicator } from 'react-native';
 import { MultipleSelectList } from 'react-native-dropdown-select-list'
+import { useNavigation} from '@react-navigation/native';
+import styles from './style';
 
-
+// Função de renderização
 export default function Disciplinas() {
 
+    // Declaração de variáveis 
     const navigation = useNavigation();
     const[disciplinas, setDisciplinas] = useState([]);
     const [activityIndicator, setActivityIndicator] = useState(false);
@@ -23,26 +25,22 @@ export default function Disciplinas() {
         { label: 'Arquitetura de Computadores', value: 'Arquitetura de Computadores' },
     ]
 
-
-   // Função para enviar as atualizações para o banco
+   // Funções auxiliares
     function AttBanco() {
-        // Ative o indicador de atividade
         setActivityIndicator(true);
-
-        // Simule uma operação assíncrona (por exemplo, uma chamada à API)
         setTimeout(() => {
-            // Faça a lógica de atualização do banco aqui
-
-            // Desative o indicador de atividade após a conclusão da operação
+            // lógica de atualização do banco aqui
             navigation.navigate('metas',{disciplinas})
             setActivityIndicator(false);
-        }, 2000); // Tempo de simulação (substitua pelo tempo real da operação)
+        }, 2000);
     }
 
+    // Renderização
     return (
         <View style={styles.container}>
 
             <Image style={styles.logo} source={require('../../../../../assets/Book.png')}/>
+
             <Text style={styles.text}> Adicione ou remova as disciplinas </Text>
 
             <View style={styles.BoxDisciplinas}>
@@ -57,15 +55,15 @@ export default function Disciplinas() {
                     value={disciplinas}
                     placeholder='Disciplinas'/>
 
-
                 <TouchableOpacity style={styles.button} onPress={() => AttBanco()}>
-                    {activityIndicator ? (
-                        <ActivityIndicator size="large" color="#16041B" />
-                    ) : (
-                        <Text style={{ fontSize: 40, fontWeight: 'bold', bottom: 4 }}>
+
+                    {activityIndicator ? 
+                        (<ActivityIndicator size="large" color="#16041B" />) 
+                        :
+                        (<Text style={{ fontSize: 40, fontWeight: 'bold', bottom: 4 }}>
                             {'>'}
-                        </Text>
-                    )}
+                         </Text>)}
+                         
                 </TouchableOpacity>
 
             </View>

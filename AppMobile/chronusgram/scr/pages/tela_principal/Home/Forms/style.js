@@ -99,16 +99,15 @@ const styles = StyleSheet.create({
         color: 'white',
   },
   Titulo: {
+        fontFamily: 'Josefins-Sans-Bold',
+        color: '#FFFF',
         marginTop: 15,
-        // marginLeft: 25,
         alignSelf: 'center',
         fontSize: 30,
-        fontStyle:'italic',
-        fontWeight: 'bold',
     },
     Titulo2:{
+        fontFamily: 'Josefins-Sans-Bold',
         fontSize: 18,
-        fontStyle:'italic',
         color: '#1F2234',
         marginTop: 5,
         marginLeft: 15,
@@ -153,7 +152,7 @@ const styles = StyleSheet.create({
     porcentagem:{
         marginLeft: 45,
         bottom: 19,
-
+        fontFamily: 'Josefins-Sans-Bold',
     }
   });
 
