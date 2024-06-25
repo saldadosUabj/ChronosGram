@@ -1,19 +1,22 @@
+// Dependências //
 import React from 'react';
+import { useRoute } from '@react-navigation/native';
 import { StyleSheet, View } from 'react-native';
 import Form from './Forms/index';
 import UserDate from './userDate/index';
-import { useRoute } from '@react-navigation/native';
 
-
+// Função de renderização //
 export default function App() {
 
-  const route = useRoute();
-  const NomeMetas = route.params?.NomeMetas
-  const date = route.params?.date
+    // Declaração de varíaveis //
+    const route = useRoute();
+    const objeto = route.params?.objeto
+    const NomeMetas = route.params?.NomeMetas
+    const date = route.params?.date
 
-  console.log(`${NomeMetas} ${date}`);
+    console.log(`${objeto} aqui`)
 
-
+    // Função de renderização
     return (
         <View style={styles.container}>
             <Form NomeMetas={NomeMetas} date={date} />

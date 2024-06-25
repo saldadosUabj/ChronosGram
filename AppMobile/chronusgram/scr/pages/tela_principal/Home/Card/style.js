@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#73628A'
     },
     NomeCadeira: {
+        fontFamily: 'Josefins-Sans-Bold',
         width: 94,
         height: 19,
         top: 55,
@@ -28,6 +29,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
     },
     HorarioPNG: {
+        fontFamily: 'Josefins-Sans-Bold',
         width: 94,
         height: 19,
         left: 20,
@@ -40,6 +42,7 @@ const styles = StyleSheet.create({
         left:170
     },
     Coins: {
+        fontFamily: 'Josefins-Sans-Bold',
         width: 94,
         height: 19,
         left: 190,

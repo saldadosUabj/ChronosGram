@@ -5,9 +5,11 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     text:{
+        fontFamily: 'Josefins-Sans-Bold',
         alignItems: 'flex-start',
         marginLeft: 48,
         fontSize: 25,
+        color: 'white',
         marginTop: 40,
         marginBottom: 20,
     },
@@ -18,7 +20,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#73628A',  // Cor de fundo do retângulo
         borderRadius: 15,    // Cor da borda (opcional)
       },
+    textStyle:{
+        fontFamily: 'Josefins-Sans-Bold',
+        color: "white",
+    },
     inputSelectdBox: {
+        color: 'white',
         width: '80%',
         height: 'auto',
         alignSelf: 'center',
@@ -48,8 +55,7 @@ const styles = StyleSheet.create({
     },
     buttonText:{
         color:'#fff',
-        fontFamily:'Nunito-Sans',
-        fontWeight:'bold',
+        fontFamily: 'Josefins-Sans-Bold',
         fontSize:20,
         padding:10,
     },

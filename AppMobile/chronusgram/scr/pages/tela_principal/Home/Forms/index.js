@@ -1,21 +1,24 @@
+// Dependências //
 import React, { useState, useRef, useEffect } from 'react';
-import { View, StyleSheet, TouchableOpacity,Image, ScrollView } from 'react-native';
-import styles from './style';
-import UserApi from '../../../../services/userAPI'
+import { View, Image, ScrollView } from 'react-native';
+import { Text } from 'react-native-paper';
 import { useNavigation} from '@react-navigation/native';
-import { BlurView } from 'expo-blur';
-import { Avatar, Button, Text } from 'react-native-paper';
 import { Modalize } from 'react-native-modalize';
+import UserApi from '../../../../services/userAPI'
+import styles from './style';
+
+// Importando estrutura de Card //
 import Card from '../Card/index.js';
 
-
+// Função de renderização //
 export default function Form({ NomeMetas, date }) {
 
+    // Declaração de varíaveis //
     const navigation = useNavigation();
     const userApi = new UserApi();
     const [dados,setDados] = useState(null);
-    const modalizeRef = useRef(null);
-    const modalizeRefTrilha = useRef(null);
+    const refModalCard = useRef(null);
+    const refModalTrilha = useRef(null);
     const [infos, setInfos] = useState([]);
     const [nome, setNome] = useState('');
     const [assunto, setAssunto] = useState('');
@@ -31,75 +34,72 @@ export default function Form({ NomeMetas, date }) {
     const [recomendacao, setRecomendacao] = useState('');
     const [desgastes, setDesgastes] = useState('');
     const [saida, setSaida] = useState('');
-
-    console.log(NomeMetas)
-    console.log(date)
-
     const meta = 'prova';
     const dia = '10';
     const mes = '04';
     const ano = '2024';
+    const [inforCards, setInforCards] = useState([
+            { nomeCadeira: 'Exercício 14-25 - 1º Lei Termodinâmica' , horario: '30 - Min' , coins: '20'},
+            { nomeCadeira: 'Vídeo Aula' , horario: '40 - Min' , coins: '20'},
+            // { nomeCadeira: 'Exercício 20-35' , horario: '30 - Min' , coins: '20'},
+            // { nomeCadeira: 'Resumo' , horario: '15 - Min' , coins: '20'},
+        ])
 
+    
+    // Funções auxiliares 
     async function getMetas() {
         try {
-        const response = await userApi.getMetas(meta, dia, mes, ano);
-        const responseData = JSON.parse(response.data);
-        setNome(responseData.nome[0]);
-        setAssunto(responseData.assunto[0]);
-        setStatus(responseData.status[0]);
-        setDataInicio(responseData.data_meta[0]);
-        setMaterialEstudo(responseData.material_estudo[0]);
-        setMateria(responseData.materia[0]);
-        setTempoAteMeta(responseData.tempo_ate_meta[0]);
-        setTempoLivreEstudo(responseData.tempo_livre_estudo[0]);
-        setTipoMaterial(responseData.tipo_material[0]);
-        setNota(responseData.nota[0]);
-        setTempoEstudado(responseData.tempo_estudado[0]);
-        setRecomendacao(responseData.recomendacao[0]);
-        setDesgastes(responseData.desgastes[0]);
-        setSaida(responseData.saida[0]);
+            // Recuperando informações do servidor
+            const response = await userApi.getMetas(meta, dia, mes, ano);
 
-        setInfos([responseData]);
-        return responseData;
+            // Passando informações para um Json
+            const responseData = JSON.parse(response.data);
+
+            // Passando informações para estados
+            setNome(responseData.nome[0]);
+            setAssunto(responseData.assunto[0]);
+            setStatus(responseData.status[0]);
+            setDataInicio(responseData.data_meta[0]);
+            setMaterialEstudo(responseData.material_estudo[0]);
+            setMateria(responseData.materia[0]);
+            setTempoAteMeta(responseData.tempo_ate_meta[0]);
+            setTempoLivreEstudo(responseData.tempo_livre_estudo[0]);
+            setTipoMaterial(responseData.tipo_material[0]);
+            setNota(responseData.nota[0]);
+            setTempoEstudado(responseData.tempo_estudado[0]);
+            setRecomendacao(responseData.recomendacao[0]);
+            setDesgastes(responseData.desgastes[0]);
+            setSaida(responseData.saida[0]);
+            setInfos([responseData]);
+
+            return responseData;
         } catch (error) {
         console.error(`${error}`);
         }
     }
+
+    const openModalFromCard = async () => {
+        await getMetas();
+        refModalCard.current?.open();
+    };    
     
-
-
-    async function getDados(){
-        let response = await userApi.getInfo(1);
-        setDados(response)
-    }
-
-    const onOpen = () => {
-        modalizeRef.current?.open();
-      };
-
-    const onOpenTrilha = () => {
-        modalizeRefTrilha.current?.open();
-      };
-
-      const openModalFromCard = async () => {
-        await getMetas(); // Aguarda a conclusão da chamada da API
-        modalizeRef.current?.open();
-    };
-
-    useEffect(() => {getDados(); setInfos(userApi.getInfo())}, []);
-
-    const [inforCards, setInforCards] = useState([
-            { nomeCadeira: 'Exercício 14-25 - 1º Lei Termodinâmica' , horario: '30 - Min' , coins: '20'},
-            { nomeCadeira: 'Vídeo Aula' , horario: '40 - Min' , coins: '20'},
-            { nomeCadeira: 'Exercício 20-35' , horario: '30 - Min' , coins: '20'},
-            { nomeCadeira: 'Resumo' , horario: '15 - Min' , coins: '20'},
-        ]) 
-
     const removeCard = (nomeCadeira) => {
         setInforCards((prevCards) => prevCards.filter((card) => card.nomeCadeira !== nomeCadeira));
-      };
-        
+    };
 
+    // Puxando informações de metas p/ card //
+
+    // async function getDados(){
+    //     let response = await userApi.getInfo(1);
+    //     setDados(response);
+    // }
+
+    // useEffect(() => {
+    //     getDados();
+    //     setInfos(userApi.getInfo());
+    // }, []);
+
+    // Renderização
     return (
         <View>
 
@@ -118,12 +118,11 @@ export default function Form({ NomeMetas, date }) {
             {/* Modalize das informações da cadeira */}
 
             <Modalize
-                ref={modalizeRef}
+                ref={refModalCard}
                 adjustToContentHeight={true}
                 snapPoint={180}
                 handleStyle={{ backgroundColor: '#73628A' }}
-                modalStyle={styles.Mobilize}
-                >
+                modalStyle={styles.Mobilize}>
                 <View>
                     {infos && (
                     <View style={styles.Mobilize}>
@@ -145,42 +144,42 @@ export default function Form({ NomeMetas, date }) {
                     </View>
                     )}
                 </View>
-                </Modalize>
+            </Modalize>
 
             {/* Modalize das informações da trilha */}
 
-                <Modalize ref={modalizeRefTrilha}
-                          modalHeight={300} 
-                          snapPoint={150}
-                          handleStyle={{backgroundColor: '#73628A', width: 200}}
-                          modalStyle={styles.MobilizeTrilha}
-                          alwaysOpen={70}>
+            <Modalize ref={refModalTrilha}
+                        modalHeight={300} 
+                        snapPoint={150}
+                        handleStyle={{backgroundColor: '#73628A', width: 200}}
+                        modalStyle={styles.MobilizeTrilha}
+                        alwaysOpen={70}>
 
-                    <Text style = {styles.Titulo}>Performance</Text>
-                    
-                    <View style={styles.View}>
+                        <Text style = {styles.Titulo}>Performance</Text>
+                        
+                        <View style={styles.View}>
 
-                        <View style = {styles.CaixaDentroEsquerda}>
+                            <View style = {styles.CaixaDentroEsquerda}>
 
-                            <Text style = {styles.Titulo2}> Ofensiva </Text>
-                            <Text style = {styles.Numero}>15</Text>
-                            <Image style= {styles.Fogo} source={require('../../../../../assets/Fogo.png')}/>
-                            <Text style = {styles.porcentagem}>12%</Text>
+                                <Text style = {styles.Titulo2}> Ofensiva </Text>
+                                <Text style = {styles.Numero}>15</Text>
+                                <Image style= {styles.Fogo} source={require('../../../../../assets/Fogo.png')}/>
+                                <Text style = {styles.porcentagem}>12%</Text>
+
+                            </View>
+
+                            <View style = {styles.CaixaDentroDireita}>
+
+                                <Text style = {styles.Titulo2}> Constância </Text>
+                                <Text style = {styles.NumeroContancia}>70</Text>
+                                <Image style = {styles.Polygon} source={require('../../../../../assets/polygon.png')}></Image> 
+                                <Text style = {styles.porcentagem}>24%</Text>
+
+                            </View>
 
                         </View>
 
-                        <View style = {styles.CaixaDentroDireita}>
-
-                            <Text style = {styles.Titulo2}> Constância </Text>
-                            <Text style = {styles.NumeroContancia}>70</Text>
-                            <Image style = {styles.Polygon} source={require('../../../../../assets/polygon.png')}></Image> 
-                            <Text style = {styles.porcentagem}>24%</Text>
-
-                        </View>
-
-                    </View>
-
-                </Modalize>
+            </Modalize>
 
         </View>
                 

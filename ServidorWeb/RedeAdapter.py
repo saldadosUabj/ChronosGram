@@ -5,14 +5,17 @@ import sqlite3 as sql
 from time import time
 from matplotlib import table
 from matplotlib.font_manager import stretch_dict
+import numpy as np
 from pydantic import BaseModel
 import pandas as pd
 import firebase_admin
 from firebase_admin import credentials, db
 from firebase_admin import db
 import uuid
+from firebasedefault import Default
 
-from firebaseadm import FirebaseAdm
+from firebasedefault import Default
+
 
 class FireBaseAdmRede():
     firebase_admin.get_app()
@@ -90,22 +93,24 @@ class RedeAdapter():
         return self.dataframeTarefas()
 
     def get_best_task(self, meta, data_meta):
-        df = self.dataframeTarefas()
-        selecionar = (df['meta'] == {meta}) & (df['data_meta'] == {data_meta})
-        df = df[selecionar]
-        df = df.sort_values(by="saida", ascending=False)
+        select = []
+        list_taks_saves = FireBaseAdmRede.ref.get()
+        for key,values in list_taks_saves.items(): # type: ignore
+            if((values['meta'] == meta) & (values['data_meta'] == data_meta)):
+                select.append(values)
+        columns = ["assunto","data_meta", "desgastes","id","indice_facilidade_disciplina","materia","material,estudo", "meta","nome","nota","recomendacoes","saida","status","tempo_ate_meta","tempo_estudado","tipo_material"]
+        df = pd.DataFrame(select, columns=columns)
+        df["saida"] = df["saida"].astype(float)
+        df = df.sort_values(by = ["saida"], ascending=False)
         return df.to_json()
 
     def update_saida(self, saida_values):
-        df = self.dataframeTarefas()
-        for i, valor_saida in enumerate(saida_values):
-            # list_taks_saves = admin.ref.get()
-            # columns = [desc for desc in list_taks_saves]
-            # df = pd.DataFrame(list_taks_saves, columns=columns)
-            df = df.loc[i,'saida'] = abs(valor_saida[0]) 
-            #update_query = f"UPDATE tarefas SET saida = {abs(valor_saida[0])} WHERE rowid = {i + 1}"
-            #print(update_query)
-            #self.cursor.execute(update_query)
+        saida_values=saida_values[np.isfinite(saida_values)].tolist()
+        list_taks_saves = FireBaseAdmRede.ref.get()
+        for i,(key,values) in enumerate(list_taks_saves.items()): # type: ignore
+            if i < len(saida_values):
+                values['saida'] = saida_values[i]
+                FireBaseAdmRede.ref.child(key).set(values)
         return self.get_tasks().to_json()
     
     

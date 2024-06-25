@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
         elevation: 10, // Somente para Android
     },
     titulo: {
+        color: 'white',
         fontFamily: 'Josefins-Sans-Bold',
         fontSize: 16,
         marginBottom: 20,
@@ -34,9 +35,10 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     logo: {
-        width: 100,
-        height: 100,
-        marginBottom: 20,
+        width: 250,
+        height: 250,
+        marginBottom: -60,
+        marginTop: -100,
     },
     inputBox:{
         width: '85%',

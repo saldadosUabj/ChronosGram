@@ -1,90 +1,129 @@
-# Código para ser desenvolvido na feature atulizado
-
-from ast import main
-from datetime import datetime
-from re import U
-from fastapi import FastAPI
-from pydantic import BaseModel
-import sqlite3 as sql
-from RedeAdapter import RedeAdapter
+from fastapi import FastAPI, HTTPException
+from firebaseadm import FirebaseAdm
 from RedeNeural import RedeNeural
-from Usuarios import Usuarios
-
-class User(BaseModel):
-    nome: str
-    turno_livre: str
-    email: str
-    senha: str
-
-class Tarefa(BaseModel):
-    meta :str
-    data_meta:str
-    nome: str
-    status: str
-    assunto: str
-    material_estudo: str
-    materia: str
-    tempo_ate_meta: int
-    tempo_livre_estudo: int
-    tipo_material: int
-    nota: int
-    tempo_estudado: int
-    indice_facilidade_disciplina: int
-    recomendacoes:int
-    desgastes: int
-    saida: float
-
+from RedeAdapter import RedeAdapter
+from tarefas import Tarefa
 
 app = FastAPI()
+firebase_adm = FirebaseAdm()
 rede_neural = RedeNeural("ModeloIa")
 banco = RedeAdapter()
-usuario = Usuarios()
-# @app.get("/tarefas")
-# def pesquisa():
-#     return alunos
 
 
-# @app.get("/user/{id}")
-# def pesquisa_id(id: int):
-#     for aluno in alunos:
-#         if aluno['id'] == id:
-#             return aluno
-#     return "not found"
+@app.post("/users/")
+def create_user(nome: str, turno_livre: str, tipo: str, email: str, senha: str, username: str):
+    user_data = {
+        "nome": nome,
+        "turno_livre": turno_livre,
+        "tipo": tipo,
+        "email": email,
+        "senha": senha,
+        "username": username
+    }
+    user_id = firebase_adm.add_user(user_data)
+    return {"id": user_id, **user_data}
 
+@app.get("/users/{user_id}")
+def read_user(user_id: str):
+    user_data = firebase_adm.get_user(user_id)
+    if not user_data:
+        raise HTTPException(status_code=404, detail="User not found")
+    return user_data
 
-@app.put("/user")
-def atualizar(info: User, email, senha):
-    atualizado_df = usuario.updateUser(info,email,senha)
-    return atualizado_df
+@app.put("/users/{user_id}")
+def update_user(user_id: str, nome: str, turno_livre: str, tipo: str, email: str, senha: str, username: str):
+    user_data = {
+        "nome": nome,
+        "turno_livre": turno_livre,
+        "tipo": tipo,
+        "email": email,
+        "senha": senha,
+        "username": username
+    }
+    firebase_adm.update_user(user_id, user_data)
+    return {"id": user_id, **user_data}
 
-@app.post("/users")
-def create_user(dados: User):
-     usuario.createUser(dados)
+@app.delete("/users/{user_id}")
+def delete_user(user_id: str):
+    user_data = firebase_adm.get_user(user_id)
+    if not user_data:
+        raise HTTPException(status_code=404, detail="User not found")
+    firebase_adm.delete_user(user_id)
+    return user_data
 
-@app.get("/users")
-def read_users():
-    return usuario.readUser()
+@app.post("/tarefas/")
+def create_tarefa(meta: str, data_meta: str, nome: str, status: str, assunto: str,
+                  material_estudo: str, materia: str, tempo_ate_meta: str, tipo_material: str,
+                  nota: str, tempo_estudado: str, indice_facilidade_disciplina: str,
+                  recomendacoes: str, desgastes: str, saida: str):
+    tarefa_data = {
+        "meta": meta,
+        "data_meta": data_meta,
+        "nome": nome,
+        "status": status,
+        "assunto": assunto,
+        "material_estudo": material_estudo,
+        "materia": materia,
+        "tempo_ate_meta": tempo_ate_meta,
+        "tipo_material": tipo_material,
+        "nota": nota,
+        "tempo_estudado": tempo_estudado,
+        "indice_facilidade_disciplina": indice_facilidade_disciplina,
+        "recomendacoes": recomendacoes,
+        "desgastes": desgastes,
+        "saida": saida
+    }
+    tarefa_id = firebase_adm.add_tarefa(tarefa_data)
+    return {"id": tarefa_id, **tarefa_data}
+
+@app.get("/tarefas/{tarefa_id}")
+def read_tarefa(tarefa_id: str):
+    tarefa_data = firebase_adm.get_tarefa(tarefa_id)
+    if not tarefa_data:
+        raise HTTPException(status_code=404, detail="Tarefa not found")
+    return tarefa_data
+
+@app.put("/tarefas/{tarefa_id}")
+def update_tarefa(tarefa_id: str, meta: str, data_meta: str, nome: str, status: str, assunto: str,
+                  material_estudo: str, materia: str, tempo_ate_meta: str, tipo_material: str,
+                  nota: str, tempo_estudado: str, indice_facilidade_disciplina: str,
+                  recomendacoes: str, desgastes: str, saida: str):
+    tarefa_data = {
+        "meta": meta,
+        "data_meta": data_meta,
+        "nome": nome,
+        "status": status,
+        "assunto": assunto,
+        "material_estudo": material_estudo,
+        "materia": materia,
+        "tempo_ate_meta": tempo_ate_meta,
+        "tipo_material": tipo_material,
+        "nota": nota,
+        "tempo_estudado": tempo_estudado,
+        "indice_facilidade_disciplina": indice_facilidade_disciplina,
+        "recomendacoes": recomendacoes,
+        "desgastes": desgastes,
+        "saida": saida
+    }
+    firebase_adm.update_tarefa(tarefa_id, tarefa_data)
+    return {"id": tarefa_id, **tarefa_data}
+
+@app.delete("/tarefas/{tarefa_id}")
+def delete_tarefa(tarefa_id: str):
+    tarefa_data = firebase_adm.get_tarefa(tarefa_id)
+    if not tarefa_data:
+        raise HTTPException(status_code=404, detail="Tarefa not found")
+    firebase_adm.delete_tarefa(tarefa_id)
+    return tarefa_data
 
 @app.post("/redeNeural")
 def insert_neural_data(dados:Tarefa):
      banco.insert_task(dados)
-     #banco.finalizar
-     
+
 @app.get("/redeNeural/{meta}/{dia}/{mes}/{ano}")
 def get_neural_data(meta:str , dia:str , mes:str, ano:str):
-    #formato_string = "%d/%m/%Y"
     data_entrega = f"{dia}/{mes}/{ano}"
-    #data_entrega = datetime.strptime(data_entrega,formato_string) #type:ignore
-    #data_today = datetime.today
-    #duracao = abs(data_entrega - data_today).days #type:ignore
     return banco.get_best_task(meta,data_entrega) 
-
-# @app.put("/tarefas")
-# def insert_tarefas(tarefa: Tarefa):
-#     print(tarefa)
-#     banco.insert_task(tarefa)
-#     banco.finalizar
-
 
 @app.get("/redeNeural")
 def update_dados():
@@ -93,6 +132,4 @@ def update_dados():
 
 if __name__ == "__main__":
     import uvicorn
-
-    # Run the FastAPI app using uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
