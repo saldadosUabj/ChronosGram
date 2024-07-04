@@ -2,10 +2,10 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { Link } from 'expo-router';
 
-export default function Registro() {
+export default function Login() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Registro</Text>
+        <Text> Login </Text>
     </View>
   );
 }

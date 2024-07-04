@@ -1,22 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { Link } from 'expo-router';
-import Layout from './(routes)/stackroutes/_layout';
 
-export default function Index() {
+import Routes from './src/routers/routes';
+
+export default function App() {
   return (
-    <Layout/>
+    <Routes/>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#16041B',
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  text:{
-    color: '#fff',
-  }
 });
