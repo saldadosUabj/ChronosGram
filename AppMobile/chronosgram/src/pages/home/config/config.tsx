@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import styles from './style';
 
-export default function App() {
+export default function Config() {
 
   const navigation = useNavigation();
 
@@ -11,14 +11,7 @@ export default function App() {
     
     <View style={styles.container}>
      
-      <TouchableOpacity onPress={() => navigation.navigate('home' as never)}> 
-        <Text>  Login  </Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => navigation.navigate('registro' as never)}> 
-        <Text>  Registrar-se  </Text>
-      </TouchableOpacity>
-
+      <Text> Configuração </Text>
       
     </View>
   );
