@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { Link } from 'expo-router';
 
-export default function App() {
+export default function Registro() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>O Chronosgram V2 Começou por aqui, que Deus nos abençoe</Text>
-      <StatusBar style="auto" />
+      <Text style={styles.text}>Registro</Text>
     </View>
   );
 }
