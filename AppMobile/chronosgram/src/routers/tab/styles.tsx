@@ -1,12 +1,20 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    tabs: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-      },     
+  tabBar: {
+      tintColor: 'white',
+      position: 'absolute',
+      paddingBottom: 20,
+      bottom: 20,
+      left: 20,
+      right: 20,
+      height: 60,
+      borderRadius: 15,
+      backgroundColor: '#76618D',
+      shadowColor: 'black',
+      elevation: 5,
+      overflow: 'hidden',
+    },
   });
 
 export default styles

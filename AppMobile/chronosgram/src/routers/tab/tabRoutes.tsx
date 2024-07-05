@@ -1,4 +1,5 @@
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import styles from './styles';
 
 import Main from '../../pages/home/main/main';
@@ -11,12 +12,47 @@ const Tab = createMaterialBottomTabNavigator();
 
 export default function TabRoutes() {
   return (
-    <Tab.Navigator initialRouteName='Main' backBehavior='initialRoute' shifting={false}>
-      <Tab.Screen name="Perfil" component={Perfil}/>
-      <Tab.Screen name="Main" component={Main} />
-      <Tab.Screen name="Rotinas" component={Rotinas} />
-      <Tab.Screen name="Comunidade" component={Comunidade} />
-      <Tab.Screen name="Config" component={Config} />
-    </Tab.Navigator>
+    <Tab.Navigator
+        initialRouteName="Main"
+        shifting={true}
+        barStyle={styles.tabBar}
+        labeled={true}>
+
+        <Tab.Screen 
+          name="Perfil" 
+          component={Perfil} 
+          options={{
+            tabBarLabel: 'Perfil',
+            tabBarIcon: () => (<MaterialCommunityIcons name="account" color={"white"} size={26} />),}}/>
+
+        <Tab.Screen 
+          name="Main" 
+          component={Main} 
+          options={{
+            tabBarLabel: 'Main',
+            tabBarIcon: () => (<MaterialCommunityIcons name="home" color={"white"} size={26}/>),}}/>
+
+        <Tab.Screen 
+          name="Rotinas" 
+          component={Rotinas} 
+          options={{
+            tabBarLabel: 'Rotinas',
+            tabBarIcon: () => (<MaterialCommunityIcons name="calendar" color={"white"} size={26}/>),}}/>
+
+        <Tab.Screen 
+          name="Comunidade" 
+          component={Comunidade} 
+          options={{
+            tabBarLabel: 'Comunidade',
+            tabBarIcon: () => (<MaterialCommunityIcons name="account-group" color={"white"} size={26}/>),}}/>
+            
+        <Tab.Screen 
+          name="Config" 
+          component={Config} 
+          options={{
+            tabBarLabel: 'Config',
+            tabBarIcon: () => (<MaterialCommunityIcons name="cog" color={"white"} size={26}/>),}}/>
+            
+      </Tab.Navigator>
   );
 }
