@@ -3,22 +3,16 @@ import { useNavigation} from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import styles from './style';
 
-export default function App() {
+export default function Tempo() {
 
-  const navigation = useNavigation();
+    const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
-      <Text> Registro </Text>
-      <TouchableOpacity onPress={() => navigation.navigate("registro_tempo" as never)}>
+      <Text> Tempo Livre </Text>
+      <TouchableOpacity onPress={() => navigation.navigate("registro_modo" as never)}>
         <Text>
           Continuar
-        </Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Text>
-          Login
         </Text>
       </TouchableOpacity>
     </View>
