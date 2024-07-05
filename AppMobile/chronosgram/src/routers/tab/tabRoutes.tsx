@@ -14,6 +14,7 @@ export default function TabRoutes() {
   return (
     <Tab.Navigator
         initialRouteName="Main"
+        backBehavior="initialRoute"
         shifting={true}
         barStyle={styles.tabBar}
         labeled={true}>
