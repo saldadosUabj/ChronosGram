@@ -1,8 +1,10 @@
-import { ScrollView ,StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView ,StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import React, { useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import styles from './style';
+
+import Ofensiva from './components/ofensiva/ofensiva';
 
 import { AuthContext } from '../../../contexts/auth'
 
@@ -14,10 +16,7 @@ export default function Main() {
   return (
     
     <ScrollView style={styles.container}>
-     
-      <Text style={{color: "white"}}> Main </Text>
-      <Text> {nome} </Text>
-      
+      <Ofensiva/>   
     </ScrollView>
   );
 }

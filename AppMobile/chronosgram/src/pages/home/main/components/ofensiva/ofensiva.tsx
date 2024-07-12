@@ -1,4 +1,4 @@
-import { ScrollView ,StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView ,StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import React, { useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
@@ -12,8 +12,11 @@ export default function Ofensiva() {
   const navigation = useNavigation();
 
   return (
-    <View>
-
+    <View style={styles.container}>
+        <Text style={styles.titulo}>Ofensiva</Text>
+        <Text style={styles.numero}> 15 </Text> 
+        <Text style={styles.porcentagem}> 12%</Text>
+        <Image  style={styles.fogo}source={require('../../../../../../assets/images/Fogo.png')}/>
     </View>
   );
 }

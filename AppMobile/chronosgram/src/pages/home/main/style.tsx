@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     text: {
       color: 'white',
       fontFamily: 'Josefins-Sans-Bold'
-    } 
+    },
   });
 
 export default styles
