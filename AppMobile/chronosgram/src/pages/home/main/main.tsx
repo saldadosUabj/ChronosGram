@@ -1,10 +1,11 @@
-import { ScrollView ,StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
+import { ScrollView , StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import React, { useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
 import styles from './style';
 
 import Ofensiva from './components/ofensiva/ofensiva';
+import Constancia from './components/constancia/constancia';
+import Card from './components/card/card';
 
 import { AuthContext } from '../../../contexts/auth'
 
@@ -16,7 +17,13 @@ export default function Main() {
   return (
     
     <ScrollView style={styles.container}>
-      <Ofensiva/>   
+      <View style={styles.containerHorizontal}>
+        <Ofensiva/>
+        <Constancia/>
+      </View>
+      <View style={styles.containerVertical}>
+        <Card/>
+      </View>
     </ScrollView>
   );
 }

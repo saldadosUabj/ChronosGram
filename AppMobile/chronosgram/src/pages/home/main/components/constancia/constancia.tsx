@@ -1,4 +1,4 @@
-import { ScrollView ,StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView ,StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import React, { useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
@@ -12,8 +12,11 @@ export default function Constancia() {
   const navigation = useNavigation();
 
   return (
-    <View>
-
+    <View style={styles.container}>
+        <Text style={styles.titulo}>Constância</Text>
+        <Text style={styles.numero}> 70 </Text> 
+        <Text style={styles.porcentagem}> 12%</Text>
+        <Image  style={styles.focus}source={require('../../../../../../assets/images/Polygon_verde.png')}/>
     </View>
   );
 }

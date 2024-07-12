@@ -8,9 +8,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         width: 140,
         height: 120,
-        marginLeft: 50,
-        marginVertical: 80,
-        margin: 20,
         borderRadius: 15,
       },
     titulo: {
