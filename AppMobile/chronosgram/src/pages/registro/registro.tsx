@@ -29,6 +29,7 @@ export default function App() {
     <TextInput style = {styles.input} placeholder='Username'/>
 
     <TextInput style = {styles.input} placeholder='Email'/>
+    <Text style ={styles.textEmail}>info@example.com</Text>
 
     <TextInput style = {styles.input} placeholder='Senha' />
     

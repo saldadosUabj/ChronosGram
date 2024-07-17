@@ -27,36 +27,44 @@ const styles = StyleSheet.create({
          left:3
        },
        registerForm:{
-        marginBottom:0,
         padding:2,
         width:'85%',
-        marginLeft: 10,
+        marginLeft:10,
         left:20,
       },
       input:{
         backgroundColor:'#E6E7ED',
         marginBottom:20,
-        borderRadius:13,
-        borderWidth:1,
-        opacity:0.9
+        borderRadius:17,
+        borderTopEndRadius:17,
+        borderTopLeftRadius:17,
+        padding:2,
+        bottom:4
+      },
+      textEmail:{
+        color:"#000000",
+        fontWeight:"bold",
+        bottom:50,
+        alignSelf:"flex-start",
+        left:10
       },
       viewContinuar:{
         alignItems:'center',
-        top:110,
-      },
-      textoContinuar:{
+        top:90,
+        alignSelf:"center",
         backgroundColor:'#9D67E3',
+        width:300,
+        height:60,
+        borderRadius:30,
+      },
+      textoContinuar:{ 
         color:'#FFFFFF',
         fontSize:25,
-        width: 250,
-        height:60,
-        borderRadius:20,
-        paddingLeft:65,
-        paddingTop:10
+        top:10
       },
       loginConteiner:{
         alignItems:'flex-end',
-        top:120,
+        top:100,
         left:100,
         flexDirection:'row',
         paddingLeft:10

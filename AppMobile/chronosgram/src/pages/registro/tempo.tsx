@@ -33,10 +33,23 @@ export default function Tempo() {
 
         <Text style = {styles.conteinerText}> Manhã</Text>
 
+        <Image  style ={styles.imageTarde} source={require("./tarde.png")}></Image>
 
         <Text style = {styles.conteinerText}> Tarde</Text>
+
+      <Image style = {styles.imageNoite} source={require("./noite.png")}></Image>
+
         <Text style = {styles.conteinerText}> Noite</Text>
-        
+
+        <View style = {styles.backgroundManha}>
+          <Text style = {styles.manhaText}>8:00 à 12:00</Text>
+        </View>
+        <View style = {styles.backgroundTarde}>
+          <Text style = {styles.tardeText}>14:00 à 18:00</Text>
+        </View>
+        <View style = {styles.backgroundNoite}>
+          <Text style = {styles.noiteText}>19:00 à 23:00</Text>
+        </View>
 
       </View>
 
@@ -47,11 +60,19 @@ export default function Tempo() {
 
 
 
+
+
+
+      <View style = {styles.continuarButton}>
+
       <TouchableOpacity onPress={() => navigation.navigate("registro_modo" as never)}>
-        <Text>
+        <Text style = {styles.continuarTextButton}>
           Continuar
         </Text>
       </TouchableOpacity>
+
+      </View>
+      
     </View>
   );
 }
