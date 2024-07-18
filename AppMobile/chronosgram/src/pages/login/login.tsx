@@ -3,16 +3,15 @@ import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import styles from './style';
-import { CheckBox } from 'react-native-elements';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import Checkbox from 'expo-checkbox';
+
+
 
 export default function App() {
 
   const navigation = useNavigation();
-  const MyCheckBox = () => {
-  const [checked, setChecked] = useState(false);
-  
-}
-  const [isSelected, setSelected] = useState(false)
+  const [isChecked, setChecked] = useState(false);
 
   return (
  
@@ -40,17 +39,15 @@ export default function App() {
       </TextInput>
       </View>
 
-    {/* <View style = {styles.checkBoxView}>
-    <CheckBox style = {styles.checkBox}
-      title= 'Mantenha-me conectado'
-      checkedIcon='check'
-      uncheckedIcon='square-o'
-      checkedColor='green'
-      uncheckedColor='red'
-      checked={isSelected}
-      onPress={() => setSelected(!isSelected)}
-  />
-    </View> */}
+   <View>
+    <TouchableOpacity style = {styles.checkBox}>
+    <Checkbox  
+      style = {styles.checkBox2}
+      value={isChecked} 
+      onValueChange={setChecked} />
+    <Text style = {styles.checkboxText}> Mantenha-me Conectado</Text>
+    </TouchableOpacity>
+    </View>
 
     <View style = {styles.forgetView}>
     <TouchableOpacity>

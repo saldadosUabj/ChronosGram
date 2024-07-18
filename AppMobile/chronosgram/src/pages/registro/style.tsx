@@ -27,10 +27,11 @@ const styles = StyleSheet.create({
          left:3
        },
        registerForm:{
-        padding:2,
+        padding:6,
         width:'85%',
         marginLeft:10,
         left:20,
+     
       },
       input:{
         backgroundColor:'#E6E7ED',
@@ -39,14 +40,20 @@ const styles = StyleSheet.create({
         borderTopEndRadius:17,
         borderTopLeftRadius:17,
         padding:2,
-        bottom:4
+        bottom:10,
+      
       },
       textEmail:{
         color:"#000000",
         fontWeight:"bold",
-        bottom:50,
+        bottom:55,
         alignSelf:"flex-start",
         left:10
+      },
+      senhaInfo:{
+        alignSelf:"flex-end",
+        bottom:70,
+        right:20
       },
       viewContinuar:{
         alignItems:'center',

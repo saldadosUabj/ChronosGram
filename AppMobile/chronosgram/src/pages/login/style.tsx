@@ -33,16 +33,20 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         left:20,
       },
-      // checkBoxView:{
-      //   backgroundColor:'#16041B',
-      //   borderWidth:0,
-      //   padding:10,
-      //   width:200,
-      //   height:100,
-      // },
-      // checkBox:{
-      //     backgroundColor:'transparent'
-      // },
+      checkBox:{
+        flexDirection:"row",
+        left:20,
+      },
+      checkBox2:{
+        width:15,
+        height:15,
+        top:2
+      },
+      checkboxText:{
+        color:"#B075FF",
+        left:5,
+        fontSize:13
+      },
       input:{
         backgroundColor:'#E6E7ED',
         marginBottom:17,
@@ -55,7 +59,7 @@ const styles = StyleSheet.create({
         width:'90%',
         alignItems:'flex-end',
         left:10,
-        bottom:10,
+        bottom:18,
       },
       forgetText:{
         color:'#B075FF',

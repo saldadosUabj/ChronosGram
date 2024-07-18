@@ -2,10 +2,17 @@ import { StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
 import { useNavigation} from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import styles from './tempostyle';
+import Checkbox from 'expo-checkbox';
+import { useState } from 'react';
+
 
 export default function Tempo() {
 
     const navigation = useNavigation();
+    const [isChecked, setChecked] = useState(false);
+    const [isChecked2, setChecked2] = useState(false);
+    const [isChecked3, setChecked3] = useState(false);
+
 
   return (
     <View style={styles.container}>
@@ -27,15 +34,42 @@ export default function Tempo() {
       </View>
 
 
+
+
       <View style = {styles.tempoConteiner}>
+      
+      <TouchableOpacity>
+
+      <Checkbox  
+        style = {styles.checkBox2}
+        value={isChecked} 
+        onValueChange={setChecked} /> 
+      </TouchableOpacity>
 
         <Image style = {styles.imageManha}source={require('./manha.png')}></Image>
 
         <Text style = {styles.conteinerText}> Manhã</Text>
+      
+      <TouchableOpacity>
+
+      <Checkbox  
+        style = {styles.checkBox3}
+        value={isChecked2} 
+        onValueChange={setChecked2} /> 
+      </TouchableOpacity>
+
 
         <Image  style ={styles.imageTarde} source={require("./tarde.png")}></Image>
 
         <Text style = {styles.conteinerText}> Tarde</Text>
+
+      <TouchableOpacity>
+
+      <Checkbox  
+        style = {styles.checkBox4}
+        value={isChecked3} 
+        onValueChange={setChecked3} /> 
+      </TouchableOpacity>
 
       <Image style = {styles.imageNoite} source={require("./noite.png")}></Image>
 
@@ -44,9 +78,11 @@ export default function Tempo() {
         <View style = {styles.backgroundManha}>
           <Text style = {styles.manhaText}>8:00 à 12:00</Text>
         </View>
+
         <View style = {styles.backgroundTarde}>
           <Text style = {styles.tardeText}>14:00 à 18:00</Text>
         </View>
+
         <View style = {styles.backgroundNoite}>
           <Text style = {styles.noiteText}>19:00 à 23:00</Text>
         </View>

@@ -38,25 +38,39 @@ const styles = StyleSheet.create({
         marginTop:90,
         borderRadius:13,
       },
+       checkBox2: {
+          borderRadius:20,
+          top:20,
+          left:55,
+       },   
+       checkBox3: {
+        borderRadius:20,
+        top:17,
+        left:55,
+     },
+      checkBox4: {
+      borderRadius:20,
+      left:55,
+      top:7,
+    },
       imageManha:{
             left:182,
-            top:22,
+           bottom:5
       },
       conteinerText: {
         color:'#202020',
-        padding:5,
-        alignItems:'center',
         left:115,
         fontSize:15,
-        fontWeight:'bold'
+        fontWeight:'bold',
+        bottom:25
       },
       imageTarde: {
         left:180,
-        top:25
+        bottom:5
       },
       imageNoite: {
         left:180,
-        top:25
+        bottom:4
       },
       continuarButton:{
         backgroundColor:"#9D67E3",
@@ -78,8 +92,8 @@ const styles = StyleSheet.create({
         height:30,
         borderRadius:20,
         alignSelf:"flex-end",
-        bottom:132,
-        right:4
+        bottom:170,
+        right:6
       },
       backgroundTarde: {
         backgroundColor:"#929292",
@@ -87,8 +101,8 @@ const styles = StyleSheet.create({
         height:30,
         borderRadius:20,
         alignSelf:"flex-end",
-        bottom:110,
-        right:4
+        bottom:140,
+        right:6
       },
       backgroundNoite: {
         backgroundColor:"#929292",
@@ -96,8 +110,8 @@ const styles = StyleSheet.create({
         height:30,
         borderRadius:20,
         alignSelf:"flex-end",
-        bottom:90,
-        right:3
+        bottom:110,
+        right:6
       },
       manhaText:{
         fontSize:15,

@@ -3,6 +3,7 @@ import { useNavigation} from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import styles from './style';
 import { TextInput } from 'react-native-paper';
+import { Feather } from '@expo/vector-icons';
 
 export default function App() {
 
@@ -29,16 +30,20 @@ export default function App() {
     <TextInput style = {styles.input} placeholder='Username'/>
 
     <TextInput style = {styles.input} placeholder='Email'/>
-    <Text style ={styles.textEmail}>info@example.com</Text>
-
-    <TextInput style = {styles.input} placeholder='Senha' />
     
+    <Text style = {styles.textEmail}> infoexemplo@gmail.com </Text>
+    
+    <TextInput style = {styles.input} placeholder='Senha' />
+
+    <TouchableOpacity>
+    <Feather  style = {styles.senhaInfo} name="info" size={20} color="black" />
+    </TouchableOpacity>
+  
+
     <TextInput style = {styles.input} placeholder='Confirmar Senha' />
     </View>
-   
 
     <View style = {styles.viewContinuar}>
-
 
       <TouchableOpacity onPress={() => navigation.navigate("registro_tempo" as never)}>
         <Text style = {styles.textoContinuar}>
