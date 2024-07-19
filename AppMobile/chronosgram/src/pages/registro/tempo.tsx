@@ -19,7 +19,7 @@ export default function Tempo() {
 
     <View style = {styles.viewImage}>
     
-    <Image  style = {styles.imageLogo} source={require('./logo.png')}>
+    <Image  style = {styles.imageLogo} source={require('../../../assets/images/logo.png')}>
 
     </Image>
     </View>
@@ -35,21 +35,18 @@ export default function Tempo() {
 
 
 
-
       <View style = {styles.tempoConteiner}>
       
       <TouchableOpacity>
-
       <Checkbox  
         style = {styles.checkBox2}
         value={isChecked} 
         onValueChange={setChecked} /> 
       </TouchableOpacity>
 
-        <Image style = {styles.imageManha}source={require('./manha.png')}></Image>
+        <Image style = {styles.imageManha}source={require('../../../assets/images/manha.png')}></Image>
 
         <Text style = {styles.conteinerText}> Manhã</Text>
-      
       <TouchableOpacity>
 
       <Checkbox  
@@ -59,7 +56,7 @@ export default function Tempo() {
       </TouchableOpacity>
 
 
-        <Image  style ={styles.imageTarde} source={require("./tarde.png")}></Image>
+        <Image  style ={styles.imageTarde} source={require("../../../assets/images/tarde.png")}></Image>
 
         <Text style = {styles.conteinerText}> Tarde</Text>
 
@@ -71,7 +68,7 @@ export default function Tempo() {
         onValueChange={setChecked3} /> 
       </TouchableOpacity>
 
-      <Image style = {styles.imageNoite} source={require("./noite.png")}></Image>
+      <Image style = {styles.imageNoite} source={require("../../../assets/images/noite.png")}></Image>
 
         <Text style = {styles.conteinerText}> Noite</Text>
 
@@ -91,14 +88,6 @@ export default function Tempo() {
 
 
 
-
-
-
-
-
-
-
-
       <View style = {styles.continuarButton}>
 
       <TouchableOpacity onPress={() => navigation.navigate("registro_modo" as never)}>
@@ -106,7 +95,6 @@ export default function Tempo() {
           Continuar
         </Text>
       </TouchableOpacity>
-
       </View>
       
     </View>

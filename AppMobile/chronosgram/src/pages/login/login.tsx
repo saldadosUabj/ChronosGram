@@ -19,7 +19,7 @@ export default function App() {
     <View style={styles.container}>
     
     <View style = {styles.viewImage}>
-    <Image style = {styles.imageLogo} source={require('../login/logo.png')}></Image>
+    <Image style = {styles.imageLogo} source={require('../../../assets/images/logo.png')}></Image>
     </View>
 
       <View style = {styles.loginPosition}>
@@ -44,7 +44,7 @@ export default function App() {
     <Checkbox  
       style = {styles.checkBox2}
       value={isChecked} 
-      onValueChange={setChecked} />
+      onValueChange={setChecked}/>
     <Text style = {styles.checkboxText}> Mantenha-me Conectado</Text>
     </TouchableOpacity>
     </View>
@@ -80,13 +80,13 @@ export default function App() {
 
     <View style = {styles.circulosSocial}>
 
-        <Image style = {styles.facebookImage} source={require('../login/facebook.png')}></Image>
+        <Image style = {styles.facebookImage} source={require('../../../assets/images/facebook.png')}></Image>
         <Text style = {styles.circuloFace}></Text>
 
-        <Image style = {styles.instagramImage} source={require('../login/instagram.png')}></Image>
+        <Image style = {styles.instagramImage} source={require('../../../assets/images/instagram.png')}></Image>
         <Text style = {styles.circuloInsta}></Text>
 
-        <Image style = {styles.gmailImage} source={require('../login/gmail.png')}></Image>
+        <Image style = {styles.gmailImage} source={require('../../../assets/images/gmail.png')}></Image>
         <Text style = {styles.circuloGmail}></Text>
     </View>
 

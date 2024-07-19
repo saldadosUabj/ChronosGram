@@ -34,9 +34,9 @@ const styles = StyleSheet.create({
         backgroundColor:'#E6E7ED',
         width:320,
         height:170,
-        left:50,
         marginTop:90,
         borderRadius:13,
+        alignSelf:"center"
       },
        checkBox2: {
           borderRadius:20,

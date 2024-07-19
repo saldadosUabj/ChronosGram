@@ -14,7 +14,7 @@ export default function App() {
 
     <View style = {styles.viewImage}>
 
-    <Image source={require('../registro/logo.png')} style = {styles.imageLogo}></Image>
+    <Image source={require('../../../assets/images/logo.png')} style = {styles.imageLogo}></Image>
 
     </View>
 
