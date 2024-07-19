@@ -52,17 +52,29 @@ export default function Card() {
 
         <View style={{flex:1 ,flexDirection: 'row', justifyContent: 'space-between'}}>
 
-        <View style={{flexDirection: 'row', alignSelf: 'center'}}>
+          <View style={styles.containerCheckBox}>
+            <Image style={styles.v} source={require('../../../../../../assets/images/V.png')}/>
+          </View>
 
-          
+          <View style={styles.imagensMiniaturas}>
+
+          </View>
+
+        <View style={{flexDirection: 'row', alignSelf: 'center'}}>          
 
         </View>
 
           <View style={{flexDirection: 'row', alignSelf: 'center', margin: 5}}>
 
-            <Image style={styles.miniaturas} source={require('../../../../../../assets/images/joinha.png')}/>
-            <Image style={styles.miniaturas} source={require('../../../../../../assets/images/negativo.png')}/>
-            <Image style={styles.miniaturas} source={require('../../../../../../assets/images/comentario.png')}/>
+            <TouchableOpacity>
+                <Image style={styles.miniaturas} source={require('../../../../../../assets/images/joinha.png')}/>
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <Image style={styles.miniaturas} source={require('../../../../../../assets/images/negativo.png')}/>
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <Image style={styles.miniaturas} source={require('../../../../../../assets/images/comentario.png')}/>
+            </TouchableOpacity>
 
           </View>
 
