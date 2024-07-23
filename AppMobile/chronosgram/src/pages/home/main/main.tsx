@@ -6,6 +6,7 @@ import styles from './style';
 import Ofensiva from './components/ofensiva/ofensiva';
 import Constancia from './components/constancia/constancia';
 import Card from './components/card/card';
+import TopTabRoutes from '../../../routers/topTab/topTabRoutes';
 
 import { AuthContext } from '../../../contexts/auth'
 
@@ -14,8 +15,7 @@ export default function Main() {
   const { nome } = useContext<any>(AuthContext)
   const navigation = useNavigation();
 
-  return (
-    
+  return (    
     <ScrollView style={styles.container}>
       <View style={styles.containerHorizontal}>
         <Ofensiva/>
