@@ -8,10 +8,11 @@ const verde = "#52FF00"
 
 const styles = StyleSheet.create({
     container: {
-        width: 328,
-        height: 200,
-        borderRadius: 20,
-        backgroundColor: card,
+      marginVertical: 10,
+      width: 328,
+      height: 200,
+      borderRadius: 20,
+      backgroundColor: card,
       },
     backgroung: {
         flex: 1,
