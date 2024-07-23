@@ -5,6 +5,7 @@ const fundo = "#16041B"
 const card = "#73628A"
 const secundaria = "#603F74"
 const verde = "#52FF00"
+const cinza = "#D9D9D9"
 
 const styles = StyleSheet.create({
     container: {
@@ -34,6 +35,14 @@ const styles = StyleSheet.create({
       width: 150,
       justifyContent: 'flex-start',
     },
+    containerCheckBox:{
+      alignSelf: 'center',
+      marginLeft: 17,
+      width: 30,
+      height: 30,
+      borderRadius: 8,
+      backgroundColor: cinza,
+    },
     fundo:{
         flex: 1,
     },
@@ -50,8 +59,23 @@ const styles = StyleSheet.create({
       alignSelf: 'center',
       marginLeft: 15,
     },
+    v:{
+      marginTop: 4,
+      justifyContent: 'center',
+      alignSelf: 'center',
+      width: 20,
+      height: 20,
+    },
     miniaturas:{
       margin:10,
+    },
+    imagensMiniaturas:{
+      right: 25,
+      backgroundColor: cinza,
+      alignSelf: 'center',
+      width: 30,
+      height: 30,
+      borderRadius: 12,
     },
     textoPrimario:{
       alignSelf: 'center',
