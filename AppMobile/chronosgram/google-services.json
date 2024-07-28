@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "764675995287",
+    "firebase_url": "https://banco-usuario-default-rtdb.firebaseio.com",
+    "project_id": "banco-usuario",
+    "storage_bucket": "banco-usuario.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764675995287:android:81892bc26c92d439861bd2",
+        "android_client_info": {
+          "package_name": "com.chronosgram.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBy2IhAjc6urLk-v2BEqDNNYnG4c8i5PAA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
