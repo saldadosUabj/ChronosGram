@@ -1,4 +1,5 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
+from typing import Optional
 from firebaseadm import FirebaseAdm
 from RedeNeural import RedeNeural
 from RedeAdapter import RedeAdapter
@@ -31,7 +32,15 @@ def read_user(user_id: str):
     return user_data
 
 @app.put("/users/{user_id}")
-def update_user(user_id: str, nome: str, turno_livre: str, tipo: str, email: str, senha: str, username: str):
+def update_user(
+    user_id: str,
+    nome: Optional[str] = Query(None),
+    turno_livre: Optional[str] = Query(None),
+    tipo: Optional[str] = Query(None),
+    email: Optional[str] = Query(None),
+    senha: Optional[str] = Query(None),
+    username: Optional[str] = Query(None)
+):
     user_data = {
         "nome": nome,
         "turno_livre": turno_livre,
@@ -40,7 +49,26 @@ def update_user(user_id: str, nome: str, turno_livre: str, tipo: str, email: str
         "senha": senha,
         "username": username
     }
-    firebase_adm.update_user(user_id, user_data)
+
+    print("Received PUT request for user_id:", user_id)
+    print("Parameters:", nome, turno_livre, tipo, email, senha, username)
+    print("Received data for update:", user_data)
+    
+    # Remove os campos que são None ou vazios
+    user_data = {k: v for k, v in user_data.items() if v not in [None, ""]}
+    print("Filtered data for update:", user_data)
+
+    if not user_data:
+        raise HTTPException(status_code=400, detail="Nenhum dado para atualizar")
+    
+    try:
+        # Atualiza o usuário no Firebase
+        firebase_adm.update_user(user_id, user_data)
+        print(f"User {user_id} updated with data: {user_data}")
+    except Exception as e:
+        print(f"Error updating user {user_id}: {e}")
+        raise HTTPException(status_code=500, detail="Erro ao atualizar usuário")
+    
     return {"id": user_id, **user_data}
 
 @app.delete("/users/{user_id}")
