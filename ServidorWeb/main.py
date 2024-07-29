@@ -61,6 +61,14 @@ def update_user(
     if not user_data:
         raise HTTPException(status_code=400, detail="Nenhum dado para atualizar")
     
+    try:
+        # Atualiza o usuário no Firebase
+        firebase_adm.update_user(user_id, user_data)
+        print(f"User {user_id} updated with data: {user_data}")
+    except Exception as e:
+        print(f"Error updating user {user_id}: {e}")
+        raise HTTPException(status_code=500, detail="Erro ao atualizar usuário")
+    
     return {"id": user_id, **user_data}
 
 @app.delete("/users/{user_id}")
