@@ -18,15 +18,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     alignItems: 'center',
   },
-  userBox: {
-    backgroundColor: '#73628A', 
-    padding: 20,
-    borderRadius: 20,
-    marginBottom: 1,
-    marginTop: 5, 
-    flexDirection: 'row', 
-    alignItems: 'center',
-  },
   profilePicture: {
     width: 82,
     height: 82,
@@ -35,20 +26,20 @@ const styles = StyleSheet.create({
     marginRight: 20, 
   },
   logoPicture: {
-    width: 120,
-    height: 120,
+    width: 82,
+    height: 82,
     borderRadius: 20,
     marginRight: 20, 
   },
   coursePicture: {
-    width: 120,
-    height: 120,
+    width: 82,
+    height: 82,
     borderRadius: 20,
     marginRight: 20, 
   },
   typePicture: {
-    width: 120,
-    height: 120,
+    width: 82,
+    height: 82,
     borderRadius: 20,
     marginRight: 20, 
   },
@@ -61,11 +52,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  nameAndButtonContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between', // Alinha o nome e o botão na mesma linha
+    marginBottom: 10, // Adiciona algum espaço abaixo se necessário
+  },
   fullName: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#16041B', 
-    marginBottom: 10,
   },
   userInfo: {
     fontSize: 16,
@@ -75,12 +71,6 @@ const styles = StyleSheet.create({
   username: {
     fontSize: 14,
     color: '#16041B',
-    marginLeft: 140,
-  },
-  userBio: {
-    fontSize: 14,
-    color: '#16041B',
-    marginLeft: 160,
   },
   university: {
     fontSize: 16,
@@ -117,6 +107,41 @@ const styles = StyleSheet.create({
     color: '#16041B', 
     marginTop: 5,
     flexShrink: 1, 
+  },
+  editButton: {
+    backgroundColor: '#16041B',
+    borderRadius: 5,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+  },
+  editButtonIcon: {
+    width: 20,
+    height: 20,
+  },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    width: 300,
+    padding: 20,
+    backgroundColor: 'white',
+    borderRadius: 10,
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  input: {
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 10,
+    paddingHorizontal: 10,
   },
 });
 
