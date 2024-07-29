@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from typing import Optional
 from firebaseadm import FirebaseAdm
 from RedeNeural import RedeNeural
@@ -34,12 +34,12 @@ def read_user(user_id: str):
 @app.put("/users/{user_id}")
 def update_user(
     user_id: str,
-    nome: Optional[str] = None,
-    turno_livre: Optional[str] = None,
-    tipo: Optional[str] = None,
-    email: Optional[str] = None,
-    senha: Optional[str] = None,
-    username: Optional[str] = None
+    nome: Optional[str] = Query(None),
+    turno_livre: Optional[str] = Query(None),
+    tipo: Optional[str] = Query(None),
+    email: Optional[str] = Query(None),
+    senha: Optional[str] = Query(None),
+    username: Optional[str] = Query(None)
 ):
     user_data = {
         "nome": nome,
@@ -50,20 +50,16 @@ def update_user(
         "username": username
     }
 
-    print("Received PUT request for user_id:", user_id)  # Log do ID do usuário
-    print("Parameters:", nome, turno_livre, tipo, email, senha, username)  # Log dos parâmetros recebidos
-    print("Received data for update:", user_data)  # Log dos dados recebidos para atualização
+    print("Received PUT request for user_id:", user_id)
+    print("Parameters:", nome, turno_livre, tipo, email, senha, username)
+    print("Received data for update:", user_data)
     
     # Remove os campos que são None ou vazios
     user_data = {k: v for k, v in user_data.items() if v not in [None, ""]}
-    print("Filtered data for update:", user_data)  # Log dos dados filtrados
+    print("Filtered data for update:", user_data)
 
-    # Verifica se user_data não está vazio antes de atualizar
     if not user_data:
         raise HTTPException(status_code=400, detail="Nenhum dado para atualizar")
-
-    # Atualiza o usuário no Firebase
-    firebase_adm.update_user(user_id, user_data)
     
     return {"id": user_id, **user_data}
 
