@@ -53,6 +53,10 @@ def update_user(
     # Remove os campos que são None ou vazios
     user_data = {k: v for k, v in user_data.items() if v not in [None, ""]}
     
+    # Verifica se user_data não está vazio antes de atualizar
+    if not user_data:
+        raise HTTPException(status_code=400, detail="Nenhum dado para atualizar")
+
     # Atualiza o usuário no Firebase
     firebase_adm.update_user(user_id, user_data)
     
