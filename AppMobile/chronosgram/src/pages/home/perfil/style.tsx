@@ -55,8 +55,8 @@ const styles = StyleSheet.create({
   nameAndButtonContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between', // Alinha o nome e o botão na mesma linha
-    marginBottom: 10, // Adiciona algum espaço abaixo se necessário
+    justifyContent: 'space-between',
+    marginBottom: 10,
   },
   fullName: {
     fontSize: 16,
@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
   },
   turnoLivre: { 
     fontSize: 16,
+    fontWeight: 'bold',
     color: '#16041B', 
     marginTop: 5,
     flexShrink: 1, 

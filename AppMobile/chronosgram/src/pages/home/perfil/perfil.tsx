@@ -1,41 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity, Modal, TextInput, Button } from 'react-native';
-import { useUserData, updateUserName, UserData } from './logic';
+import { useUserData, updateUser } from './logic';
 import styles from './style';
 
 const userId = '5a0e161c-095c-490f-9a60-f7f1635118fe';
 
 const Perfil = () => {
-  const [userData, setUserData] = useState<UserData | null>(null);
+  const { userData, fetchUserData } = useUserData(userId);
   const [modalVisible, setModalVisible] = useState(false);
   const [newName, setNewName] = useState('');
+  const [newTurnoLivre, setNewTurnoLivre] = useState('');
+  const [newTipoUsuario, setNewTipoUsuario] = useState('');
 
-  // Hook customizado para buscar os dados do usuário
-  const { fetchUserData } = useUserData(userId);
-
-  // Função para buscar dados do usuário
-  const fetchUserDataFromAPI = async () => {
-    try {
-      const data = await fetchUserData(); // Busca os dados atualizados
-      setUserData(data);
-      setNewName(data?.nome || ''); // Atualiza o nome no estado do modal
-    } catch (error) {
-      console.error('Erro ao buscar dados do usuário:', error);
-    }
-  };
-
-  // Carrega os dados do usuário quando o componente é montado
   useEffect(() => {
-    fetchUserDataFromAPI();
-  }, []);
+    if (userData) {
+      setNewName(userData.nome);
+      setNewTurnoLivre(userData.turno_livre);
+      setNewTipoUsuario(userData.tipo);
+    }
+  }, [userData]);
 
-  const handleUpdateName = async () => {
+  const handleUpdate = async () => {
     try {
-      await updateUserName(userId, newName);
+      await updateUser(userId, { nome: newName, turno_livre: newTurnoLivre, tipo: newTipoUsuario });
       setModalVisible(false);
-      await fetchUserDataFromAPI(); // Atualiza os dados após salvar
+      await fetchUserData(); // Atualiza os dados após salvar
     } catch (error) {
-      console.error('Erro ao atualizar o nome do usuário:', error);
+      console.error('Erro ao atualizar os dados do usuário:', error);
     }
   };
 
@@ -44,16 +35,14 @@ const Perfil = () => {
       <View style={styles.profileBox}>
         <Image source={require('../../../../assets/images/perfil/profile.jpg')} style={styles.profilePicture} />
         <View style={styles.textContainer}>
-          <View style={styles.nameAndButtonContainer}>
-            <Text style={styles.fullName}>{userData?.nome}</Text>
-            <TouchableOpacity style={styles.editButton} onPress={() => setModalVisible(true)}>
-              <Image source={require('../../../../assets/images/perfil/editar.png')} style={styles.editButtonIcon} />
-            </TouchableOpacity>
-          </View>
+          <Text style={styles.fullName}>{userData?.nome}</Text>
           <Text style={styles.userInfo}>Idade: 24</Text>
           <Text style={styles.userInfo}>Gênero: Masculino</Text>
           <View style={styles.horizontalContainer}>
-            <Text style={styles.username}>@{userData?.username}</Text> 
+            <Text style={styles.username}>@{userData?.username}</Text>
+            <TouchableOpacity style={styles.editButton} onPress={() => setModalVisible(true)}>
+              <Image source={require('../../../../assets/images/perfil/editar.png')} style={styles.editButtonIcon} />
+            </TouchableOpacity>
           </View>
         </View>
       </View>
@@ -79,11 +68,16 @@ const Perfil = () => {
         <Image source={require('../../../../assets/images/perfil/rotina.jpg')} style={styles.typePicture} />
         <View style={styles.textContainer}>
           <Text style={styles.userType}>Tipo de usuário: {userData?.tipo}</Text>
+        </View>
+      </View>
+      <View style={styles.profileBox}>
+        <Image source={require('../../../../assets/images/perfil/turno.png')} style={styles.typePicture} />
+        <View style={styles.textContainer}>
           <Text style={styles.turnoLivre}>Turno livre: {userData?.turno_livre}</Text>
         </View>
       </View>
-      
-      {/* Modal para editar nome */}
+
+      {/* Modal para editar nome, turno livre e tipo de usuário */}
       <Modal
         visible={modalVisible}
         transparent={true}
@@ -92,13 +86,26 @@ const Perfil = () => {
       >
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Editar Nome</Text>
+            <Text style={styles.modalTitle}>Editar Dados</Text>
             <TextInput
               style={styles.input}
               value={newName}
               onChangeText={setNewName}
+              placeholder="Nome"
             />
-            <Button title="Salvar" onPress={handleUpdateName} />
+            <TextInput
+              style={styles.input}
+              value={newTurnoLivre}
+              onChangeText={setNewTurnoLivre}
+              placeholder="Turno Livre"
+            />
+            <TextInput
+              style={styles.input}
+              value={newTipoUsuario}
+              onChangeText={setNewTipoUsuario}
+              placeholder="Tipo de Usuário"
+            />
+            <Button title="Salvar" onPress={handleUpdate} />
             <Button title="Cancelar" onPress={() => setModalVisible(false)} color="red" />
           </View>
         </View>

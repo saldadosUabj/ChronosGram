@@ -5,7 +5,7 @@ export interface UserData {
   nome: string;
   turno_livre: string;
   tipo: string;
-  username: string; // Adicione o campo username
+  username: string;
 }
 
 export const useUserData = (userId: string) => {
@@ -29,12 +29,18 @@ export const useUserData = (userId: string) => {
   return { userData, fetchUserData };
 };
 
-export const updateUserName = async (userId: string, newName: string) => {
+export const updateUser = async (userId: string, updatedData: Partial<UserData>) => {
   try {
-    const response = await axios.put(`https://fast-api-x5fr.onrender.com/users/${userId}?nome=${encodeURIComponent(newName)}`);
+    const params = new URLSearchParams();
+    if (updatedData.nome) params.append('nome', updatedData.nome);
+    if (updatedData.turno_livre) params.append('turno_livre', updatedData.turno_livre);
+    if (updatedData.tipo) params.append('tipo', updatedData.tipo);
+    if (updatedData.username) params.append('username', updatedData.username);
+
+    const response = await axios.put(`https://fast-api-x5fr.onrender.com/users/${userId}?${params.toString()}`);
     return response.data;
   } catch (error) {
-    console.error('Erro ao atualizar o nome do usuário:', error);
-    throw error; // Retorna o erro para ser tratado no componente
+    console.error('Erro ao atualizar os dados do usuário:', error);
+    throw error;
   }
 };
