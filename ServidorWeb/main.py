@@ -41,9 +41,6 @@ def update_user(
     senha: Optional[str] = None,
     username: Optional[str] = None
 ):
-    print(f"Received PUT request for user_id: {user_id}")
-    print(f"Parameters: nome={nome}, turno_livre={turno_livre}, tipo={tipo}, email={email}, senha={senha}, username={username}")
-
     user_data = {
         "nome": nome,
         "turno_livre": turno_livre,
@@ -53,14 +50,19 @@ def update_user(
         "username": username
     }
 
-    print("Received data for update:", user_data)
+    print("Received PUT request for user_id:", user_id)  # Log do ID do usuário
+    print("Parameters:", nome, turno_livre, tipo, email, senha, username)  # Log dos parâmetros recebidos
+    print("Received data for update:", user_data)  # Log dos dados recebidos para atualização
     
+    # Remove os campos que são None ou vazios
     user_data = {k: v for k, v in user_data.items() if v not in [None, ""]}
-    print("Filtered data for update:", user_data)
+    print("Filtered data for update:", user_data)  # Log dos dados filtrados
 
+    # Verifica se user_data não está vazio antes de atualizar
     if not user_data:
         raise HTTPException(status_code=400, detail="Nenhum dado para atualizar")
 
+    # Atualiza o usuário no Firebase
     firebase_adm.update_user(user_id, user_data)
     
     return {"id": user_id, **user_data}
