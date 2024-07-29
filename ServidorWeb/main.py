@@ -49,18 +49,19 @@ def update_user(
         "senha": senha,
         "username": username
     }
-    
-    # Log dos dados recebidos
-    print("Received data:", user_data)
+
+    print("Received data for update:", user_data)  # Log dos dados recebidos para atualização
     
     # Remove os campos que são None ou vazios
     user_data = {k: v for k, v in user_data.items() if v not in [None, ""]}
-    
+
+    print("Filtered data for update:", user_data)  # Log dos dados filtrados
+
     # Verifica se user_data não está vazio antes de atualizar
     if not user_data:
         raise HTTPException(status_code=400, detail="Nenhum dado para atualizar")
 
-    # Atualiza o usuário no Firebase (supondo que firebase_adm está configurado corretamente)
+    # Atualiza o usuário no Firebase
     firebase_adm.update_user(user_id, user_data)
     
     return {"id": user_id, **user_data}
