@@ -50,6 +50,9 @@ def update_user(
         "username": username
     }
     
+    # Log dos dados recebidos
+    print("Received data:", user_data)
+    
     # Remove os campos que são None ou vazios
     user_data = {k: v for k, v in user_data.items() if v not in [None, ""]}
     
@@ -57,7 +60,7 @@ def update_user(
     if not user_data:
         raise HTTPException(status_code=400, detail="Nenhum dado para atualizar")
 
-    # Atualiza o usuário no Firebase
+    # Atualiza o usuário no Firebase (supondo que firebase_adm está configurado corretamente)
     firebase_adm.update_user(user_id, user_data)
     
     return {"id": user_id, **user_data}
