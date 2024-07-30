@@ -7,6 +7,7 @@ import Config from '../../pages/home/config/config';
 import Comunidade from '../../pages/home/comunidade/comunidade'
 import Perfil from '../../pages/home/perfil/perfil'
 import Rotinas from '../../pages/home/rotinas/rotinas';
+import TopTabRoutes from '../topTab/topTabRoutes';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -28,7 +29,7 @@ export default function TabRoutes() {
 
         <Tab.Screen 
           name="Main" 
-          component={Main} 
+          component={TopTabRoutes} 
           options={{
             tabBarLabel: 'Main',
             tabBarIcon: () => (<MaterialCommunityIcons name="home" color={"white"} size={26}/>),}}/>
