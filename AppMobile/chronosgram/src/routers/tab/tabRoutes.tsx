@@ -4,57 +4,68 @@ import styles from './styles';
 
 import Main from '../../pages/home/main/main';
 import Config from '../../pages/home/config/config';
-import Comunidade from '../../pages/home/comunidade/comunidade'
-import Perfil from '../../pages/home/perfil/perfil'
+import Comunidade from '../../pages/home/comunidade/comunidade';
+import Perfil from '../../pages/home/perfil/perfil';
 import Rotinas from '../../pages/home/rotinas/rotinas';
 import TopTabRoutes from '../topTab/topTabRoutes';
+import TopTabAtividades from '../topTabAtividades/topTabatividades';
 
 const Tab = createMaterialBottomTabNavigator();
 
 export default function TabRoutes() {
   return (
     <Tab.Navigator
-        initialRouteName="Main"
-        backBehavior="initialRoute"
-        shifting={true}
-        barStyle={styles.tabBar}
-        labeled={true}>
+      initialRouteName="Main"
+      backBehavior="initialRoute"
+      shifting={true}
+      barStyle={styles.tabBar}
+      labeled={false}
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused }) => {
+          let iconName: keyof typeof MaterialCommunityIcons.glyphMap; // Ajuste para garantir a tipagem correta
+          let iconColor = focused ? '#4B0082' : '#A9A9A9'; // Roxo escuro quando selecionado, cinza quando não
 
-        <Tab.Screen 
-          name="Perfil" 
-          component={Perfil} 
-          options={{
-            tabBarLabel: 'Perfil',
-            tabBarIcon: () => (<MaterialCommunityIcons name="account" color={"white"} size={26} />),}}/>
+          if (route.name === 'Main') {
+            iconName = 'home';
+          } else if (route.name === 'Rotinas') {
+            iconName = 'calendar';
+          } else if (route.name === 'Perfil') {
+            iconName = 'cog';
+          } // Adicione mais condições se tiver outras telas
 
-        <Tab.Screen 
-          name="Main" 
-          component={TopTabRoutes} 
-          options={{
-            tabBarLabel: 'Main',
-            tabBarIcon: () => (<MaterialCommunityIcons name="home" color={"white"} size={26}/>),}}/>
+          return (
+            <MaterialCommunityIcons
+              name={iconName}
+              color={iconColor}
+              size={26}
+            />
+          );
+        },
+      })}
+    >
+      <Tab.Screen 
+        name="Main" 
+        component={TopTabRoutes} 
+        options={{
+          tabBarLabel: 'Main',
+        }} 
+      />
 
-        <Tab.Screen 
-          name="Rotinas" 
-          component={Rotinas} 
-          options={{
-            tabBarLabel: 'Rotinas',
-            tabBarIcon: () => (<MaterialCommunityIcons name="calendar" color={"white"} size={26}/>),}}/>
-
-        <Tab.Screen 
-          name="Comunidade" 
-          component={Comunidade} 
-          options={{
-            tabBarLabel: 'Comunidade',
-            tabBarIcon: () => (<MaterialCommunityIcons name="account-group" color={"white"} size={26}/>),}}/>
-            
-        <Tab.Screen 
-          name="Config" 
-          component={Config} 
-          options={{
-            tabBarLabel: 'Config',
-            tabBarIcon: () => (<MaterialCommunityIcons name="cog" color={"white"} size={26}/>),}}/>
-            
-      </Tab.Navigator>
+      <Tab.Screen 
+        name="Rotinas" 
+        component={TopTabAtividades} 
+        options={{
+          tabBarLabel: 'Rotinas',
+        }} 
+      />
+          
+      <Tab.Screen 
+        name="Perfil" 
+        component={Perfil} 
+        options={{
+          tabBarLabel: 'perfil',
+        }} 
+      />
+    </Tab.Navigator>
   );
 }

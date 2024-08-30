@@ -1,86 +1,71 @@
-import { ScrollView ,StyleSheet, Text, TouchableOpacity, View, Image, ImageBackground } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native';
 import React, { useContext, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './style';
 
 import { AuthContext } from '../../../../../contexts/auth';
 
 export default function Card() {
-
-  const { nome } = useContext<any>(AuthContext)
-  var [keystatus, setKeyStatus] = useState<any>('')
-  const tempo  = '30 min';
+  const { nome } = useContext<any>(AuthContext);
+  var [keystatus, setKeyStatus] = useState<any>('');
+  const tempo = '30 min';
   const titulo = 'Prova de Calculo 1';
   const coins = '120 coins';
   const status = 'Em dia';
-  const instrucao = 'Primeira parte Lista'
+  const instrucao = 'Primeira parte Lista';
 
   const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
-
-        <View style={styles.containerHorizontal}>
-          <ImageBackground style= {styles.backgroung} imageStyle={styles.backgroundImage}source={require('../../../../../../assets/images/header-card.jpg')} resizeMode='cover'>
-
-            <View style={styles.containerHorizontal}>
-              
-              <Image style={styles.relogio} source={require('../../../../../../assets/images/relogio.png')}/>
-              <Text style={styles.textoSecundario}> {tempo} </Text>
-              <Text style={styles.textoPrimario}> {titulo} </Text>
-              <Image style={styles.moeda} source={require('../../../../../../assets/images/moeda.png')}/>
-              <Text style={styles.textoSecundario}> {coins} </Text>
-              
-            </View>
-
-          </ImageBackground>             
-        </View>
-
-        <View>
-          <View style={styles.constainerStatus}>
-            <Text style={[styles.textoSecundario,{alignSelf: 'center'}]}> {status} </Text>
+      <View style={styles.containerHorizontal}>
+        <ImageBackground
+          style={styles.background}
+          imageStyle={styles.backgroundImage}
+          source={require('../../../../../../assets/images/header-card.jpg')}
+          resizeMode="cover"
+        >
+          {/* Adicionando uma sobreposição escura */}
+          <View style={styles.overlay}>
+            <Icon name="clock-outline" style={styles.icon} size={24} color="#FFFFFF" />
+            <Text style={styles.textoSecundario}> {tempo} </Text>
+            <Text style={styles.textoPrimario}> {titulo} </Text>
+            <Text style={styles.textoSecundario}> {coins} </Text>
           </View>
+        </ImageBackground>
+      </View>
+
+      <View>
+        <View style={styles.containerStatus}>
+          <Text style={[styles.textoSecundario, { alignSelf: 'center' }]}> {status} </Text>
+        </View>
+      </View>
+
+      <View style={styles.instrucaoContainer}>
+        <Icon name="trophy-outline" style={styles.icon} size={24} color="#FFD700" />
+        <Text style={[styles.textoPrimario, { margin: 2, marginVertical: 5 }]}> {instrucao} </Text>
+      </View>
+
+      <View style={styles.footerContainer}>
+        <View style={styles.containerCheckBox}>
+          <Icon name="check" style={styles.iconCheck} size={20} color="#FFFFFF" />
         </View>
 
-        <View style={{justifyContent: 'flex-start', flexDirection: 'row', padding: 10}}>
+        <View style={styles.imagensMiniaturas} />
 
-          <Image style={styles.trofeu} source={require('../../../../../../assets/images/trofeu.png')}/>
-          <Text style={[styles.textoPrimario,{margin: 2, marginVertical: 5}]}> {instrucao} </Text>
-
+        <View style={styles.actionIconsContainer}>
+          <TouchableOpacity>
+            <Icon name="thumb-up-outline" style={styles.iconAction} size={24} color="#FFFFFF" />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Icon name="thumb-down-outline" style={styles.iconAction} size={24} color="#FFFFFF" />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Icon name="comment-outline" style={styles.iconAction} size={24} color="#FFFFFF" />
+          </TouchableOpacity>
         </View>
-
-        <View style={{flex:1 ,flexDirection: 'row', justifyContent: 'space-between'}}>
-
-          <View style={styles.containerCheckBox}>
-            <Image style={styles.v} source={require('../../../../../../assets/images/V.png')}/>
-          </View>
-
-          <View style={styles.imagensMiniaturas}>
-
-          </View>
-
-        <View style={{flexDirection: 'row', alignSelf: 'center'}}>          
-
-        </View>
-
-          <View style={{flexDirection: 'row', alignSelf: 'center', margin: 5}}>
-
-            <TouchableOpacity>
-                <Image style={styles.miniaturas} source={require('../../../../../../assets/images/joinha.png')}/>
-            </TouchableOpacity>
-            <TouchableOpacity>
-                <Image style={styles.miniaturas} source={require('../../../../../../assets/images/negativo.png')}/>
-            </TouchableOpacity>
-            <TouchableOpacity>
-                <Image style={styles.miniaturas} source={require('../../../../../../assets/images/comentario.png')}/>
-            </TouchableOpacity>
-
-          </View>
-
-
-        </View>
-
+      </View>
     </View>
   );
 }

@@ -23,6 +23,10 @@ export default function Main() {
       </View>
       <View style={styles.containerVertical}>
         <Card/>
+        <Card/>
+        <Card/>
+        <Card/>
+        <Card/>
       </View>
     </ScrollView>
   );
