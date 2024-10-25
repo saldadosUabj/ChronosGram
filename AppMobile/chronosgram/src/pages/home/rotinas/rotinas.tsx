@@ -15,6 +15,7 @@ export default function Rotinas() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#16041B', // Fundo escuro
+    // backgroundColor: '#16041B', // Fundo escuro
+    backgroundColor: '#121212', // Fundo escuro
   },
 });

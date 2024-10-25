@@ -99,7 +99,7 @@ export default function Metas() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#222',
+    backgroundColor: '#121212', // Fundo escuro
     padding: 10,
   },
   metaItem: {
@@ -150,7 +150,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20, // Ajuste a distância do fundo se necessário
     right: 20,
-    backgroundColor: '#16041B', // Cor roxa mais clara
+    backgroundColor: '#9C27B0', // Cor roxa mais clara
+    // backgroundColor: '#16041B', // Cor roxa mais clara
     borderRadius: 50,
     padding: 15,
     alignItems: 'center',

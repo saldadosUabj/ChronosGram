@@ -37,8 +37,7 @@ export default function TabRoutes() {
             <MaterialCommunityIcons
               name={iconName}
               color={iconColor}
-              size={26}
-            />
+              size={26}/>
           );
         },
       })}

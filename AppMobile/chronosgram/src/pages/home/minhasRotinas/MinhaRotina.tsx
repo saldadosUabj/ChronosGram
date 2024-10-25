@@ -74,7 +74,8 @@ export default function MinhaRotina() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#222',
+    // backgroundColor: '#222',
+    backgroundColor: '#121212', // Fundo escuro
     padding: 10,
   },
   rotinaItem: {
