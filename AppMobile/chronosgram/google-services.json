@@ -1,0 +1,105 @@
+{
+  "project_info": {
+    "project_number": "694148028544",
+    "project_id": "banco-rotina",
+    "storage_bucket": "banco-rotina.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694148028544:android:76b1cd2022e10b936e2e65",
+        "android_client_info": {
+          "package_name": "com.chronosgramauth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "694148028544-4ihg22lp40bq667fdmg19it5mg4bjl5b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chronosgramauth",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "694148028544-8rpr0vs7vc3cglphvd4duucurvqb91b0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBliYqqKLJajEZ4rs0wBC-IeootYgZt6aM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "694148028544-8rpr0vs7vc3cglphvd4duucurvqb91b0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694148028544:android:90022aed4727c5556e2e65",
+        "android_client_info": {
+          "package_name": "com.socialauthgoogle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "694148028544-8rpr0vs7vc3cglphvd4duucurvqb91b0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBliYqqKLJajEZ4rs0wBC-IeootYgZt6aM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "694148028544-8rpr0vs7vc3cglphvd4duucurvqb91b0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:694148028544:android:4d69fb011ca5951c6e2e65",
+        "android_client_info": {
+          "package_name": "com.wuel1.chronosgram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "694148028544-8rpr0vs7vc3cglphvd4duucurvqb91b0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBliYqqKLJajEZ4rs0wBC-IeootYgZt6aM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "694148028544-8rpr0vs7vc3cglphvd4duucurvqb91b0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
