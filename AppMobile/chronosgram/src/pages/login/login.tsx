@@ -54,7 +54,7 @@ export default function App() {
     
 
       <View style={styles.buttonEntrar}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => console.log('oi')}>
           <Text style={styles.textoEntrar}>Entrar</Text>
         </TouchableOpacity>
       </View>
