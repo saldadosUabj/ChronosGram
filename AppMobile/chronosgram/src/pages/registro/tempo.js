@@ -1,18 +1,39 @@
 // Tempo.tsx
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
+import { AuthContext } from '../../contexts/auth';
 import { useNavigation } from '@react-navigation/native';
+import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 import { StatusBar } from 'expo-status-bar';
 import { CardOpcaoData } from '../../elementos/cardOpcao/types'; // Ajuste o caminho conforme necessário
 import styles from './tempostyle'; // Ajuste o caminho conforme necessário
 import BotaoContinuar from '../../elementos/botaoContinuar/botaoContinuar'; // Ajuste o caminho conforme necessário
 import CardOpcao from '../../elementos/cardOpcao/cardOpcao'; // Ajuste o caminho conforme necessário
 
-const Tempo: React.FC = () => {
+function Tempo(){
   const navigation = useNavigation();
-  const [selectedTime, setSelectedTime] = useState<string>('');
+  const { user, db } = useContext(AuthContext);
+  const [selectedTime, setSelectedTime] = useState('');
 
-  const data: CardOpcaoData[] = [
+  async function saveDate(){
+    if (user?.uid && selectedTime) { // Confirma que usuário e tempo foram selecionados
+      try {
+        await setDoc(doc(db, "users", user.uid), {
+          selectedTime: selectedTime,
+        }, { merge: true });
+
+        console.log('Tempo selecionado salvo com sucesso');
+      } catch (error) {
+        console.error("Erro ao salvar tempo selecionado:", error);
+      }
+    }
+  }
+
+  function handlerContinue(){
+    saveDate().then(() => navigation.navigate('registro_modo'))
+  }
+
+  const CardOpcaoData = [
     {
       key: 'manha',
       label: 'Manhã',
@@ -33,7 +54,7 @@ const Tempo: React.FC = () => {
     },
   ];
 
-  const handlePress = (key: string) => {
+  const handlePress = (key) => {
     setSelectedTime(key);
   };
 
@@ -54,7 +75,7 @@ const Tempo: React.FC = () => {
       </View>
 
       <View style={styles.tempoConteiner}>
-        {data.map((item) => (
+        {CardOpcaoData.map((item) => (
           <CardOpcao
             key={item.key}
             data={item}
@@ -65,7 +86,7 @@ const Tempo: React.FC = () => {
       </View>
 
       <BotaoContinuar
-        onPress={() => navigation.navigate("registro_modo" as never)}
+        onPress={() => handlerContinue()}
         text="Continuar"
       />
     </View>

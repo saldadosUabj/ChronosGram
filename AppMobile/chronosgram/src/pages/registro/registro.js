@@ -4,9 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { TextInput } from 'react-native-paper';
 import { Feather } from '@expo/vector-icons';
+import { getFirestore, doc, getDoc } from 'firebase/firestore'; // Para Firestore
 import styles from './style';
 import BotaoContinuar from '../../elementos/botaoContinuar/botaoContinuar';
 import { AuthContext } from "../../contexts/auth";
+import { auth } from '../../firebase/firebase';
 
 export default function App() {
   const navigation = useNavigation();
@@ -18,8 +20,10 @@ export default function App() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  const validateForm = () => {
+
+  function validateForm(){
     if (!username) {
       Alert.alert('Erro', 'Por favor, insira um username.');
       return false;
@@ -27,9 +31,7 @@ export default function App() {
     if (!email) {
       Alert.alert('Erro', 'Por favor, insira um email.');
       return false;
-    }
-    
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    }    
     if (!emailRegex.test(email)) {
       Alert.alert('Erro', 'Por favor, insira um email válido.');
       return false;
@@ -51,19 +53,12 @@ export default function App() {
 
   async function handleRegister(){
     try {
-      await register(email, password);
-      // Aqui você pode adicionar o código para salvar as informações adicionais no Firebase Database
-      // Chame a função que você irá implementar para armazenar os dados do usuário
-      // await saveUserData();
+      await register(email, password, username);
       Alert.alert("Sucesso", "Usuário registrado com sucesso!");
       navigation.navigate('registro_tempo', {username, email, password});
     } catch (error) {
       Alert.alert("Erro", error.message);
     }
-  };
-
-  const saveUserData = async () => {
-    // Lógica para salvar os dados do usuário no Firebase Database
   };
 
   const handleContinue = () => {

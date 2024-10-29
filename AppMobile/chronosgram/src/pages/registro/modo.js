@@ -1,22 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
+import { AuthContext } from '../../contexts/auth'; // Ajuste o caminho conforme necessário
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import styles from './modosytle'; // Ajuste o caminho conforme necessário
 import BotaoContinuar from '../../elementos/botaoContinuar/botaoContinuar'; // Ajuste o caminho conforme necessário
 import CardOpcao from '../../elementos/cardOpcao/cardOpcao'; // Ajuste o caminho conforme necessário
-import { CardOpcaoData } from '../../elementos/cardOpcao/types'; // Ajuste o caminho conforme necessário
 
 export default function Modo() {
   const navigation = useNavigation();
-  const [selectedTime, setSelectedTime] = useState<string | null>(null);
+  const { user, db } = useContext(AuthContext); // Pega o user e db do contexto
+  const [selectedMode, setSelectedMode] = useState(null);
 
-  const handlePress = (key: string) => {
-    setSelectedTime(key);
-  };
+  // Função para salvar o modo de estudo selecionado no Firestore
+  async function saveStudyMode() {
+    if (user?.uid && selectedMode) { // Verifica se o usuário está logado e selecionou um modo
+      try {
+        await setDoc(doc(db, "users", user.uid), {
+          studyMode: selectedMode,
+        }, { merge: true });
 
-  // Define a estrutura dos dados de opções
-  const opcoes: CardOpcaoData[] = [
+        console.log('Modo de estudo salvo com sucesso');
+      } catch (error) {
+        console.error("Erro ao salvar modo de estudo:", error);
+      }
+    }
+  }
+
+  // Função para continuar para a próxima tela
+  function handleContinue() {
+    saveStudyMode().then(() => navigation.navigate("registro_universidade"));
+  }
+
+  // Dados das opções de estudo
+  const CardOpcaoData = [
     {
       key: 'casual',
       label: 'Casual',
@@ -37,6 +55,11 @@ export default function Modo() {
     },
   ];
 
+  // Função para definir o modo de estudo selecionado
+  const handlePress = (key) => {
+    setSelectedMode(key);
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
@@ -51,18 +74,18 @@ export default function Modo() {
       </View>
 
       <View style={styles.modoConteiner}>
-        {opcoes.map(opcao => (
+        {CardOpcaoData.map(opcao => (
           <CardOpcao
             key={opcao.key}
             data={opcao}
-            isSelected={selectedTime === opcao.key}
+            isSelected={selectedMode === opcao.key}
             onPress={handlePress}
           />
         ))}
       </View>
 
       <BotaoContinuar
-        onPress={() => navigation.navigate("registro_universidade" as never)}
+        onPress={handleContinue}
         text="Continuar"
       />
     </View>

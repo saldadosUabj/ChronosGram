@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { Text, View, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import styles from './universidadestyle';
+import { AuthContext } from '../../contexts/auth'; // Certifique-se de que o caminho está correto
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import styles from './universidadestyle'; // Ajuste o caminho conforme necessário
 import { Picker } from '@react-native-picker/picker';
-import BotaoContinuar from '../../elementos/botaoContinuar/botaoContinuar';
+import BotaoContinuar from '../../elementos/botaoContinuar/botaoContinuar'; // Ajuste o caminho conforme necessário
 
 export default function Universidade() {
   const navigation = useNavigation();
-  
-  const [selectedUniversity, setSelectedUniversity] = useState<string | undefined>(undefined);
-  const [selectedCourse, setSelectedCourse] = useState<string | undefined>(undefined);
+  const { user, db } = useContext(AuthContext); // Obtenha o usuário e o Firestore do contexto
+  const [selectedUniversity, setSelectedUniversity] = useState(undefined);
+  const [selectedCourse, setSelectedCourse] = useState(undefined);
 
+  // Dados das universidades e cursos
   const universities = [
     'Universidade Federal Rural de Pernambuco (UFRPE)',
     'Universidade Federal de Pernambuco (UFPE)',
@@ -26,10 +29,34 @@ export default function Universidade() {
     // Adicione mais cursos conforme necessário
   ];
 
+  // Função para salvar universidade e curso no Firestore
+  async function saveUniversityAndCourse() {
+    if (user?.uid && selectedUniversity && selectedCourse) {
+      try {
+        const userRef = doc(db, "users", user.uid);
+
+        // Atualiza o documento do usuário com as informações de universidade e curso
+        await setDoc(userRef, {
+          university: selectedUniversity,
+          course: selectedCourse,
+        }, { merge: true });
+
+        console.log('Universidade e curso salvos com sucesso');
+      } catch (error) {
+        console.error("Erro ao salvar universidade e curso:", error);
+      }
+    }
+  }
+
+  // Função para continuar para a próxima tela
+  function handleContinue() {
+    saveUniversityAndCourse().then(() => navigation.navigate("home"));
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
-      
+
       <View style={styles.viewImage}>
         <Image style={styles.imageLogo} source={require('../../../assets/images/logo.png')} />
       </View>
@@ -71,7 +98,7 @@ export default function Universidade() {
       </View>
 
       <BotaoContinuar
-        onPress={() => navigation.navigate("home" as never)}
+        onPress={handleContinue}
         text="Continuar"
       />
     </View>
