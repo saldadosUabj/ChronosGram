@@ -1,12 +1,30 @@
-import { StyleSheet, Text, TouchableOpacity, View, TextInput, Image } from 'react-native';
-import React, { useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View, TextInput, Image, Alert } from 'react-native';
+import React, { useState, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { AuthContext } from '../../contexts/auth';
 import Checkbox from 'expo-checkbox';
 import styles from './style';
 
 export default function App() {
   const navigation = useNavigation();
+  const { login } = useContext(AuthContext);
   const [isChecked, setChecked] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  function validateForm(){
+    if(email === '' || password === ''){
+      Alert.alert('Preencha todos os campos')
+      return false
+    }
+    return true
+  }
+
+  async function handlerLogin(){
+    if(validateForm()){
+      await login(email, password).then(console.log(navigation.navigate('home')))
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -26,18 +44,20 @@ export default function App() {
       <View style={styles.loginForm}>
         <TextInput 
           placeholder='Email'
+          onChangeText={setEmail} 
           style={styles.input} 
         />
 
         <TextInput 
           placeholder='Senha'
-          secureTextEntry 
+          secureTextEntry
+          onChangeText={setPassword} 
           style={styles.input} 
         />
       </View>
       <View style={styles.registerConteiner}>
         <Text style={styles.registerText2}>Não possui uma conta?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('registro' as never)}> 
+        <TouchableOpacity onPress={() => navigation.navigate('registro')}> 
           <Text style={styles.registerText}>Registrar-se</Text>
         </TouchableOpacity>
       </View>
@@ -54,7 +74,7 @@ export default function App() {
     
 
       <View style={styles.buttonEntrar}>
-        <TouchableOpacity onPress={() => console.log('oi')}>
+        <TouchableOpacity onPress={() => handlerLogin()}>
           <Text style={styles.textoEntrar}>Entrar</Text>
         </TouchableOpacity>
       </View>

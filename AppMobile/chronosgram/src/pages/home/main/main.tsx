@@ -12,8 +12,10 @@ import { AuthContext } from '../../../contexts/auth'
 
 export default function Main() {
 
-  const { nome } = useContext<any>(AuthContext)
+  const { user } = useContext<any>(AuthContext)
   const navigation = useNavigation();
+
+  console.log(user?.username)
 
   return (    
     <ScrollView style={styles.container}>
